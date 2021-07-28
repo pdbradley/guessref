@@ -3,14 +3,14 @@ import React from 'react';
 import Game from '../Game';
 
 export default {
-  title: 'Example/Game',
+  title: 'Game',
   component: Game,
 };
 
 const Template = args => <Game {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {verse: 'wazzup'};
 
 export const Secondary = Template.bind({});
 Secondary.args = {};

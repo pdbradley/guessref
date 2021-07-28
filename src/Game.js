@@ -1,11 +1,13 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
 import {Section, Container, Heading} from 'react-bulma-components';
+import Verse from './Verse';
 
-function Game() {
+const Game = ({verse, players}) => {
   return (
     <>
       <Section>
+        <Verse verse={verse}></Verse>
         <Container>
           <div class="content">
             <p>
@@ -18,6 +20,6 @@ function Game() {
       </Section>
     </>
   );
-}
+};
 
 export default Game;
