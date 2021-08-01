@@ -1,15 +1,11 @@
-import React, { useEffect, Fragment, useState } from "react";
+import React, {useEffect, Fragment, useState} from 'react';
 import 'bulma/css/bulma.min.css';
 import {Section, Container, Heading} from 'react-bulma-components';
 import Verse from './Verse';
-import { useMutation, useSubscription, gql } from "@apollo/client";
+import {useMutation, useSubscription, gql} from '@apollo/client';
 
-
-const Game = ({verse, players}) => {
-  return (
-    <>
-    </>
-  );
+const Game = () => {
+  return <></>;
 };
 
 export default Game;

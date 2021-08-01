@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2021_07_30_153723) do
   enable_extension "uuid-ossp"
 
   create_table "game_sessions", force: :cascade do |t|
-    t.string "uuid", default: "uuid_generate_v1()", null: false
     t.integer "tick", default: 0
+    t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["uuid"], name: "index_game_sessions_on_uuid"
