@@ -37,3 +37,8 @@ Laying the groundwork and plumbing:
 - Got apollo subscriptions working (hasura backend)
 - Need to get api endpoints from ENV vars
 - Need to figure out how routing works in react...
+
+I think I'll setup something in the api now, where you "start" a game, and the game goes for 10 ticks and ends.
+
+That should be enough to start a game and just watch the ticker. and get a few rspec specs in place to verify
+game correctness.
