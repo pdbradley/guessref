@@ -5,6 +5,10 @@ class VerseWord < ApplicationRecord
     where(visible: false)
   end
 
+  def self.invisible
+    hidden
+  end
+
   def self.visible
     where(visible: true)
   end
