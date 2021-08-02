@@ -1,5 +1,4 @@
 import React from 'react';
-
 import VerseWord from '../VerseWord';
 
 export default {
@@ -14,3 +13,6 @@ Visible.args = {wordText: 'Joshua', visible: true};
 
 export const Invisible = Template.bind({});
 Invisible.args = {wordText: 'Joshua', visible: false};
+
+export const Dinush = Template.bind({});
+Dinush.args = {wordText: 'Joshua', visible: false};
