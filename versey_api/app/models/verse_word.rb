@@ -12,4 +12,8 @@ class VerseWord < ApplicationRecord
   def self.visible
     where(visible: true)
   end
+
+  def visible!
+    update_attribute(:visible, true)
+  end
 end

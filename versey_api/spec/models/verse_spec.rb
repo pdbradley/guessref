@@ -1,25 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Verse, type: :model do
-  describe ".revealed?" do
-    it "returns false if any of the words are hidden" do
-      game_round = create(:game_round, game_session: create(:game_session))
-      verse = create(:verse, game_round: game_round)
-      create(:verse_word, visible: false, verse: verse)
-      create(:verse_word, visible: true, verse: verse)
-
-      expect(verse.revealed?).to eq false
-    end
-
-    it "returns true if all the words are visible" do
-      game_round = create(:game_round, game_session: create(:game_session))
-      verse = create(:verse, game_round: game_round)
-      create(:verse_word, visible: true, verse: verse)
-      create(:verse_word, visible: true, verse: verse)
-
-      expect(verse.revealed?).to eq true
-    end
-  end
+  #todo add scope tests for verse types
 
   describe "tick!" do
     it "will set one of the versewords to visible each tick" do
@@ -36,14 +18,16 @@ RSpec.describe Verse, type: :model do
       expect(verse.verse_words.visible.size).to eq 2
       expect(verse.verse_words.invisible.size).to eq 1
       verse.tick!
-      expect(verse.verse_words.visible.size).to eq 3
-      expect(verse.verse_words.invisible.size).to eq 0
+      expect(verse.verse_words.reload.visible.size).to eq 3
+      expect(verse.verse_words.reload.invisible.size).to eq 0
     end
-    it "does nothing if asked to tick when there are no hidden verses" do
+    it "sets the verse status to COMPLETED if asked to tick when there are no hidden verses" do
       game_round = create(:game_round, game_session: create(:game_session))
       verse = create(:verse, game_round: game_round)
 
       verse.tick!
+
+      expect(verse.status).to eq Verse::COMPLETED_STATUS
     end
   end
 end
