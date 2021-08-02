@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_153723) do
+ActiveRecord::Schema.define(version: 2021_08_02_145742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "game_rounds", force: :cascade do |t|
+    t.bigint "game_session_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_session_id"], name: "index_game_rounds_on_game_session_id"
+  end
 
   create_table "game_sessions", force: :cascade do |t|
     t.integer "tick", default: 0
@@ -25,4 +32,26 @@ ActiveRecord::Schema.define(version: 2021_07_30_153723) do
     t.index ["uuid"], name: "index_game_sessions_on_uuid"
   end
 
+  create_table "verse_words", force: :cascade do |t|
+    t.string "word_text"
+    t.boolean "visible"
+    t.bigint "verse_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["verse_id"], name: "index_verse_words_on_verse_id"
+  end
+
+  create_table "verses", force: :cascade do |t|
+    t.bigint "game_round_id", null: false
+    t.integer "book_number"
+    t.integer "chapter_number"
+    t.integer "verse_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_round_id"], name: "index_verses_on_game_round_id"
+  end
+
+  add_foreign_key "game_rounds", "game_sessions"
+  add_foreign_key "verse_words", "verses"
+  add_foreign_key "verses", "game_rounds"
 end
