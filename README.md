@@ -42,3 +42,16 @@ I think I'll setup something in the api now, where you "start" a game, and the g
 
 That should be enough to start a game and just watch the ticker. and get a few rspec specs in place to verify
 game correctness.
+
+**8/2/21**
+
+Put a few models into the api. GameSession, GameRound, Verse, VerseWord. No users yet. Trying to come
+up with a way where you can send "ticks" to a game session and have it simply march forward. I'll probably
+just use ActiveJob and have each tick schedule the next one a second later eventually.
+
+So I put in a bunch of specs where it sort of goes round by round, verse by verse, revealing words, until the game is done.
+
+Of course the game is just watching a few verses reveal themselves, not much fun yet. But as that is happening on a timer,
+The api can handle the input from users (guessing references etc) and do scoring simultaneously. So my basic thought is that once you
+start a game session, it just marches on until finished, and users can join, guess, etc, and those are just separate api calls
+that happen alongside the ticking timer of the game.
