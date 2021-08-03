@@ -19,16 +19,15 @@ class GameSession < ApplicationRecord
     game_rounds.active + game_rounds.queued
   end
 
-  private
-
   def completed?
-    current_round.nil?
+    self.completed || !current_round
   end
 
+  private
 
   def close_game
     # probably will become a ClosesGame class
-    update_attribute(:completed, true)
+    update_attribute(:completed, true) if !self.completed
   end
 
   def increment_tick_count

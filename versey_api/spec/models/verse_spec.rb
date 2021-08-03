@@ -18,8 +18,8 @@ RSpec.describe Verse, type: :model do
       expect(verse.verse_words.visible.size).to eq 2
       expect(verse.verse_words.invisible.size).to eq 1
       verse.tick!
-      expect(verse.verse_words.reload.visible.size).to eq 3
-      expect(verse.verse_words.reload.invisible.size).to eq 0
+      expect(verse.verse_words.visible.size).to eq 3
+      expect(verse.verse_words.invisible.size).to eq 0
     end
     it "sets the verse status to COMPLETED if asked to tick when there are no hidden verses" do
       game_round = create(:game_round, game_session: create(:game_session))

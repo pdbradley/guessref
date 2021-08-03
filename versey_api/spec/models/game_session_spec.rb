@@ -1,6 +1,52 @@
 require 'rails_helper'
 
 RSpec.describe GameSession, type: :model do
+  describe "Multi Tick Scenarios" do
+    it "handles multiple ticks" do
+      # not sure where to put this but here it sits for now
+      game_session = FactoryBot.create(:game_session, tick: 0)
+      game_round = create(:game_round, game_session: game_session)
+      verse = create(:verse, game_round: game_round)
+      verse_word_1 = create(:verse_word, verse: verse, word_text: "Jesus", visible: false) 
+      verse_word_2 = create(:verse_word, verse: verse, word_text: "wept.", visible: false) 
+      
+      game_session.tick!
+
+      expect(verse_word_1.reload.visible).to be_truthy
+      expect(verse_word_2.reload.visible).to be_falsey
+      expect(verse.completed?).to be_falsey
+      expect(game_round.completed?).to be_falsey
+
+      game_session.tick!
+
+      expect(verse_word_1.reload.visible).to be_truthy
+      expect(verse_word_2.reload.visible).to be_truthy
+      expect(game_round.completed?).to be_falsey
+
+      game_session.tick!
+
+      expect(verse.reload.completed?).to be_truthy
+      expect(game_round.completed?).to be_falsey
+
+      game_session.tick!
+
+      expect(game_round.reload.completed?).to be_truthy
+
+      game_session.tick!
+
+      expect(game_session.reload.completed?).to be_truthy
+
+      game_session.tick!
+      game_session.tick!
+      game_session.tick!
+
+    end
+
+  end
+
+
+
+
   describe "#tick!" do
     it "increments the tick count" do
       game_session = FactoryBot.create(:game_session, tick: 0)
