@@ -1,8 +1,8 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
 // import {Section, Container, Heading} from 'react-bulma-components';
-import {useQuery, useSubscription, gql} from '@apollo/client';
-import VerseWord from './VerseWord';
+import {useSubscription, gql} from '@apollo/client';
+import Game from './Game';
 
 const GET_GAMES = gql`
   subscription getGames {
@@ -31,7 +31,7 @@ const Games = () => {
   return (
     <div>
       {data.game_sessions.map(e => (
-        <VerseWord wordText={e.uuid} />
+        <Game uuid={e.uuid} />
       ))}
     </div>
   );

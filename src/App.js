@@ -1,11 +1,5 @@
 import Games from './Games';
-import VerseWord from './VerseWord';
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  HttpLink,
-} from '@apollo/client';
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import {WebSocketLink} from '@apollo/client/link/ws';
 
 const createApolloClient = () => {
