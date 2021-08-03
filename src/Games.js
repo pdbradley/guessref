@@ -7,6 +7,7 @@ import Game from './Game';
 const GET_GAMES = gql`
   subscription getGames {
     game_sessions {
+      id
       uuid
     }
   }
@@ -27,11 +28,10 @@ const Games = () => {
   console.log(data);
   console.log('GS:');
   console.log(data.game_sessions);
-  //return <div>{data.game_sessions.length}</div>;
   return (
     <div>
       {data.game_sessions.map(e => (
-        <Game uuid={e.uuid} />
+        <Game key={e.id} uuid={e.uuid} />
       ))}
     </div>
   );

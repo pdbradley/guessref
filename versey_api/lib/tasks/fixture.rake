@@ -14,9 +14,20 @@ namespace :dev do
     puts "creating one verse game"
     game_session = FactoryBot.create(:game_session)
     game_round = FactoryBot.create(:game_round, game_session: game_session, status: GameRound::ACTIVE_STATUS)
+
+    # verse one
     verse = FactoryBot.create(:verse, game_round: game_round)
-    FactoryBot.create(:verse_word, word_text: "Jesus", verse: verse)
-    FactoryBot.create(:verse_word, word_text: "wept.", verse: verse)
+    verse_words = "John testified concerning Him and cried out, saying, This was He of whom I said, He who is coming after me has become ahead of me, because He was before me.".split(' ')
+    verse_words.each do |word|
+      FactoryBot.create(:verse_word, word_text: word, verse: verse)
+    end
+    
+    # verse two
+    verse = FactoryBot.create(:verse, game_round: game_round)
+    verse_words = "And I did not know Him, but He who sent me to baptize in water, He said to me, He upon whom you see the Spirit descending and abiding upon Him, this is He who baptizes in the Holy Spirit.".split(' ')
+    verse_words.each do |word|
+      FactoryBot.create(:verse_word, word_text: word, verse: verse)
+    end
   end
 
 end

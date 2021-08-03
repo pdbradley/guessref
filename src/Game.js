@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import 'bulma/css/bulma.min.css';
 //import {Section, Container, Heading} from 'react-bulma-components';
 import {useSubscription, gql} from '@apollo/client';
+import GameSession from './GameSession';
 
 const GET_GAME = gql`
   subscription getGame($uuid: uuid) {
@@ -23,7 +24,9 @@ const GET_GAME = gql`
 `;
 
 const Game = ({uuid}) => {
-  const {loading, error, data} = useSubscription(GET_GAME);
+  const {loading, error, data} = useSubscription(GET_GAME, {
+    variables: {uuid: uuid},
+  });
 
   if (loading) {
     console.log('hi');
@@ -34,11 +37,11 @@ const Game = ({uuid}) => {
     return <div>Error!</div>;
   }
 
-  console.log(data);
-  console.log('GS:');
-  console.log(data.game_sessions);
-
-  return <>{uuid}</>;
+  return (
+    <>
+      <GameSession game_session={data.game_sessions[0]} />
+    </>
+  );
 };
 
 export default Game;
