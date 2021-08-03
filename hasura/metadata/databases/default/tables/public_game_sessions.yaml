@@ -1,0 +1,22 @@
+table:
+  name: game_sessions
+  schema: public
+array_relationships:
+- name: game_rounds
+  using:
+    foreign_key_constraint_on:
+      column: game_session_id
+      table:
+        name: game_rounds
+        schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - completed
+    - tick
+    - created_at
+    - updated_at
+    - uuid
+    filter: {}
+  role: anonymous

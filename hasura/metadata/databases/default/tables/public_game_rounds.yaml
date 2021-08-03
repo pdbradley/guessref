@@ -1,0 +1,25 @@
+table:
+  name: game_rounds
+  schema: public
+object_relationships:
+- name: game_session
+  using:
+    foreign_key_constraint_on: game_session_id
+array_relationships:
+- name: verses
+  using:
+    foreign_key_constraint_on:
+      column: game_round_id
+      table:
+        name: verses
+        schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - game_session_id
+    - created_at
+    - updated_at
+    - status
+    filter: {}
+  role: anonymous

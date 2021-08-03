@@ -1,0 +1,28 @@
+table:
+  name: verses
+  schema: public
+object_relationships:
+- name: game_round
+  using:
+    foreign_key_constraint_on: game_round_id
+array_relationships:
+- name: verse_words
+  using:
+    foreign_key_constraint_on:
+      column: verse_id
+      table:
+        name: verse_words
+        schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - game_round_id
+    - book_number
+    - chapter_number
+    - verse_number
+    - created_at
+    - updated_at
+    - status
+    filter: {}
+  role: anonymous
