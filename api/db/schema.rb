@@ -10,12 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_02_214339) do
+ActiveRecord::Schema.define(version: 2021_08_04_145350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "book_answers", force: :cascade do |t|
+    t.bigint "verse_id", null: false
+    t.integer "point_value"
+    t.boolean "correct", default: false
+    t.string "label"
+    t.index ["correct"], name: "index_book_answers_on_correct"
+    t.index ["verse_id"], name: "index_book_answers_on_verse_id"
+  end
+
+  create_table "chapter_answers", force: :cascade do |t|
+    t.bigint "verse_id", null: false
+    t.integer "point_value"
+    t.boolean "correct", default: false
+    t.string "label"
+    t.index ["correct"], name: "index_chapter_answers_on_correct"
+    t.index ["verse_id"], name: "index_chapter_answers_on_verse_id"
+  end
 
   create_table "game_rounds", force: :cascade do |t|
     t.bigint "game_session_id", null: false
@@ -32,6 +50,15 @@ ActiveRecord::Schema.define(version: 2021_08_02_214339) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "completed", default: false
     t.index ["uuid"], name: "index_game_sessions_on_uuid"
+  end
+
+  create_table "verse_answers", force: :cascade do |t|
+    t.bigint "verse_id", null: false
+    t.integer "point_value"
+    t.boolean "correct", default: false
+    t.string "label"
+    t.index ["correct"], name: "index_verse_answers_on_correct"
+    t.index ["verse_id"], name: "index_verse_answers_on_verse_id"
   end
 
   create_table "verse_words", force: :cascade do |t|
@@ -54,7 +81,10 @@ ActiveRecord::Schema.define(version: 2021_08_02_214339) do
     t.index ["game_round_id"], name: "index_verses_on_game_round_id"
   end
 
+  add_foreign_key "book_answers", "verses"
+  add_foreign_key "chapter_answers", "verses"
   add_foreign_key "game_rounds", "game_sessions"
+  add_foreign_key "verse_answers", "verses"
   add_foreign_key "verse_words", "verses"
   add_foreign_key "verses", "game_rounds"
 end
