@@ -1,6 +1,9 @@
 class Verse < ApplicationRecord
   belongs_to :game_round
   has_many :verse_words
+  has_many :book_answers
+  has_many :chapter_answers
+  has_many :verse_answers
 
   QUEUED_STATUS = 'QUEUED'
   ACTIVE_STATUS = 'ACTIVE'
@@ -44,6 +47,7 @@ class Verse < ApplicationRecord
     update_attribute(:status, COMPLETED_STATUS)
   end
 
+  # this should be a class that gets passed a verse
   def random_from_fixture
     verse_file = File.join(Rails.root, 'db', 'fixtures', 'verses.txt')
     verse_row = File.readlines(verse_file).sample.strip.split(',',4)
@@ -55,6 +59,22 @@ class Verse < ApplicationRecord
     verse_row[3].split(' ').each do |word|
       verse_words.create(word_text: word, visible: false)
     end
+
+    book_answers.create!(point_value: 1, correct: true, label: book_number)
+    book_answers.create!(label: book_number + 1)
+    book_answers.create!(label: book_number + 1)
+    book_answers.create!(label: book_number + 1)
+
+    chapter_answers.create!(point_value: 1, correct: true, label: chapter_number)
+    chapter_answers.create!(label: chapter_number + 1)
+    chapter_answers.create!(label: chapter_number + 1)
+    chapter_answers.create!(label: chapter_number + 1)
+
+    verse_answers.create!(point_value: 1, correct: true, label: verse_number)
+    verse_answers.create!(label: verse_number + 1)
+    verse_answers.create!(label: verse_number + 1)
+    verse_answers.create!(label: verse_number + 1)
+
   end
 
 
