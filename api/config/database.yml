@@ -9,12 +9,12 @@ default: &default
 development:
   <<: *default
   port: 5433
-  database: versey_development
+  database: guessref_development
 
 test:
   <<: *default
   port: 5433
-  database: versey_test
+  database: guessref_test
 
 production:
   <<: *default
