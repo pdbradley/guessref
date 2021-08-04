@@ -1,4 +1,4 @@
-# Versey
+# Guessref
 
 This project is an experiment so I can learn React, play with graphql subscriptions and the Hasura graphql engine,
 practice using Storybook to prototype front end components, and play with the Bulma CSS framework.
