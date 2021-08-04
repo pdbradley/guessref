@@ -3,6 +3,7 @@ import 'bulma/css/bulma.min.css';
 // import {Section, Container, Heading} from 'react-bulma-components';
 import {useSubscription, gql} from '@apollo/client';
 import Game from './Game';
+import GamesList from './GamesList';
 
 const GET_GAMES = gql`
   subscription getGames {
@@ -30,9 +31,7 @@ const GamesQuery = () => {
   console.log(data.game_sessions);
   return (
     <div>
-      {data.game_sessions.map(e => (
-        <Game key={e.id} uuid={e.uuid} />
-      ))}
+      <GamesList game_sessions={data.game_sessions} />
     </div>
   );
 };

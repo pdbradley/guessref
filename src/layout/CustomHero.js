@@ -1,8 +1,15 @@
 import React, {Fragment} from 'react';
 import 'bulma/css/bulma.min.css';
-import {Hero, Section, Container, Heading} from 'react-bulma-components';
+import {Link} from 'react-router-dom';
+import {
+  Navbar,
+  Hero,
+  Section,
+  Container,
+  Heading,
+} from 'react-bulma-components';
 
-const Home = () => {
+const CustomHero = () => {
   return (
     <Hero size="small" color="info">
       <Hero.Header>header stuff might be here</Hero.Header>
@@ -17,4 +24,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CustomHero;

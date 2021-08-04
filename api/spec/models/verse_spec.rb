@@ -41,4 +41,5 @@ RSpec.describe Verse, type: :model do
       expect(verse.verse_words).not_to be_empty
     end
   end
+
 end

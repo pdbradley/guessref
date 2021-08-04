@@ -1,8 +1,10 @@
 import React, {Fragment} from 'react';
 import 'bulma/css/bulma.min.css';
-//import {Section, Container, Heading} from 'react-bulma-components';
 import {useSubscription, gql} from '@apollo/client';
 import GameSession from './GameSession';
+import CustomNavbar from './layout/CustomNavbar';
+import CustomHero from './layout/CustomHero';
+import {useParams} from 'react-router-dom';
 
 const GET_GAME = gql`
   subscription getGame($uuid: uuid) {
@@ -12,6 +14,21 @@ const GET_GAME = gql`
         id
         verses(where: {status: {_eq: "ACTIVE"}}) {
           id
+          book_answers {
+            point_value
+            correct
+            label
+          }
+          chapter_answers {
+            point_value
+            correct
+            label
+          }
+          verse_answers {
+            point_value
+            correct
+            label
+          }
           verse_words {
             id
             word_text
@@ -23,7 +40,8 @@ const GET_GAME = gql`
   }
 `;
 
-const Game = ({uuid}) => {
+const Game = () => {
+  const {uuid} = useParams();
   const {loading, error, data} = useSubscription(GET_GAME, {
     variables: {uuid: uuid},
   });
@@ -39,6 +57,8 @@ const Game = ({uuid}) => {
 
   return (
     <>
+      <CustomHero />
+      <CustomNavbar />
       <GameSession game_session={data.game_sessions[0]} />
     </>
   );

@@ -8,13 +8,11 @@ const Verse = ({verse}) => {
     return <div>No Verse</div>;
   }
   return (
-    <Container>
-      <div className="content">
-        {verse.verse_words.map(({word_text, visible}) => (
-          <VerseWord wordText={word_text} visible={visible} />
-        ))}
-      </div>
-    </Container>
+    <div className="content">
+      {verse.verse_words.map(({word_text, visible}) => (
+        <VerseWord wordText={word_text} visible={visible} />
+      ))}
+    </div>
   );
 };
 

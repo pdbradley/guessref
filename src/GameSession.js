@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Container, Heading} from 'react-bulma-components';
+import {Container, Heading, Section} from 'react-bulma-components';
 import GameRound from './GameRound';
 
 const GameSession = ({game_session}) => {
@@ -8,8 +8,11 @@ const GameSession = ({game_session}) => {
     return <div>No Session</div>;
   }
 
-  console.log(game_session);
-  return <GameRound gameRound={game_session.game_rounds[0]} />;
+  return (
+    <Section textAlign="center">
+      <GameRound gameRound={game_session.game_rounds[0]} />
+    </Section>
+  );
 };
 
 export default GameSession;

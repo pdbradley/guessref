@@ -1,6 +1,10 @@
-import Home from './Home';
+import Home from './pages/Home';
+import About from './pages/About';
+import Game from './Game';
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import {WebSocketLink} from '@apollo/client/link/ws';
+
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 const createApolloClient = () => {
   return new ApolloClient({
@@ -16,9 +20,21 @@ const createApolloClient = () => {
 function App() {
   const client = createApolloClient();
   return (
-    <ApolloProvider client={client}>
-      <Home />
-    </ApolloProvider>
+    <Router>
+      <ApolloProvider client={client}>
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/game/:uuid">
+            <Game />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </ApolloProvider>
+    </Router>
   );
 }
 

@@ -5,6 +5,10 @@ class VerseWord < ApplicationRecord
     where(visible: false)
   end
 
+  def self.random
+    order("RANDOM()")  
+  end
+
   def self.invisible
     hidden
   end

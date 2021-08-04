@@ -36,7 +36,7 @@ class Verse < ApplicationRecord
   end
 
   def next_hidden_word
-    verse_words.hidden.take
+    verse_words.hidden.random.sample
   end
 
   def set_active!
