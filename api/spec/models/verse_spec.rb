@@ -11,23 +11,42 @@ RSpec.describe Verse, type: :model do
       create(:verse_word, visible: false, verse: verse)
       create(:verse_word, visible: false, verse: verse)
 
+      expect(verse.status).to eq 'QUEUED'
+
       verse.tick!
+      expect(verse.status).to eq 'ACTIVE'
+      expect(verse.verse_words.visible.size).to eq 0
+      expect(verse.verse_words.invisible.size).to eq 3
+
+      verse.tick!
+      expect(verse.status).to eq 'ACTIVE'
       expect(verse.verse_words.visible.size).to eq 1
       expect(verse.verse_words.invisible.size).to eq 2
+
       verse.tick!
+      expect(verse.status).to eq 'ACTIVE'
       expect(verse.verse_words.visible.size).to eq 2
       expect(verse.verse_words.invisible.size).to eq 1
+
       verse.tick!
+      expect(verse.status).to eq 'ACTIVE'
       expect(verse.verse_words.visible.size).to eq 3
       expect(verse.verse_words.invisible.size).to eq 0
+
+      verse.tick!
+      expect(verse.status).to eq 'REVEALED'
+
+      verse.tick!
+      expect(verse.status).to eq 'COMPLETED'
     end
-    it "sets the verse status to COMPLETED if asked to tick when there are no hidden verses" do
+    it "sets the verse status to REVEALED if asked to tick when there are no hidden verse_words" do
       game_round = create(:game_round, game_session: create(:game_session))
       verse = create(:verse, game_round: game_round)
 
       verse.tick!
+      verse.tick!
 
-      expect(verse.status).to eq Verse::COMPLETED_STATUS
+      expect(verse.status).to eq Verse::REVEALED_STATUS
     end
   end
 

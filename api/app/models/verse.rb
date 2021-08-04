@@ -1,5 +1,6 @@
 class Verse < ApplicationRecord
   belongs_to :game_round
+  has_one :game_session, through: :game_round
   has_many :verse_words
   has_many :book_answers
   has_many :chapter_answers
@@ -8,6 +9,7 @@ class Verse < ApplicationRecord
   QUEUED_STATUS = 'QUEUED'
   ACTIVE_STATUS = 'ACTIVE'
   COMPLETED_STATUS = 'COMPLETED'
+  REVEALED_STATUS = 'REVEALED'
   STATUSES = [QUEUED_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
 
   def self.queued
@@ -22,16 +24,39 @@ class Verse < ApplicationRecord
     where(status: COMPLETED_STATUS)
   end
 
+  def revealed?
+    self.status == REVEALED_STATUS
+  end
+
+  def queued?
+    self.status == QUEUED_STATUS
+  end
+
+  def active?
+    self.status == ACTIVE_STATUS
+  end
+
   def completed?
     self.status == COMPLETED_STATUS
   end
 
   def tick!
-    if next_hidden_word
+    if queued?
       set_active!
-      next_hidden_word.visible!
-    else
+      GameSessionTickJob.perform_later(game_session.uuid)
+
+    elsif active?
+      if next_hidden_word
+        next_hidden_word.visible! 
+        GameSessionTickJob.set(wait: (0.5).seconds).perform_later(game_session.uuid)
+      else
+        set_revealed!
+        GameSessionTickJob.set(wait: (5).seconds).perform_later(game_session.uuid)
+      end
+
+    elsif revealed?
       set_complete!
+      GameSessionTickJob.perform_later(game_session.uuid)
     end
   end
 
@@ -45,6 +70,10 @@ class Verse < ApplicationRecord
 
   def set_complete!
     update_attribute(:status, COMPLETED_STATUS)
+  end
+
+  def set_revealed!
+    update_attribute(:status, REVEALED_STATUS)
   end
 
   def add_answers!

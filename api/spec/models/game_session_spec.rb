@@ -11,6 +11,7 @@ RSpec.describe GameSession, type: :model do
       verse_word_2 = create(:verse_word, verse: verse, word_text: "wept.", visible: false) 
       
       game_session.tick!
+      game_session.tick!
 
       expect(verse_word_1.reload.visible).to be_truthy
       expect(verse_word_2.reload.visible).to be_falsey
@@ -25,7 +26,7 @@ RSpec.describe GameSession, type: :model do
 
       game_session.tick!
 
-      expect(verse.reload.completed?).to be_truthy
+      expect(verse.reload.revealed?).to be_truthy
       expect(game_round.completed?).to be_falsey
 
       game_session.tick!
