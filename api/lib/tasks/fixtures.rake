@@ -17,11 +17,11 @@ namespace :dev do
 
     game_rounds.each do |game_round|
       # verse one
-      verse = FactoryBot.create(:verse, game_round: game_round)
-      verse_words = "John testified concerning Him and cried out, saying, This was He of whom I said, He who is coming after me has become ahead of me, because He was before me.".split(' ')
-      verse_words.each do |word|
-        FactoryBot.create(:verse_word, word_text: word, verse: verse)
-      end
+      verse = FactoryBot.create(:verse, :with_verse_words, game_round: game_round)
+      # verse_words = "John testified concerning Him and cried out, saying, This was He of whom I said, He who is coming after me has become ahead of me, because He was before me.".split(' ')
+      # verse_words.each do |word|
+      #   FactoryBot.create(:verse_word, word_text: word, verse: verse)
+      # end
       
       # verse two
       verse = FactoryBot.create(:verse, game_round: game_round)

@@ -30,4 +30,15 @@ RSpec.describe Verse, type: :model do
       expect(verse.status).to eq Verse::COMPLETED_STATUS
     end
   end
+
+  describe "#random_from_fixture" do
+    it "populates the verse attributes and verse_words from a fixture file" do
+      game_round = create(:game_round, game_session: create(:game_session))
+      verse = create(:verse, game_round: game_round)
+
+      verse.random_from_fixture
+
+      expect(verse.verse_words).not_to be_empty
+    end
+  end
 end

@@ -44,4 +44,19 @@ class Verse < ApplicationRecord
     update_attribute(:status, COMPLETED_STATUS)
   end
 
+  def random_from_fixture
+    verse_file = File.join(Rails.root, 'db', 'fixtures', 'verses.txt')
+    verse_row = File.readlines(verse_file).sample.strip.split(',',4)
+
+    self.book_number = verse_row[0]
+    self.chapter_number = verse_row[1]
+    self.verse_number = verse_row[2]
+    save!
+    verse_row[3].split(' ').each do |word|
+      verse_words.create(word_text: word, visible: false)
+    end
+  end
+
+
+
 end
