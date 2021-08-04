@@ -1,4 +1,7 @@
+- "!include public_book_answers.yaml"
+- "!include public_chapter_answers.yaml"
 - "!include public_game_rounds.yaml"
 - "!include public_game_sessions.yaml"
+- "!include public_verse_answers.yaml"
 - "!include public_verse_words.yaml"
 - "!include public_verses.yaml"

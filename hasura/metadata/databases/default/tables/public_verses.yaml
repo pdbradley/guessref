@@ -6,6 +6,27 @@ object_relationships:
   using:
     foreign_key_constraint_on: game_round_id
 array_relationships:
+- name: book_answers
+  using:
+    foreign_key_constraint_on:
+      column: verse_id
+      table:
+        name: book_answers
+        schema: public
+- name: chapter_answers
+  using:
+    foreign_key_constraint_on:
+      column: verse_id
+      table:
+        name: chapter_answers
+        schema: public
+- name: verse_answers
+  using:
+    foreign_key_constraint_on:
+      column: verse_id
+      table:
+        name: verse_answers
+        schema: public
 - name: verse_words
   using:
     foreign_key_constraint_on:
