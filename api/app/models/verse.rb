@@ -47,6 +47,12 @@ class Verse < ApplicationRecord
     update_attribute(:status, COMPLETED_STATUS)
   end
 
+  def add_answers!
+    AddsBookAnswers.new(self).add_answers
+    AddsChapterAnswers.new(self).add_answers
+    AddsVerseAnswers.new(self).add_answers
+  end
+
   # this should be a class that gets passed a verse
   def random_from_fixture
     verse_file = File.join(Rails.root, 'db', 'fixtures', 'verses.txt')
@@ -60,20 +66,7 @@ class Verse < ApplicationRecord
       verse_words.create(word_text: word, visible: false)
     end
 
-    book_answers.create!(point_value: 1, correct: true, label: book_number)
-    book_answers.create!(label: book_number + 1)
-    book_answers.create!(label: book_number + 1)
-    book_answers.create!(label: book_number + 1)
-
-    chapter_answers.create!(point_value: 1, correct: true, label: chapter_number)
-    chapter_answers.create!(label: chapter_number + 1)
-    chapter_answers.create!(label: chapter_number + 1)
-    chapter_answers.create!(label: chapter_number + 1)
-
-    verse_answers.create!(point_value: 1, correct: true, label: verse_number)
-    verse_answers.create!(label: verse_number + 1)
-    verse_answers.create!(label: verse_number + 1)
-    verse_answers.create!(label: verse_number + 1)
+    add_answers!
 
   end
 
