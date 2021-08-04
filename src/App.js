@@ -1,4 +1,4 @@
-import Games from './Games';
+import Home from './Home';
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import {WebSocketLink} from '@apollo/client/link/ws';
 
@@ -17,7 +17,7 @@ function App() {
   const client = createApolloClient();
   return (
     <ApolloProvider client={client}>
-      <Games />
+      <Home />
     </ApolloProvider>
   );
 }

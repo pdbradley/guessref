@@ -13,7 +13,7 @@ const GET_GAMES = gql`
   }
 `;
 
-const Games = () => {
+const GamesQuery = () => {
   const {loading, error, data} = useSubscription(GET_GAMES);
 
   if (loading) {
@@ -37,4 +37,4 @@ const Games = () => {
   );
 };
 
-export default Games;
+export default GamesQuery;
