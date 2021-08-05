@@ -7,8 +7,12 @@ class GameSession < ApplicationRecord
       return
     end
 
-    increment_tick_count
-    current_round.tick!
+    current_round.tick! if current_round
+  end
+
+  def start!
+    # need tests so this doesn't start a game that already started or is over
+    tick! unless completed
   end
 
   def current_round
@@ -28,10 +32,6 @@ class GameSession < ApplicationRecord
   def close_game
     # probably will become a ClosesGame class
     update_attribute(:completed, true) if !self.completed
-  end
-
-  def increment_tick_count
-    update_attribute(:tick, self.tick + 1)
   end
 
 end
