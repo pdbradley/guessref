@@ -12,7 +12,7 @@ const GET_GAME = gql`
       uuid
       game_rounds(where: {status: {_eq: "ACTIVE"}}) {
         id
-        verses(where: {status: {_eq: "ACTIVE"}}) {
+        verses(where: {status: {_in: ["ACTIVE", "REVEALED"]}}) {
           id
           book_answers {
             point_value
