@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react';
 import GamesQuery from '../GamesQuery';
-import CustomNavbar from '../layout/CustomNavbar';
-import CustomHero from '../layout/CustomHero';
+import Header from '../layout/Header';
 import 'bulma/css/bulma.min.css';
 import {Link} from 'react-router-dom';
 import {
@@ -15,8 +14,7 @@ import {
 const Home = () => {
   return (
     <>
-      <CustomHero />
-      <CustomNavbar />
+      <Header />
       <GamesQuery />
     </>
   );
