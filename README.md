@@ -55,3 +55,14 @@ Of course the game is just watching a few verses reveal themselves, not much fun
 The api can handle the input from users (guessing references etc) and do scoring simultaneously. So my basic thought is that once you
 start a game session, it just marches on until finished, and users can join, guess, etc, and those are just separate api calls
 that happen alongside the ticking timer of the game.
+
+**8/4/21**
+
+Got a "ticking" game engine that runs through rounds and verses, revealing words one at a time until it ends.
+Each tick schedules the next tick as it ends. Some halfway ok tests.
+
+Also built some logic to add some very lame fake answers to verses. This will need to be pretty sharp but for now it's ok.
+
+Struggling with, as always, front end stuff. Bulma, React. React router is nice, easy to understand.
+
+Next step is to create an api endpoint to create a game session and also start it, then wire that into react somewhere.
