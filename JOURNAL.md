@@ -57,3 +57,8 @@ Also built some logic to add some very lame fake answers to verses. This will ne
 Struggling with, as always, front end stuff. Bulma, React. React router is nice, easy to understand.
 
 Next step is to create an api endpoint to create a game session and also start it, then wire that into react somewhere.
+
+**8/5/21**
+
+Opened the door yesterday to JC and DH so they could learn a little storybook / react. Noticed that my model
+for ticking through game state seems overcomplicated. Trying think of ways to simplify it.
