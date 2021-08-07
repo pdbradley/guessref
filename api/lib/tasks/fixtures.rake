@@ -18,7 +18,7 @@ namespace :dev do
     game_rounds = FactoryBot.create_list(:game_round, 2, game_session: game_session, status: GameRound::ACTIVE_STATUS)
 
     game_rounds.each do |game_round|
-      5.times do
+      20.times do
         verse = FactoryBot.create(:verse, game_round: game_round)
         verse.random_from_fixture
       end
@@ -29,7 +29,7 @@ namespace :dev do
   task many_games: [:environment] do
     Rake::Task["dev:clear_db"].invoke
     puts "many games"
-    5.times do 
+    1.times do 
       Rake::Task["dev:one_game"].reenable
       Rake::Task["dev:one_game"].invoke
     end

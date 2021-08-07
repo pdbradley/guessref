@@ -48,9 +48,10 @@ class Verse < ApplicationRecord
     elsif active?
       if next_hidden_word
         next_hidden_word.visible! 
-        GameSessionTickJob.set(wait: (0.5).seconds).perform_later(game_session.uuid)
+        GameSessionTickJob.set(wait: (0.3).seconds).perform_later(game_session.uuid)
       else
-        set_revealed!
+      set_complete!
+        # set_revealed!
         GameSessionTickJob.set(wait: (5).seconds).perform_later(game_session.uuid)
       end
 
