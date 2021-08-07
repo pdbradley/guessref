@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_020111) do
+ActiveRecord::Schema.define(version: 2021_08_07_120116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_020111) do
     t.integer "point_value"
     t.boolean "correct", default: false
     t.string "label"
+    t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["correct"], name: "index_book_answers_on_correct"
     t.index ["verse_id"], name: "index_book_answers_on_verse_id"
   end
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_020111) do
     t.integer "point_value"
     t.boolean "correct", default: false
     t.string "label"
+    t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["correct"], name: "index_chapter_answers_on_correct"
     t.index ["verse_id"], name: "index_chapter_answers_on_verse_id"
   end
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_020111) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "QUEUED"
+    t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["game_session_id"], name: "index_game_rounds_on_game_session_id"
   end
 
@@ -58,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_020111) do
     t.integer "point_value"
     t.boolean "correct", default: false
     t.string "label"
+    t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["correct"], name: "index_verse_answers_on_correct"
     t.index ["verse_id"], name: "index_verse_answers_on_verse_id"
   end
@@ -68,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_020111) do
     t.bigint "verse_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["verse_id"], name: "index_verse_words_on_verse_id"
   end
 
@@ -79,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_020111) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "QUEUED"
+    t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["game_round_id"], name: "index_verses_on_game_round_id"
   end
 
