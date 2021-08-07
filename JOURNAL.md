@@ -62,3 +62,38 @@ Next step is to create an api endpoint to create a game session and also start i
 
 Opened the door yesterday to JC and DH so they could learn a little storybook / react. Noticed that my model
 for ticking through game state seems overcomplicated. Trying think of ways to simplify it.
+
+**8/7/21**
+
+Thinking out loud now:
+
+GameSession, GameRound, and Verse should have states along the lines of queued, active, complete
+
+```
+GameSession.tick
+  if active game round
+    active_game_round.tick
+  else
+    mark game session complete
+  end
+end
+
+GameRound.tick
+  if active verse
+    active_verse.tick
+  else
+    mark game round complete
+    schedule game_session.tick
+  end
+end
+
+Verse.tick
+  if words_left
+    next_word.reveal
+    schedule next verse.tick
+  else
+    mark verse complete
+    schedule game_round.tick
+  end
+end
+```
