@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     game_session = GameSession.find_by(uuid: params[:uuid])
 
     if game_session
-      game_session.start!
+      game_session.tick!
       render :success
     else
       render error: { error: 'Unable to start game session' }

@@ -42,23 +42,36 @@ class Verse < ApplicationRecord
 
   def tick!
     if queued?
-      set_active!
-      GameSessionTickJob.perform_later(game_session.uuid)
+      queued_tick!
 
     elsif active?
-      if next_hidden_word
-        next_hidden_word.visible! 
-        GameSessionTickJob.set(wait: (0.3).seconds).perform_later(game_session.uuid)
-      else
-      set_complete!
-        # set_revealed!
-        GameSessionTickJob.set(wait: (5).seconds).perform_later(game_session.uuid)
-      end
+      active_tick!
 
     elsif revealed?
-      set_complete!
-      GameSessionTickJob.perform_later(game_session.uuid)
+      revealed_tick!
+    else
+      raise "This should not happen, no tick message should be sent to a completed verse"
     end
+  end
+
+  def queued_tick!
+    set_active!
+    VerseTickJob.set(wait: (1).seconds).perform_later(self.uuid)
+  end
+
+  def active_tick!
+    if next_hidden_word
+      next_hidden_word.visible! 
+      VerseTickJob.set(wait: (1).seconds).perform_later(self.uuid)
+    else
+      set_revealed!
+      VerseTickJob.set(wait: (1).seconds).perform_later(self.uuid)
+    end
+  end
+
+  def revealed_tick!
+    set_complete!
+    GameRoundTickJob.set(wait: 5.seconds).perform_later(game_round.uuid)
   end
 
   def next_hidden_word

@@ -1,37 +1,72 @@
 class GameSession < ApplicationRecord
   has_many :game_rounds
 
-  def tick!
-    if completed?
-      close_game
-      return
-    end
+  LOBBY_STATUS = 'LOBBY'
+  ACTIVE_STATUS= 'ACTIVE'
+  COMPLETED_STATUS = 'COMPLETED'
+  STATUSES = [LOBBY_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
 
-    current_round.tick! if current_round
+  def tick!
+    if lobby?
+      lobby_tick!
+    elsif active?
+      active_tick!
+    elsif completed?
+      completed_tick!
+    else
+      raise "game session has unknown status should not have status #{self.status}"
+    end
   end
 
-  def start!
-    # need tests so this doesn't start a game that already started or is over
-    tick! unless completed
+  def lobby_tick!
+    active!
+    GameSessionTickJob.set(wait: 5.seconds).perform_later(self.uuid)
+  end
+
+  def active_tick!
+    if current_round
+      GameRoundTickJob.set(wait: 5.seconds).perform_later(current_round.uuid)
+    else
+      completed!
+    end
+  end
+
+  def completed_tick!
+    # nothing?
   end
 
   def current_round
-    next_rounds.first
+    remaining_rounds.first
   end
 
-  def next_rounds
+  def remaining_rounds
     game_rounds.active + game_rounds.queued
-  end
-
-  def completed?
-    self.completed || !current_round
   end
 
   private
 
+  def lobby?
+    self.status == LOBBY_STATUS
+  end
+
+  def active?
+    self.status == ACTIVE_STATUS
+  end
+
+  def completed?
+    self.status == COMPLETED_STATUS
+  end
+
+  def active!
+    update_attribute(:status, ACTIVE_STATUS)
+  end
+
+  def completed!
+    update_attribute(:status, COMPLETED_STATUS)
+  end
+
   def close_game
-    # probably will become a ClosesGame class
-    update_attribute(:completed, true) if !self.completed
+    update_attribute(:status, COMPLETED_STATUS)
   end
 
 end

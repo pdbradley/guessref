@@ -4,49 +4,52 @@ RSpec.describe Verse, type: :model do
   #todo add scope tests for verse types
 
   describe "tick!" do
-    it "will set one of the versewords to visible each tick" do
-      game_round = create(:game_round, game_session: create(:game_session))
-      verse = create(:verse, game_round: game_round)
-      create(:verse_word, visible: false, verse: verse)
-      create(:verse_word, visible: false, verse: verse)
-      create(:verse_word, visible: false, verse: verse)
+    context "when the verse is QUEUED" do
+      it "sets the verse to ACTIVE and schedules a verse tick job" do
+        allow(VerseTickJob).to receive_message_chain(:set, :perform_later)
+        verse = verse_with_status(Verse::QUEUED_STATUS)
 
-      expect(verse.status).to eq 'QUEUED'
+        verse.tick!
 
-      verse.tick!
-      expect(verse.status).to eq 'ACTIVE'
-      expect(verse.verse_words.visible.size).to eq 0
-      expect(verse.verse_words.invisible.size).to eq 3
-
-      verse.tick!
-      expect(verse.status).to eq 'ACTIVE'
-      expect(verse.verse_words.visible.size).to eq 1
-      expect(verse.verse_words.invisible.size).to eq 2
-
-      verse.tick!
-      expect(verse.status).to eq 'ACTIVE'
-      expect(verse.verse_words.visible.size).to eq 2
-      expect(verse.verse_words.invisible.size).to eq 1
-
-      verse.tick!
-      expect(verse.status).to eq 'ACTIVE'
-      expect(verse.verse_words.visible.size).to eq 3
-      expect(verse.verse_words.invisible.size).to eq 0
-
-      verse.tick!
-      expect(verse.status).to eq 'REVEALED'
-
-      verse.tick!
-      expect(verse.status).to eq 'COMPLETED'
+        expect(verse.status).to eq Verse::ACTIVE_STATUS
+        expect(VerseTickJob).to have_received(:set)
+      end
     end
-    it "sets the verse status to REVEALED if asked to tick when there are no hidden verse_words" do
-      game_round = create(:game_round, game_session: create(:game_session))
-      verse = create(:verse, game_round: game_round)
+    context "when the verse is ACTIVE" do
+      it "makes a verse_word visible when one or more are not visible and schedules a verse tick job" do
+        allow(VerseTickJob).to receive_message_chain(:set, :perform_later)
+        verse = verse_with_status(Verse::ACTIVE_STATUS)
+        create(:verse_word, visible: false, verse: verse)
+        create(:verse_word, visible: false, verse: verse)
 
-      verse.tick!
-      verse.tick!
+        verse.tick!
 
-      expect(verse.status).to eq Verse::REVEALED_STATUS
+        expect(verse.verse_words.visible.count).to eq 1
+        expect(verse.verse_words.invisible.count).to eq 1
+        expect(VerseTickJob).to have_received(:set)
+      end
+      it "sets the verse to REVEALED when there are no more invisible verses and schedules a verse tick job" do
+        allow(VerseTickJob).to receive_message_chain(:set, :perform_later)
+        verse = verse_with_status(Verse::ACTIVE_STATUS)
+        create(:verse_word, visible: true, verse: verse)
+        create(:verse_word, visible: true, verse: verse)
+
+        verse.tick!
+
+        expect(verse.status).to eq Verse::REVEALED_STATUS
+        expect(VerseTickJob).to have_received(:set)
+      end
+    end
+    context "when the verse is REVEALED" do
+      it "sets the status to complete and schedules a game_round tick job" do
+        allow(GameRoundTickJob).to receive_message_chain(:set, :perform_later)
+        verse = verse_with_status(Verse::REVEALED_STATUS)
+
+        verse.tick!
+
+        expect(verse.status).to eq Verse::COMPLETED_STATUS
+        expect(GameRoundTickJob).to have_received(:set)
+      end
     end
   end
 
@@ -59,6 +62,11 @@ RSpec.describe Verse, type: :model do
 
       expect(verse.verse_words).not_to be_empty
     end
+  end
+
+  def verse_with_status(status = Verse::ACTIVE_STATUS)
+    game_round = create(:game_round, game_session: create(:game_session))
+    verse = create(:verse, game_round: game_round, status: status)
   end
 
 end

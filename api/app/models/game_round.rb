@@ -7,12 +7,12 @@ class GameRound < ApplicationRecord
   COMPLETED_STATUS = 'COMPLETED'
   STATUSES = [QUEUED_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
 
-  def tick!
-    if current_verse
-      current_verse.tick!
-    else
-      complete!
-    end
+  def active?
+    status == ACTIVE_STATUS
+  end
+
+  def queued?
+    status == QUEUED_STATUS
   end
 
   def completed?
@@ -31,9 +31,40 @@ class GameRound < ApplicationRecord
     where(status: COMPLETED_STATUS)
   end
 
-  def complete!
-    update_attribute(:status, COMPLETED_STATUS)
+  def tick!
+    if queued?
+      queued_tick!
+    elsif active?
+      active_tick!
+    elsif complete?
+      completed_tick!
+    else
+      raise "game round should not have status #{self.status}"
+    end
   end
+
+  def queued_tick!
+    if current_verse
+      update_attribute(:status, ACTIVE_STATUS)
+      current_verse.tick!
+    else
+      update_attribute(:status, COMPLETED_STATUS)
+    end
+  end
+
+  def active_tick!
+    if current_verse
+      current_verse.tick!
+    else
+      update_attribute(:status, COMPLETED_STATUS)
+    end
+  end
+
+  def completed_tick!
+    update_attribute(:status, COMPLETED_STATUS)
+    game_session.tick!
+  end
+
 
   def next_verses
     verses.active + verses.queued
