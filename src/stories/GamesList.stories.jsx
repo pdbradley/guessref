@@ -9,4 +9,4 @@ export default {
 const Template = args => <GamesList {...args} />;
 
 export const Visible = Template.bind({});
-Visible.args = {game_sessions: []};
+Visible.args = { game_sessions: [] };

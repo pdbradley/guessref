@@ -9,7 +9,7 @@ export default {
 const Template = args => <BookLabelFromNumber {...args} />;
 
 export const Genesis = Template.bind({});
-Genesis.args = {book_number : 1};
+Genesis.args = { book_number: 1 };
 
 export const Revelation = Template.bind({});
-Revelation.args = {book_number : 66};
+Revelation.args = { book_number: 66 };

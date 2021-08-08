@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Heading} from 'react-bulma-components';
+import { Heading } from 'react-bulma-components';
 
 const bookNumberLookup = [
     "Genesis",
@@ -71,7 +71,7 @@ const bookNumberLookup = [
     "Revelation"
 ]
 
-const BookLabelFromNumber = ({book_number}) => {
+const BookLabelFromNumber = ({ book_number }) => {
     return (
         <Heading>{bookNumberLookup[book_number - 1]}</Heading>
     );

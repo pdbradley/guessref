@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
 // import {Section, Container, Heading} from 'react-bulma-components';
-import {useSubscription, gql} from '@apollo/client';
+import { useSubscription, gql } from '@apollo/client';
 import Game from './Game';
 import GamesList from './GamesList';
 
@@ -15,7 +15,7 @@ const GET_GAMES = gql`
 `;
 
 const GamesQuery = () => {
-  const {loading, error, data} = useSubscription(GET_GAMES);
+  const { loading, error, data } = useSubscription(GET_GAMES);
 
   if (loading) {
     console.log('hi');

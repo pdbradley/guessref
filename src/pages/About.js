@@ -1,6 +1,6 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import 'bulma/css/bulma.min.css';
-import {Hero, Section, Container, Heading} from 'react-bulma-components';
+import { Hero, Section, Container, Heading } from 'react-bulma-components';
 
 const About = () => {
   return (
