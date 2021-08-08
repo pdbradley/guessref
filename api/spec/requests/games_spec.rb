@@ -17,12 +17,11 @@ RSpec.describe "Games", type: :request do
     it 'finds a given game and starts it' do
       game_session = create(:game_session)
       uuid = game_session.reload.uuid
-      allow(game_session).to receive(:start!)
 
       post start_game_path, params: {uuid: uuid}
       
       expect(response).to have_http_status(:success)
-      expect(game_session).to have_received(:start!)
+      expect(game_session.reload.status).to eq GameSession::ACTIVE_STATUS
     end
   end
 
