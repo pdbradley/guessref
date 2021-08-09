@@ -65,13 +65,13 @@ class Verse < ApplicationRecord
       VerseTickJob.set(wait: (1).seconds).perform_later(self.uuid)
     else
       set_revealed!
-      VerseTickJob.set(wait: (1).seconds).perform_later(self.uuid)
+      VerseTickJob.set(wait: (8).seconds).perform_later(self.uuid)
     end
   end
 
   def revealed_tick!
     set_complete!
-    GameRoundTickJob.set(wait: 5.seconds).perform_later(game_round.uuid)
+    GameRoundTickJob.set(wait: 3.seconds).perform_later(game_round.uuid)
   end
 
   def next_hidden_word
@@ -96,23 +96,8 @@ class Verse < ApplicationRecord
     AddsVerseAnswers.new(self).add_answers
   end
 
-  # this should be a class that gets passed a verse
   def random_from_fixture
-    verse_file = File.join(Rails.root, 'db', 'fixtures', 'verses.txt')
-    verse_row = File.readlines(verse_file).sample.strip.split(',',4)
-
-    self.book_number = verse_row[0]
-    self.chapter_number = verse_row[1]
-    self.verse_number = verse_row[2]
-    save!
-    verse_row[3].split(' ').each do |word|
-      verse_words.create(word_text: word, visible: false)
-    end
-
-    add_answers!
-
+    # this will go away once the lsm api stuff works
+    AddsVerseInfoFromFixture.new(self).fill_in_verse_with_random_info
   end
-
-
-
 end
