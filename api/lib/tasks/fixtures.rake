@@ -18,7 +18,7 @@ namespace :dev do
     game_rounds = FactoryBot.create_list(:game_round, 2, game_session: game_session, status: GameRound::ACTIVE_STATUS)
 
     game_rounds.each do |game_round|
-      20.times do
+      5.times do
         verse = FactoryBot.create(:verse, game_round: game_round)
         verse.random_from_fixture
       end
