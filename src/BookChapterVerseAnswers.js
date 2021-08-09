@@ -1,48 +1,49 @@
 import React, { useState } from 'react';
 import 'bulma/css/bulma.min.css';
-import { Heading, Tile, Section, Box, Notification } from 'react-bulma-components';
+import { Section, Box } from 'react-bulma-components';
 import BookAnswers from './BookAnswers';
 import VerseAnswers from './VerseAnswers';
 
 const BookChapterVerseAnswers = ({ book_answers, chapter_answers, verse_answers }) => {
 
   const [points, setPoints] = useState(0);
-  const [showAnyThing, showAny] = useState(true);
-  const [showBookAnswers, showBook] = useState(true);
-  const [showChapterAnswers, showChapter] = useState(false);
-  const [showVerseAnswers, showVerse] = useState(false);
+  const [showAnyThing, setShowAnyThing] = useState(true);
+  const [showBookAnswers, setShowBookAnswers] = useState(true);
+  const [showChapterAnswers, setShowChapterAnswers] = useState(false);
+  const [showVerseAnswers, setShowVerseAnswers] = useState(false);
 
-  function handleClick(clickedAnswer, whoCalledMe) {
+  function handleBookAnswerClick(clickedAnswer) {
     setPoints(points + clickedAnswer.point_value)
+    if (clickedAnswer.correct) {
+      setShowBookAnswers(false);
+      setShowChapterAnswers(true);
+    } else {
+      setShowAnyThing(false);
+    }
+  }
 
-    if (whoCalledMe == "BookAnswers" && clickedAnswer.correct) {
-      showBook(false);
-      showChapter(true);
+  function handleChapterAnswerClick(clickedAnswer) {
+    setPoints(points + clickedAnswer.point_value)
+    if (clickedAnswer.correct) {
+      setShowChapterAnswers(false);
+      setShowVerseAnswers(true);
+    } else {
+      setShowAnyThing(false);
     }
-    else if (whoCalledMe == "BookAnswers") {
-      showAny(false);
-    }
+  }
 
-    if (whoCalledMe == "ChapterAnswers" && clickedAnswer.correct) {
-      showChapter(false);
-      showVerse(true);
-    }
-    else if (whoCalledMe == "ChapterAnswers") {
-      showAny(false);
-    }
-
-    if (whoCalledMe == "VerseAnswers") {
-      showAny(false);
-    }
+  function handleVerseAnswerClick(clickedAnswer) {
+    setPoints(points + clickedAnswer.point_value)
+    setShowAnyThing(false);
   }
 
   return (
     <>
       {showAnyThing && <Section>
         <Box>
-          {showBookAnswers && <BookAnswers onAnswerClicked={(clickedAnswer) => handleClick(clickedAnswer, "BookAnswers")} book_answers={book_answers} />}
-          {showChapterAnswers && <VerseAnswers onAnswerClicked={(clickedAnswer) => handleClick(clickedAnswer, "ChapterAnswers")} verse_answers={chapter_answers} />}
-          {showVerseAnswers && <VerseAnswers onAnswerClicked={(clickedAnswer) => handleClick(clickedAnswer, "VerseAnswers")} verse_answers={verse_answers} />}
+          {showBookAnswers && <BookAnswers onAnswerClicked={handleBookAnswerClick} book_answers={book_answers} />}
+          {showChapterAnswers && <VerseAnswers onAnswerClicked={handleChapterAnswerClick} verse_answers={chapter_answers} />}
+          {showVerseAnswers && <VerseAnswers onAnswerClicked={handleVerseAnswerClick} verse_answers={verse_answers} />}
         </Box>
       </Section>}
     </>
