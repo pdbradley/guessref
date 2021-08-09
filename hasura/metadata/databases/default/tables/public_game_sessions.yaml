@@ -13,10 +13,11 @@ select_permissions:
 - permission:
     columns:
     - id
-    - completed
     - tick
+    - uuid
     - created_at
     - updated_at
-    - uuid
+    - creator_uuid
+    - status
     filter: {}
   role: anonymous
