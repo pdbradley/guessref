@@ -1,6 +1,16 @@
 table:
   name: users
   schema: public
+array_relationships:
+- name: participants
+  using:
+    manual_configuration:
+      column_mapping:
+        uuid: user_uuid
+      insertion_order: null
+      remote_table:
+        name: participants
+        schema: public
 insert_permissions:
 - permission:
     backend_only: false

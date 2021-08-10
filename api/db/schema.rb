@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_144348) do
   create_table "participants", force: :cascade do |t|
     t.uuid "game_session_uuid", null: false
     t.uuid "user_uuid", null: false
+    t.index ["game_session_uuid", "user_uuid"], name: "index_participants_on_game_session_uuid_and_user_uuid", unique: true
     t.index ["game_session_uuid"], name: "index_participants_on_game_session_uuid"
     t.index ["user_uuid"], name: "index_participants_on_user_uuid"
   end

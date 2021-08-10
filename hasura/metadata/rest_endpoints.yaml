@@ -2,9 +2,29 @@
     query:
       collection_name: allowed-queries
       query_name: insertUser
-  url: createUser
+  url: create_user
   methods:
   - POST
   name: insertUser
   comment: Given a name parameter, creates a user with a uuid, returns name and uuid
     in response
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: joinGame
+  url: join_game_session
+  methods:
+  - POST
+  name: joinGame
+  comment: pass in a user_uuid and game_session_uuid to join a game (create a participant
+    record)
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: leaveGame
+  url: leave_game_session
+  methods:
+  - DELETE
+  name: leaveGame
+  comment: pass in the game_session_uuid and user_uuid to remove the user from the
+    game_session
