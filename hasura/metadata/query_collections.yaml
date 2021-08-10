@@ -1,1 +1,11 @@
-[]
+- name: allowed-queries
+  definition:
+    queries:
+    - name: insertUser
+      query: |-
+        mutation insertUser($name: String = "") {
+          insert_users_one(object: {name: $name}) {
+            uuid
+            name
+          }
+        }

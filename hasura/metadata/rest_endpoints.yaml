@@ -1,1 +1,10 @@
-[]
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: insertUser
+  url: createUser
+  methods:
+  - POST
+  name: insertUser
+  comment: Given a name parameter, creates a user with a uuid, returns name and uuid
+    in response
