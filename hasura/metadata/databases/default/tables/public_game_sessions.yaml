@@ -9,6 +9,15 @@ array_relationships:
       table:
         name: game_rounds
         schema: public
+- name: participants
+  using:
+    manual_configuration:
+      column_mapping:
+        uuid: game_session_uuid
+      insertion_order: null
+      remote_table:
+        name: participants
+        schema: public
 select_permissions:
 - permission:
     columns:
