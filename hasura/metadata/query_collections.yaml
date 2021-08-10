@@ -1,14 +1,6 @@
 - name: allowed-queries
   definition:
     queries:
-    - name: insertUser
-      query: |-
-        mutation insertUser($name: String = "") {
-          insert_users_one(object: {name: $name}) {
-            uuid
-            name
-          }
-        }
     - name: joinGame
       query: |-
         mutation insertParticipant($game_session_uuid: uuid = "", $user_uuid: uuid = "") {
@@ -23,5 +15,13 @@
         mutation removeParticipant($game_session_uuid: uuid!, $user_uuid: uuid!) {
           delete_participants(where: {_and: {game_session_uuid: {_eq: $game_session_uuid}, user_uuid: {_eq: $user_uuid}}}) {
             affected_rows
+          }
+        }
+    - name: createUser
+      query: |-
+        mutation insertUser($name: String = "") {
+          insert_users_one(object: {name: $name}) {
+            uuid
+            name
           }
         }
