@@ -7,10 +7,10 @@ import {Link} from 'react-router-dom';
 const GamesList = ({game_sessions}) => {
   return (
     <div>
-      {game_sessions.map(e => (
+      {game_sessions.map(gs => (
         <Tile>
-          <Link to={`/game/${e.uuid}`}>
-            Game {e.id} {e.uuid}
+          <Link to={`/game/${gs.uuid}`}>
+            Game {gs.id} {gs.uuid}
           </Link>
         </Tile>
       ))}
