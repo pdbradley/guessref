@@ -1,9 +1,9 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Container, Heading, Section} from 'react-bulma-components';
+import { Section } from 'react-bulma-components';
 import GameRound from './GameRound';
 
-const GameSession = ({game_session}) => {
+const GameSession = ({ game_session }) => {
   if (!game_session) {
     return <div>No Session</div>;
   }

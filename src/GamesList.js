@@ -1,10 +1,9 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Container, Heading, Tile} from 'react-bulma-components';
-import Verse from './Verse';
-import {Link} from 'react-router-dom';
+import { Tile } from 'react-bulma-components';
+import { Link } from 'react-router-dom';
 
-const GamesList = ({game_sessions}) => {
+const GamesList = ({ game_sessions }) => {
   return (
     <div>
       {game_sessions.map(gs => (
