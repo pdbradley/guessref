@@ -1,13 +1,6 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Link} from 'react-router-dom';
-import {
-  Navbar,
-  Hero,
-  Section,
-  Container,
-  Heading,
-} from 'react-bulma-components';
+import { Hero, Container, Heading } from 'react-bulma-components';
 
 const CustomHero = () => {
   return (
