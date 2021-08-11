@@ -11,7 +11,7 @@ const createApolloClient = () => {
     //link: new HttpLink({
     //uri: 'http://localhost:8080/v1/graphql',
     link: new WebSocketLink({
-      uri: 'ws://localhost:8080/v1/graphql',
+      uri: process.env.REACT_APP_HASURA_WEBSOCKET_URL,
     }),
     cache: new InMemoryCache(),
   });
