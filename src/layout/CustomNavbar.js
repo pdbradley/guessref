@@ -1,26 +1,13 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Link} from 'react-router-dom';
-import {
-  Navbar,
-  Hero,
-  Section,
-  Container,
-  Heading,
-} from 'react-bulma-components';
+import { Navbar } from 'react-bulma-components';
 
 const CustomNavbar = () => {
   return (
     <Navbar>
-      <Navbar.Item>
-        <Link to="/home">Home</Link>
-      </Navbar.Item>
-      <Navbar.Item>
-        <Link to="/games">Games</Link>
-      </Navbar.Item>
-      <Navbar.Item>
-        <Link to="/about">About</Link>
-      </Navbar.Item>
+      <Navbar.Item href="/home" >Home </Navbar.Item>
+      <Navbar.Item href="/games">Games</Navbar.Item>
+      <Navbar.Item href="/about">About</Navbar.Item>
     </Navbar>
   );
 };
