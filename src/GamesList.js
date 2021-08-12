@@ -1,19 +1,27 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import { Tile } from 'react-bulma-components';
-import { Link } from 'react-router-dom';
+import { Section, Box, Tile, Notification } from 'react-bulma-components';
+import JoinGameButton from './JoinGameButton';
+
 
 const GamesList = ({ game_sessions }) => {
   return (
-    <div>
-      {game_sessions.map(gs => (
-        <Tile>
-          <Link to={`/game/${gs.uuid}`}>
-            Game {gs.id} {gs.uuid}
-          </Link>
-        </Tile>
-      ))}
-    </div>
+    <Section>
+      <Tile vertical>
+        {game_sessions.map(gs => (
+          <Box>
+            <Tile kind="parent">
+              <Tile kind="child" textAlign="center">
+                Game {gs.id}
+              </Tile>
+              <Tile kind="child" textAlign="center">
+                <JoinGameButton game_session_uuid={gs.uuid} />
+              </Tile>
+            </Tile>
+          </Box>
+        ))}
+      </Tile>
+    </Section>
   );
 };
 
