@@ -11,6 +11,15 @@
 - definition:
     query:
       collection_name: allowed-queries
+      query_name: insertGameSessionScore
+  url: insert_game_session_score
+  methods:
+  - POST
+  name: insertGameSessionScore
+  comment: pass params game_session_uuid, user_uuid, and score (integer) in a POST
+- definition:
+    query:
+      collection_name: allowed-queries
       query_name: joinGame
   url: join_game_session
   methods:
