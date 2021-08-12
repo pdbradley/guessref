@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_144348) do
+ActiveRecord::Schema.define(version: 2021_08_12_112702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 2021_08_10_144348) do
     t.string "status", default: "QUEUED"
     t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["game_session_id"], name: "index_game_rounds_on_game_session_id"
+  end
+
+  create_table "game_session_scores", force: :cascade do |t|
+    t.uuid "user_uuid", null: false
+    t.uuid "game_session_uuid", null: false
+    t.integer "score", default: 0, null: false
+    t.index ["game_session_uuid"], name: "index_game_session_scores_on_game_session_uuid"
+    t.index ["user_uuid"], name: "index_game_session_scores_on_user_uuid"
   end
 
   create_table "game_sessions", force: :cascade do |t|

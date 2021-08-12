@@ -1,6 +1,7 @@
 - "!include public_book_answers.yaml"
 - "!include public_chapter_answers.yaml"
 - "!include public_game_rounds.yaml"
+- "!include public_game_session_scores.yaml"
 - "!include public_game_sessions.yaml"
 - "!include public_participants.yaml"
 - "!include public_users.yaml"
