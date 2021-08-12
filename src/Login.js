@@ -10,7 +10,7 @@ const Login = ({ usernameExists }) => {
     function handleOnSubmit(e) {
         e.preventDefault();
         if (username.length >= 2) {
-            fetch('http://localhost:8080/api/rest/createUser', {
+            fetch(`${process.env.REACT_APP_HASURA_REST_API}/create_user`, {
                 method: 'POST',
                 body: JSON.stringify({
                     name: username,
