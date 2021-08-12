@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
 
   def create
-    game_session = GameSession.create(creator_uuid: params[:creator_uuid])
+    game_session = GameSession.create(creator_uuid: params[:creator_uuid], name: params[:name])
 
     if game_session.persisted?
       render json: game_session
