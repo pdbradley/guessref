@@ -10,7 +10,7 @@ class BuildsBookNumberKeyedHash
     @@hash ||= build_hash  #hopefully the @@ means this won't get built again and again
   end
 
-  def build
+  def build_hash
     file_path = File.join(Rails.root, 'lib', 'support', 'bible.json')
     file = File.open(file_path)
 
