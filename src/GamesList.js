@@ -1,10 +1,9 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import { Section, Box, Tile, Notification } from 'react-bulma-components';
+import {Section, Box, Tile} from 'react-bulma-components';
 import JoinGameButton from './JoinGameButton';
 
-
-const GamesList = ({ game_sessions }) => {
+const GamesList = ({game_sessions}) => {
   return (
     <Section>
       <Tile vertical>
