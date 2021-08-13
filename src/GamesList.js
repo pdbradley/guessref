@@ -2,17 +2,11 @@ import React from 'react';
 import 'bulma/css/bulma.min.css';
 import {Section, Box, Tile} from 'react-bulma-components';
 import JoinGameButton from './JoinGameButton';
-import NewGame from './NewGame';
 
 const GamesList = ({game_sessions}) => {
   return (
     <Section>
       <Tile kind="parent" vertical>
-        <Tile kind="child" textAlign="center">
-          <Box>
-            <NewGame />
-          </Box>
-        </Tile>
         {game_sessions.map(gs => (
           <Box>
             <Tile kind="parent">

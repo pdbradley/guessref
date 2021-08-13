@@ -5,10 +5,8 @@ import {Navbar} from 'react-bulma-components';
 const CustomNavbar = () => {
   return (
     <Navbar>
-      <Navbar.Item href="/home">Home </Navbar.Item>
-      <Navbar.Item href="/games">Games</Navbar.Item>
-      <Navbar.Item href="/about">About</Navbar.Item>
-      <Navbar.Item href="/chat">Chat</Navbar.Item>
+      <Navbar.Item href="/home">Games </Navbar.Item>
+      <Navbar.Item href="/new_game">New Game </Navbar.Item>
     </Navbar>
   );
 };
