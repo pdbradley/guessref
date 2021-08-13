@@ -5,7 +5,8 @@ import {Card} from 'react-bulma-components';
 const ChatRow = ({chat}) => {
   return (
     <Card>
-      <Card.Content>{chat.message}</Card.Content>
+      <span className="has-text-info">{chat.author}: </span>
+      <span>{chat.message}</span>
     </Card>
   );
 };
