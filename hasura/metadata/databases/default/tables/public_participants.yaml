@@ -30,6 +30,7 @@ insert_permissions:
   role: anonymous
 select_permissions:
 - permission:
+    allow_aggregations: true
     columns:
     - game_session_uuid
     - id
