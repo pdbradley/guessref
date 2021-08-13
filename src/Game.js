@@ -46,6 +46,13 @@ const GET_GAME = gql`
           }
         }
       }
+      game_session_scores {
+        user_uuid
+        score
+        user {
+          name
+        }
+      }
     }
   }
 `;
