@@ -12,6 +12,7 @@ const GET_GAME = gql`
       id
       uuid
       name
+      status
       chat_messages {
         id
         message
