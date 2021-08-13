@@ -1,16 +1,7 @@
 table:
-  name: participants
+  name: chat_messages
   schema: public
 object_relationships:
-- name: game_session
-  using:
-    manual_configuration:
-      column_mapping:
-        game_session_uuid: uuid
-      insertion_order: null
-      remote_table:
-        name: game_sessions
-        schema: public
 - name: user
   using:
     manual_configuration:
@@ -26,19 +17,16 @@ insert_permissions:
     check: {}
     columns:
     - game_session_uuid
+    - message
     - user_uuid
   role: anonymous
 select_permissions:
 - permission:
-    allow_aggregations: true
     columns:
-    - game_session_uuid
     - id
+    - game_session_uuid
     - user_uuid
-    filter: {}
-    limit: 1000
-  role: anonymous
-delete_permissions:
-- permission:
+    - message
+    - created_at
     filter: {}
   role: anonymous

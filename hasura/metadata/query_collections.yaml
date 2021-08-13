@@ -35,3 +35,13 @@
             score
           }
         }
+    - name: createChatMessage
+      query: |-
+        mutation insertChatMessage($game_session_uuid: uuid!, $user_uuid: uuid!, $message: String!) {
+          insert_chat_messages_one(object: {game_session_uuid: $game_session_uuid, user_uuid: $user_uuid, message: $message}) {
+            id
+            game_session_uuid
+            user_uuid
+            message
+          }
+        }
