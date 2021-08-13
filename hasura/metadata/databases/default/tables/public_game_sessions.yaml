@@ -30,12 +30,13 @@ array_relationships:
 select_permissions:
 - permission:
     columns:
-    - id
-    - tick
-    - uuid
     - created_at
-    - updated_at
     - creator_uuid
+    - id
+    - name
     - status
+    - tick
+    - updated_at
+    - uuid
     filter: {}
   role: anonymous

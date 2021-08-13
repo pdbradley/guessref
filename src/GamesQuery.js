@@ -7,6 +7,7 @@ const GET_GAMES = gql`
   subscription getGames {
     game_sessions {
       id
+      name
       uuid
     }
   }

@@ -9,7 +9,9 @@ import {useParams} from 'react-router-dom';
 const GET_GAME = gql`
   subscription getGame($uuid: uuid) {
     game_sessions(where: {uuid: {_eq: $uuid}}) {
+      id
       uuid
+      name
       game_rounds(where: {status: {_eq: "ACTIVE"}}) {
         id
         verses(where: {status: {_in: ["ACTIVE", "REVEALED"]}}) {

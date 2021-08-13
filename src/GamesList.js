@@ -1,10 +1,10 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import { Section, Box, Tile } from 'react-bulma-components';
+import {Section, Box, Tile} from 'react-bulma-components';
 import JoinGameButton from './JoinGameButton';
 import NewGame from './NewGame';
 
-const GamesList = ({ game_sessions }) => {
+const GamesList = ({game_sessions}) => {
   return (
     <Section>
       <Tile kind="parent" vertical>
@@ -17,7 +17,7 @@ const GamesList = ({ game_sessions }) => {
           <Box>
             <Tile kind="parent">
               <Tile kind="child" textAlign="center">
-                Game {gs.id}
+                Game {gs.id} {gs.name}
               </Tile>
               <Tile kind="child" textAlign="center">
                 <JoinGameButton game_session_uuid={gs.uuid} />

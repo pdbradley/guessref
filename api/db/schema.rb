@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_112702) do
+ActiveRecord::Schema.define(version: 2021_08_12_133730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_112702) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "creator_uuid"
     t.string "status", default: "LOBBY"
+    t.string "name"
     t.index ["uuid"], name: "index_game_sessions_on_uuid"
   end
 
