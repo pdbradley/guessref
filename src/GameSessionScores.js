@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Section, Box, Tile, Heading} from 'react-bulma-components';
+import {Section, Heading} from 'react-bulma-components';
 
 const GameSessionScores = ({game_session_scores}) => {
   return (

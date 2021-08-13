@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import 'bulma/css/bulma.min.css';
-import {Form, Field, Label, Control, Input} from 'react-bulma-components';
+import {Form} from 'react-bulma-components';
 import Cookies from 'universal-cookie';
 
 const ChatInput = () => {
