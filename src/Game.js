@@ -1,10 +1,10 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import 'bulma/css/bulma.min.css';
-import {useSubscription, gql} from '@apollo/client';
+import { useSubscription, gql } from '@apollo/client';
 import GameSession from './GameSession';
 import CustomNavbar from './layout/CustomNavbar';
 import CustomHero from './layout/CustomHero';
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const GET_GAME = gql`
   subscription getGame($uuid: uuid) {
@@ -38,7 +38,7 @@ const GET_GAME = gql`
             correct
             label
           }
-          verse_words {
+          verse_words(order_by: {created_at: asc}) {
             id
             word_text
             visible
@@ -50,9 +50,9 @@ const GET_GAME = gql`
 `;
 
 const Game = () => {
-  const {uuid} = useParams();
-  const {loading, error, data} = useSubscription(GET_GAME, {
-    variables: {uuid: uuid},
+  const { uuid } = useParams();
+  const { loading, error, data } = useSubscription(GET_GAME, {
+    variables: { uuid: uuid },
   });
 
   if (loading) {
