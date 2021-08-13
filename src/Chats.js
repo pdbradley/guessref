@@ -1,16 +1,9 @@
 import React from 'react';
 import ChatRow from './ChatRow';
 import 'bulma/css/bulma.min.css';
-import {
-  Heading,
-  Tile,
-  Section,
-  Box,
-  Notification,
-  Card,
-} from 'react-bulma-components';
+import { Section } from 'react-bulma-components';
 
-const Chats = ({chats}) => {
+const Chats = ({ chats }) => {
   return (
     <Section>
       {chats.map(chat => (
