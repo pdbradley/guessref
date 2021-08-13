@@ -5,10 +5,28 @@ import GamesList from './GamesList';
 
 const GET_GAMES = gql`
   subscription getGames {
-    game_sessions {
+    game_sessions(order_by: {status: asc}) {
       id
-      name
+      status
       uuid
+      name
+      participants_aggregate {
+        aggregate {
+          count
+        }
+      }
+      game_rounds_aggregate {
+        aggregate {
+          count
+        }
+      }
+      game_rounds {
+        verses_aggregate {
+          aggregate {
+            count
+          }
+        }
+      }
     }
   }
 `;
