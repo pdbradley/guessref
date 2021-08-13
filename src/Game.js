@@ -13,6 +13,13 @@ const GET_GAME = gql`
       uuid
       name
       status
+      chat_messages {
+        id
+        message
+        user {
+          name
+        }
+      }
       game_rounds(where: {status: {_eq: "ACTIVE"}}) {
         id
         verses(where: {status: {_in: ["ACTIVE", "REVEALED"]}}) {
@@ -32,7 +39,7 @@ const GET_GAME = gql`
             correct
             label
           }
-          verse_words {
+          verse_words(order_by: {created_at: asc}) {
             id
             word_text
             visible
