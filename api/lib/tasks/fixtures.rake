@@ -14,7 +14,7 @@ namespace :dev do
 
   desc 'Set up a game'
   task one_game: [:environment] do
-    game_session = FactoryBot.create(:game_session)
+    game_session = FactoryBot.create(:game_session, name: "Somebody's verse game" )
     game_rounds = FactoryBot.create_list(:game_round, 2, game_session: game_session, status: GameRound::ACTIVE_STATUS)
 
     game_rounds.each do |game_round|
