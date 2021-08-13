@@ -1,4 +1,6 @@
 class GameSession < ApplicationRecord
+  after_create :fill_in_game_info
+
   has_many :game_rounds
 
   LOBBY_STATUS = 'LOBBY'
@@ -41,6 +43,19 @@ class GameSession < ApplicationRecord
 
   def remaining_rounds
     game_rounds.active + game_rounds.queued
+  end
+
+  def fill_in_game_info # this is temporary
+    3.times do
+      game_rounds.create(status: GameRound::QUEUED_STATUS)
+    end
+
+    game_rounds.each do |game_round|
+      5.times do
+        verse = game_round.verses.create
+        verse.random_from_fixture
+      end
+    end
   end
 
   private
