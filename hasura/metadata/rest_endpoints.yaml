@@ -1,6 +1,15 @@
 - definition:
     query:
       collection_name: allowed-queries
+      query_name: createChatMessage
+  url: create_chat_message
+  methods:
+  - POST
+  name: createChatMessage
+  comment: creates a chat message when given game_session_uuid, user_uuid, and message
+- definition:
+    query:
+      collection_name: allowed-queries
       query_name: createUser
   url: create_user
   methods:

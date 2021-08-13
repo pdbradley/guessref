@@ -2,6 +2,15 @@ table:
   name: game_sessions
   schema: public
 array_relationships:
+- name: chat_messages
+  using:
+    manual_configuration:
+      column_mapping:
+        uuid: game_session_uuid
+      insertion_order: null
+      remote_table:
+        name: chat_messages
+        schema: public
 - name: game_rounds
   using:
     foreign_key_constraint_on:
