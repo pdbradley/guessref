@@ -12,6 +12,13 @@ const GET_GAME = gql`
       id
       uuid
       name
+      chat_messages {
+        id
+        message
+        user {
+          name
+        }
+      }
       game_rounds(where: {status: {_eq: "ACTIVE"}}) {
         id
         verses(where: {status: {_in: ["ACTIVE", "REVEALED"]}}) {

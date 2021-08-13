@@ -14,7 +14,7 @@ const Chats = ({chats}) => {
   return (
     <Section>
       {chats.map(chat => (
-        <ChatRow key={chat.id} {...chat} />
+        <ChatRow key={chat.id} chat={chat} />
       ))}
     </Section>
   );
