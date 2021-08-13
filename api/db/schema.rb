@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_133730) do
+ActiveRecord::Schema.define(version: 2021_08_13_145146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 2021_08_12_133730) do
     t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["correct"], name: "index_chapter_answers_on_correct"
     t.index ["verse_id"], name: "index_chapter_answers_on_verse_id"
+  end
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.uuid "game_session_uuid", null: false
+    t.uuid "user_uuid", null: false
+    t.string "message", default: ""
+    t.datetime "created_at", precision: 6, default: -> { "now()" }, null: false
+    t.index ["game_session_uuid"], name: "index_chat_messages_on_game_session_uuid"
+    t.index ["user_uuid"], name: "index_chat_messages_on_user_uuid"
   end
 
   create_table "game_rounds", force: :cascade do |t|
