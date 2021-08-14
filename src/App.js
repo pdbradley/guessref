@@ -1,5 +1,6 @@
 import Home from './pages/Home';
 import NewGamePage from './pages/NewGamePage';
+import LoginPage from './pages/LoginPage';
 import Game from './Game';
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 import {WebSocketLink} from '@apollo/client/link/ws';
@@ -21,6 +22,9 @@ function App() {
     <Router>
       <ApolloProvider client={client}>
         <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
           <Route path="/game/:uuid">
             <Game />
           </Route>

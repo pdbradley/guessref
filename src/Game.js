@@ -5,6 +5,7 @@ import GameSession from './GameSession';
 import CustomNavbar from './layout/CustomNavbar';
 import CustomHero from './layout/CustomHero';
 import { useParams } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 const GET_GAME = gql`
   subscription getGame($uuid: uuid) {
@@ -59,6 +60,13 @@ const GET_GAME = gql`
 `;
 
 const Game = () => {
+  const cookies = new Cookies();
+  const usernameExists = cookies.get('username') != null;
+
+  if (!usernameExists) {
+    window.location = '/login'
+  }
+
   const { uuid } = useParams();
   const { loading, error, data } = useSubscription(GET_GAME, {
     variables: { uuid: uuid },
