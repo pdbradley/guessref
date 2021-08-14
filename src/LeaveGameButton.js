@@ -19,6 +19,7 @@ const LeaveGameButton = () => {
             response.json()
         ).then(data => {
             console.log(data);
+            cookies.remove('game_session_uuid', { path:'/' })
             window.location = '/games';
         }).catch(error => {
             console.log(error);
