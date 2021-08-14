@@ -1,18 +1,25 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Columns, Section} from 'react-bulma-components';
+import { Columns, Section } from 'react-bulma-components';
 import GameRound from './GameRound';
 import LeaveGameButton from './LeaveGameButton';
 import GameSessionScores from './GameSessionScores';
 import StartGameButton from './StartGameButton';
 import Chats from './Chats';
 import ChatInput from './ChatInput';
+import Cookies from 'universal-cookie';
 
-const GameSession = ({game_session}) => {
+const GameSession = ({ game_session }) => {
   if (!game_session) {
     return <div>No Session</div>;
   }
+  const cookies = new Cookies();
+  const user_uuid = cookies.get('user_uuid');
+
+  let CREATOR = user_uuid === game_session.creator_uuid
   let ACTIVE = game_session.status === 'ACTIVE';
+  console.log(CREATOR)
+
 
   return (
     <>
@@ -24,11 +31,9 @@ const GameSession = ({game_session}) => {
         </Columns.Column>
         <Columns.Column>
           <Section textAlign="center">
-            {ACTIVE ? (
-              <GameRound gameRound={game_session.game_rounds[0]} />
-            ) : (
-              <StartGameButton />
-            )}
+            {!ACTIVE && CREATOR && <StartGameButton />}
+            {!ACTIVE && !CREATOR && "Wait for Creator to Start Game"}
+            {ACTIVE && <GameRound gameRound={game_session.game_rounds[0]} />}
           </Section>
           <Section textAlign="center">
             <LeaveGameButton />

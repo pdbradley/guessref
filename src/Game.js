@@ -11,6 +11,7 @@ const GET_GAME = gql`
     game_sessions(where: {uuid: {_eq: $uuid}}) {
       id
       uuid
+      creator_uuid
       name
       status
       chat_messages {
