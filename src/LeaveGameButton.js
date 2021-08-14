@@ -28,7 +28,7 @@ const LeaveGameButton = () => {
     }
 
     return (
-        <Button color="link" onClick={handleOnClick}>Leave Game</Button>
+        <Button onClick={handleOnClick} size="small" color="grey-light">Leave Game</Button>
     );
 };
 export default LeaveGameButton;
