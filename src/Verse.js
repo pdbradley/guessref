@@ -8,8 +8,8 @@ const Verse = ({ verse }) => {
   }
   return (
     <div className="content">
-      {verse.verse_words.map(({ word_text, visible }) => (
-        <VerseWord wordText={word_text} visible={visible} />
+      {verse.verse_words.map(({ id, word_text, visible }) => (
+        <VerseWord key={id} wordText={word_text} visible={visible} />
       ))}
     </div>
   );

@@ -17,14 +17,34 @@ const BookChapterVerseAnswers = ({ verse }) => {
   const cookies = new Cookies();
   const user_uuid = cookies.get('user_uuid');
   const game_session_uuid = cookies.get('game_session_uuid');
-  const answer_values = [verse.book_answers[0].point_value, verse.chapter_answers[0].point_value, verse.verse_answers[0].point_value];
+
+  function getBookPoints() {
+    let correct = verse.book_answers.filter(
+      (answer) => answer.correct === true
+    )
+    return correct[0].point_value;
+  }
+
+  function getChapterPoints() {
+    let correct = verse.chapter_answers.filter(
+      (answer) => answer.correct === true
+    )
+    return correct[0].point_value;
+  }
+
+  function getVersePoints() {
+    let correct = verse.verse_answers.filter(
+      (answer) => answer.correct === true
+    )
+    return correct[0].point_value;
+  }
 
   function handleBookAnswerClick(clickedAnswer) {
     if (clickedAnswer.correct) {
       setShowBookAnswers(false);
       setShowChapterAnswers(true);
     } else {
-      endGuessingAndSendScore(answer_values[0]);
+      setShowAnyThing(false);
     }
   }
 
@@ -33,15 +53,15 @@ const BookChapterVerseAnswers = ({ verse }) => {
       setShowChapterAnswers(false);
       setShowVerseAnswers(true);
     } else {
-      endGuessingAndSendScore(answer_values[0] + answer_values[1]);
+      endGuessingAndSendScore(getBookPoints());
     }
   }
 
   function handleVerseAnswerClick(clickedAnswer) {
     if (clickedAnswer.correct) {
-      endGuessingAndSendScore(answer_values[0] + answer_values[1] + answer_values[2]);
+      endGuessingAndSendScore(getBookPoints() + getChapterPoints() + getVersePoints());
     } else {
-      endGuessingAndSendScore(answer_values[0] + answer_values[1]);
+      endGuessingAndSendScore(getBookPoints() + getChapterPoints());
     }
   }
 
