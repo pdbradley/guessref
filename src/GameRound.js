@@ -7,10 +7,11 @@ const GameRound = ({ gameRound }) => {
   if (!gameRound) {
     return <div>No Game Round</div>;
   }
+  let verse = gameRound.verses[0];
   return (
     <>
-      <Verse verse={gameRound.verses[0]} />
-      <BookChapterVerseAnswers verse={gameRound.verses[0]} />
+      <Verse verse={verse} />
+      <BookChapterVerseAnswers key={verse && verse.id} verse={verse} />
     </>
   );
 };
