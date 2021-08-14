@@ -3,26 +3,19 @@ import 'bulma/css/bulma.min.css';
 import { Section, Heading } from 'react-bulma-components';
 
 const GameSessionScores = ({ game_session_scores }) => {
-  const combinedScores = game_session_scores.reduce((accumulator, item) => {
-    let found = false;
-    for (let i = 0; i < accumulator.length; i++) {
-      if (accumulator[i].user_uuid === item.user_uuid) {
-        found = true;
-        accumulator[i].score += item.score;
-      };
-    }
-    if (!found) {
-      accumulator.push(item);
-    }
-    return accumulator;
-  }, []);
-
+  let combinedScores = game_session_scores.reduce(function (a, o) {
+    a[o.user_uuid] = a[o.user_uuid] || { score: 0 };
+    a[o.user_uuid].user_uuid = o.user_uuid;
+    a[o.user_uuid].user_name = o.user.name;
+    a[o.user_uuid].score += o.score;
+    return a;
+  }, Object.create(null));
   return (
     <Section>
       <Heading>Scores</Heading>
-      {combinedScores.map(gss => (
-        <Heading>
-          {gss.user.name}:{gss.score}
+      {Object.values(combinedScores).map(({ user_uuid, user_name, score }) => (
+        <Heading key={user_uuid}>
+          {user_name}:{" "}{score}
         </Heading>
       ))}
     </Section>
