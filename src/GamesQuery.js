@@ -5,7 +5,7 @@ import GamesList from './GamesList';
 
 const GET_GAMES = gql`
   subscription getGames {
-    game_sessions(order_by: {status: asc}) {
+    game_sessions(order_by: {status: asc}, where: {_not: {status: {_eq: "COMPLETED"}}}) {
       id
       status
       uuid
