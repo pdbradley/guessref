@@ -10,8 +10,5 @@ class BuildsGameSessionStructure
   # build rounds with verses attached, and lastly tell each verse to build
   # out its answers, based on its book_number, chapter_number, and verse_number
   #
-  # For now, since we don't have yet a programmatic way to find out the max number
-  # of chapters in a book, or max number of verses in a chapter, we need the 
-  # supplied references to include 
   #
 end
