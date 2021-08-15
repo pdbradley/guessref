@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import 'bulma/css/bulma.min.css';
 import { Form, Button } from 'react-bulma-components';
 import Cookies from 'universal-cookie';
+import { joinGameSession } from './FetchHelpers';
+
 
 const NewGame = () => {
     const cookies = new Cookies();
     let user_uuid = cookies.get('user_uuid');
     const [gameName, setGameName] = useState('');
+    const [disable, setDisable] = React.useState(false);
 
     function handleOnClick(e) {
         e.preventDefault();
@@ -24,11 +27,14 @@ const NewGame = () => {
                 response.json()
             ).then(data => {
                 console.log(data);
+                let game_session_uuid = data.uuid;
+                joinGameSession(game_session_uuid, user_uuid);
             }
             ).catch(error => {
                 console.log(error)
             })
-            setGameName('');
+            setGameName('Loading...');
+            setDisable(true);
         }
     }
 
@@ -50,7 +56,7 @@ const NewGame = () => {
 
                 <Form.Field>
                     <Form.Control>
-                        <Button color="link"
+                        <Button disabled={disable} color="link"
                             onClick={handleOnClick}>Create Game</Button>
                     </Form.Control>
                 </Form.Field>
