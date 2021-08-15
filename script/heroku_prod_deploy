@@ -3,5 +3,6 @@
 
 # taken from https://jtway.co/deploying-subdirectory-projects-to-heroku-f31ed65f3f2
 
+git branch -D heroku_deploy
 git subtree split --prefix api -b heroku_deploy
 git push production heroku_deploy:master --force
