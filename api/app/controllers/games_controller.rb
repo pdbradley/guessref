@@ -6,6 +6,7 @@ class GamesController < ApplicationController
     if game_session.persisted?
       # background this?
       BuildsGameSessionStructure.new(game_session.id).build(num_rounds: 1, num_verses: 10)
+      game_session.reload
       render json: game_session
     else
       render error: { error: 'Unable to create game session' }
