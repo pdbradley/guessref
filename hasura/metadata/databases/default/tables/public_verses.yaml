@@ -38,13 +38,15 @@ select_permissions:
 - permission:
     allow_aggregations: true
     columns:
-    - id
-    - game_round_id
     - book_number
     - chapter_number
-    - verse_number
     - created_at
-    - updated_at
+    - game_round_id
+    - id
     - status
+    - updated_at
+    - uuid
+    - verse_number
+    - verse_text
     filter: {}
   role: anonymous
