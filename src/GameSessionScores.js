@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import { Section, Heading } from 'react-bulma-components';
+import { Section, Heading, Panel } from 'react-bulma-components';
 
 const GameSessionScores = ({ game_session_scores }) => {
   let combinedScores = game_session_scores.reduce(function (a, o) {
@@ -10,15 +10,16 @@ const GameSessionScores = ({ game_session_scores }) => {
     a[o.user_uuid].score += o.score;
     return a;
   }, Object.create(null));
+
   return (
-    <Section>
-      <Heading>Scores</Heading>
-      {Object.values(combinedScores).map(({ user_uuid, user_name, score }) => (
-        <Heading key={user_uuid}>
-          {user_name}:{" "}{score}
-        </Heading>
-      ))}
-    </Section>
+    <Panel>
+      <Panel.Header>Scores</Panel.Header>
+        {Object.values(combinedScores).map(({ user_uuid, user_name, score }) => (
+          <Panel.Block key={user_uuid}>
+            {user_name}:{" "}{score}
+          </Panel.Block>
+        ))}
+    </Panel>
   );
 };
 
