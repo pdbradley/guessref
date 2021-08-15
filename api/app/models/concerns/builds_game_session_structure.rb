@@ -10,5 +10,35 @@ class BuildsGameSessionStructure
   # build rounds with verses attached, and lastly tell each verse to build
   # out its answers, based on its book_number, chapter_number, and verse_number
   #
-  #
+  # 0.  when given a game session id
+  # 1.  pull X verses from the NT 520 verse list at random (default 45)
+ 
+  
+
+  def initialize(game_session_id)
+    @game_session = GameSession.find(game_session_id)
+  end
+
+  def build(num_rounds: 3, num_verses: 30)
+    verses_with_data(num_verses).in_groups_of(num_verses / num_rounds).each do |verses_for_one_round|
+      game_round = @game_session.game_rounds.create
+      verses_for_one_round.compact.each do |verse_data|
+        verse = game_round.verses.create(
+          book_number: verse_data.book_number,
+          chapter_number: verse_data.chapter_number,
+          verse_number: verse_data.verse_number,
+          verse_text: verse_data.text)
+        verse.split_words!
+        verse.add_answers!
+      end
+    end
+  end
+
+  private
+
+  def verses_with_data(num)
+    verse_pool = PullsRandomVerseReferences.new(num).pull
+    result = verse_pool.map{|row| UnpacksReferenceRowIntoVerseData.new(row)}
+    result
+  end
 end

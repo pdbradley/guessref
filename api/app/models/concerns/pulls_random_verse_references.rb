@@ -8,6 +8,8 @@ class PullsRandomVerseReferences
     references.sample(@number_to_pull)
   end
 
+  private
+
   def references
     verse_file = File.join(Rails.root, 'db', 'fixtures', '520verses.txt')
     File.readlines(verse_file).map(&:strip)

@@ -64,6 +64,18 @@ RSpec.describe Verse, type: :model do
     end
   end
 
+  describe "#split_words" do
+    it "takes the verse_text and splits it and creates the verse_words associated" do
+      game_round = create(:game_round, game_session: create(:game_session))
+      verse = create(:verse, game_round: game_round, verse_text: "Jesus wept.")
+
+      verse.split_words!
+
+      expect(verse.verse_words.first.word_text).to eq 'Jesus'
+      expect(verse.verse_words.last.word_text).to eq 'wept.'
+    end
+  end
+
   def verse_with_status(status = Verse::ACTIVE_STATUS)
     game_round = create(:game_round, game_session: create(:game_session))
     verse = create(:verse, game_round: game_round, status: status)
