@@ -1,5 +1,4 @@
 class GameSession < ApplicationRecord
-  after_create :fill_in_game_info
 
   has_many :game_rounds
 

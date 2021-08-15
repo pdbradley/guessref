@@ -69,6 +69,12 @@ class Verse < ApplicationRecord
     end
   end
 
+  def split_words!
+    verse_text.to_s.split(' ').each do |word|
+      verse_words.create(word_text: word, visible: false)
+    end
+  end
+
   def revealed_tick!
     set_complete!
     GameRoundTickJob.set(wait: 3.seconds).perform_later(game_round.uuid)

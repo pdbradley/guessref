@@ -28,10 +28,10 @@ namespace :dev do
   desc 'Set up many games'
   task many_games: [:environment] do
     Rake::Task["dev:clear_db"].invoke
-    puts "many games"
-    1.times do 
-      Rake::Task["dev:one_game"].reenable
-      Rake::Task["dev:one_game"].invoke
-    end
+    # puts "many games"
+    # 1.times do 
+    #   Rake::Task["dev:one_game"].reenable
+    #   Rake::Task["dev:one_game"].invoke
+    # end
   end
 end

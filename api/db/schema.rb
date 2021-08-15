@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_145146) do
+ActiveRecord::Schema.define(version: 2021_08_15_171519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_145146) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "QUEUED"
     t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
+    t.string "verse_text"
     t.index ["game_round_id"], name: "index_verses_on_game_round_id"
   end
 
