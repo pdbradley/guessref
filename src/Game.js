@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import 'bulma/css/bulma.min.css';
 import { useSubscription, gql } from '@apollo/client';
+import { useHistory } from "react-router-dom";
 import GameSession from './GameSession';
 import CustomNavbar from './layout/CustomNavbar';
 import CustomHero from './layout/CustomHero';
@@ -60,11 +61,12 @@ const GET_GAME = gql`
 `;
 
 const Game = () => {
+  let history = useHistory();
   const cookies = new Cookies();
   const usernameExists = cookies.get('username') != null;
 
   if (!usernameExists) {
-    window.location = '/login'
+    history.push('/login');
   }
 
   const { uuid } = useParams();

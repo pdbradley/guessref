@@ -1,9 +1,11 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import 'bulma/css/bulma.min.css';
-import {Navbar} from 'react-bulma-components';
+import { Navbar } from 'react-bulma-components';
 import Cookies from 'universal-cookie';
 
 const CustomNavbar = () => {
+  let history = useHistory();
   const cookies = new Cookies();
 
   const usernameExists = cookies.get('username') != null;
@@ -12,7 +14,7 @@ const CustomNavbar = () => {
     cookies.remove('username', { path: '/' });
     cookies.remove('user_uuid', { path: '/' });
     cookies.remove('game_session_uuid', { path: '/' });
-    window.location = '/login';
+    history.push('/login');
   }
 
   return (
@@ -21,7 +23,7 @@ const CustomNavbar = () => {
         <Navbar.Item href="/home">Games </Navbar.Item>
         <Navbar.Item href="/new_game">New Game </Navbar.Item>
       </Navbar.Container>
-      
+
       {usernameExists ? <Navbar.Container align="right">
         <Navbar.Item textColor="info" renderAs="string">
           Hi, {cookies.get('username')}
