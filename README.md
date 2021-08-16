@@ -15,5 +15,5 @@ A lot to chew on! Also if this game works, it will be a nice way to learn the re
 4. bundle install
 5. bin/rails db:create
 6. bin/rails db:migrate
-7. cd ../hasura
+7. cd hasura
 8. hasura metadata apply --admin-secret SECRET (whatever is in docker-compose.yml)
