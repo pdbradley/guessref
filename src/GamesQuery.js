@@ -4,8 +4,8 @@ import { useSubscription, gql } from '@apollo/client';
 import GamesList from './GamesList';
 
 const GET_GAMES = gql`
-  subscription getGames {
-    game_sessions(order_by: {status: asc}, where: {_not: {status: {_eq: "COMPLETED"}}}) {
+  subscription getGames($sixHoursAgo: timestamp = "2021-08-15T18:13:07.084Z") {
+    game_sessions(order_by: {status: asc}, where: {_not: {status: {_eq: "COMPLETED"}}, created_at: {_gte: $sixHoursAgo}}) {
       id
       status
       uuid
@@ -31,8 +31,18 @@ const GET_GAMES = gql`
   }
 `;
 
+function getTimestampSixHoursAgo() {
+  const six_hours = 6 * 60 * 60 * 1000;
+  const sixHoursAgo = new Date(Date.now() - six_hours);
+  sixHoursAgo.setMinutes(0);
+  sixHoursAgo.setSeconds(0);
+  sixHoursAgo.setMilliseconds(0);
+  return sixHoursAgo.toISOString();
+}
+
 const GamesQuery = () => {
-  const { loading, error, data } = useSubscription(GET_GAMES);
+  const sixHoursAgo = getTimestampSixHoursAgo();
+  const { loading, error, data } = useSubscription(GET_GAMES, { variables: { sixHoursAgo } });
 
   if (loading) {
     console.log('hi');
