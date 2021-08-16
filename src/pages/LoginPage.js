@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Box, Form, Button } from 'react-bulma-components';
+import { useHistory } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import 'bulma/css/bulma.min.css';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
     const cookies = new Cookies();
+    let history = useHistory();
+    const goToPreviousPath = () => {
+        history.goBack()
+    }
 
     function handleOnSubmit(e) {
         e.preventDefault();
@@ -20,7 +25,7 @@ const LoginPage = () => {
             ).then(data => {
                 cookies.set('user_uuid', data.insert_users_one.uuid, { path: '/' });
                 cookies.set('username', username, { path: '/' });
-                window.location = '/';
+                goToPreviousPath();
             }
             ).catch(error => {
                 console.log(error)
