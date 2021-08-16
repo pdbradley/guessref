@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import {Navbar} from 'react-bulma-components';
+import { Navbar } from 'react-bulma-components';
 import Cookies from 'universal-cookie';
 
 const CustomNavbar = () => {
@@ -21,9 +21,9 @@ const CustomNavbar = () => {
         <Navbar.Item href="/home">Games </Navbar.Item>
         <Navbar.Item href="/new_game">New Game </Navbar.Item>
       </Navbar.Container>
-      
+
       {usernameExists ? <Navbar.Container align="right">
-        <Navbar.Item textColor="info" renderAs="string">
+        <Navbar.Item textColor="info" renderAs="div">
           Hi, {cookies.get('username')}
         </Navbar.Item>
         <Navbar.Item href="#" onClick={handleOnClick}>
