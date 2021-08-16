@@ -23,6 +23,9 @@ const CustomNavbar = () => {
       </Navbar.Container>
       
       {usernameExists ? <Navbar.Container align="right">
+        <Navbar.Item textColor="info" renderAs="string">
+          Hi, {cookies.get('username')}
+        </Navbar.Item>
         <Navbar.Item href="#" onClick={handleOnClick}>
           Log Out
         </Navbar.Item>
