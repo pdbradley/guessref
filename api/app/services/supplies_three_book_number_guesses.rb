@@ -5,6 +5,40 @@ class SuppliesThreeBookNumberGuesses
   LEVITICUS = 3
   NUMBERS = 4
   DEUTERONOMY = 5
+  JOSHUA = 6
+  JUDGES = 7
+  RUTH = 8
+  SAMUEL1 = 9
+  SAMUEL2 = 10
+  KINGS1 = 11
+  KINGS2 = 12
+  CHRONICLES1 = 13
+  CHRONICLES2 = 14
+  EZRA = 15
+  NEHEMIAH = 16
+  ESTHER = 17
+  JOB = 18
+  PSALMS = 19
+  PROVERBS = 20
+  ECCLESIASTES = 21
+  SONGOFSONGS = 22
+  ISAIAH = 23
+  JEREMIAH = 24
+  LAMENTATIONS = 25
+  EZEKIEL = 26
+  DANIEL = 27
+  HOSEA = 28
+  JOEL = 29
+  AMOS = 30
+  OBADIAH = 31
+  JONAH = 32
+  MICAH = 33
+  NAHUM = 34
+  HABAKKUK = 35
+  ZEPHANIAH = 36
+  HAGGAI = 37
+  ZECHARIAH = 38
+  MALACHI = 39
   MATTHEW = 40
   MARK = 41
   LUKE = 42
@@ -35,6 +69,10 @@ class SuppliesThreeBookNumberGuesses
 
 
   PENTATEUCH = [GENESIS, EXODUS, LEVITICUS, NUMBERS, DEUTERONOMY]
+  POETRY = [JOB, PSALMS, PROVERBS, ECCLESIASTES, SONGOFSONGS]
+  HISTORY = [JOSHUA,  JUDGES,  RUTH,  SAMUEL1,  SAMUEL2,  KINGS1,  KINGS2,  CHRONICLES1,  CHRONICLES2,  EZRA,  NEHEMIAH,  ESTHER]
+  MAJOR_PROPHETS = [ISAIAH,  JEREMIAH,  LAMENTATIONS,  EZEKIEL,  DANIEL]
+  MINOR_PROPHETS = [HOSEA,  JOEL,  AMOS,  OBADIAH,  JONAH,  MICAH,  NAHUM,  HABAKKUK,  ZEPHANIAH,  HAGGAI,  ZECHARIAH,  MALACHI]
   GOSPELS = [MATTHEW, MARK, LUKE, JOHN]
   HEART = [GALATIANS, EPHESIANS, PHILIPPIANS, COLOSSIANS]
   PAUL_EP = [ROMANS, CORINTHIANS1, CORINTHIANS2, GALATIANS, EPHESIANS, PHILIPPIANS, COLOSSIANS,
@@ -50,66 +88,30 @@ class SuppliesThreeBookNumberGuesses
 
   def guesses # this method will be huge
     case @book_number
-    when GENESIS
-      (PENTATEUCH - GENESIS).sample(3)
-    when EXODUS
-      (PENTATEUCH - EXODUS).sample(3)
-    when LEVITICUS
-      (PENTATEUCH - LEVITICUS).sample(3)
-    when NUMBERS
-      (PENTATEUCH - NUMBERS).sample(3)
-    when DEUTERONOMY
-      (PENTATEUCH - DEUTERONOMY).sample(3)
-    when MATTHEW
-      (GOSPELS - [MATTHEW]).sample(3)
-    when MARK
-      (GOSPELS - [ MARK ]).sample(3)
-    when LUKE
-      (GOSPELS - [ LUKE ]).sample(3)
-    when JOHN
-      (GOSPELS - [ JOHN ]).sample(3)
+    when *PENTATEUCH
+      (PENTATEUCH - [ @book_number ]).sample(3)
+    when *POETRY
+      (POETRY - [ @book_number ]).sample(3)
+    when *HISTORY
+      (HISTORY - [ @book_number ]).sample(3)
+    when *MAJOR_PROPHETS
+      (MAJOR_PROPHETS - [ @book_number ]).sample(3)
+    when *MINOR_PROPHETS
+      (MINOR_PROPHETS - [ @book_number ]).sample(3)
+    when *GOSPELS
+      (GOSPELS - [ @book_number ]).sample(3)
     when ACTS
-      (ALL - [ ACTS ]).sample(3)
-    when ROMANS
-      (PAUL_EP - [ ROMANS ]).sample(3)
-    when CORINTHIANS1
-      (PAUL_EP - [ CORINTHIANS1 ]).sample(3)
-    when CORINTHIANS2
-      (PAUL_EP - [ CORINTHIANS2 ]).sample(3)
-    when GALATIANS
-      (HEART - [ GALATIANS ]).sample(3)
-    when EPHESIANS
-      (HEART - [ EPHESIANS ]).sample(3)
-    when PHILIPPIANS
-      (HEART - [ PHILIPPIANS ]).sample(3)
-    when COLOSSIANS
-      (HEART - [ COLOSSIANS ]).sample(3)
-    when THESSALONIANS1
-      (PAUL_EP - [ THESSALONIANS1 ]).sample(3)
-    when THESSALONIANS2
-      (PAUL_EP - [ THESSALONIANS2 ]).sample(3)
-    when TIMOTHY1
-      (PAUL_EP - [ TIMOTHY1 ]).sample(3)
-    when TIMOTHY2
-      (PAUL_EP - [ TIMOTHY2 ]).sample(3)
-    when TITUS
-      (PAUL_EP - [ TITUS ]).sample(3)
-    when PHILEMON
-      (PAUL_EP - [ PHILEMON ]).sample(3)
-    when HEBREWS
-      (PAUL_EP - [ HEBREWS ]).sample(3)
+      (ALL - [ACTS]).sample(3)
+    when *PAUL_EP
+      (PAUL_EP - [ @book_number ]).sample(3)
+    when *HEART
+      (HEART - [ @book_number ]).sample(3)
     when JAMES
       ([HEBREWS] + PETER_EP + [JUDE] + JOHN_EP).sample(3)
-    when PETER1
-      ( (PETER_EP + [JUDE] + JOHN_EP + [JAMES])-[ PETER1 ]).sample(3)
-    when PETER2
-      ( (PETER_EP + [JUDE] + JOHN_EP + [JAMES])-[ PETER2 ]).sample(3)
-    when JOHN1
-      (([JUDE] + JOHN_EP) - [ JOHN1 ]).sample(3)
-    when JOHN2
-      (([JUDE] + JOHN_EP) - [ JOHN2 ]).sample(3)
-    when JOHN3
-      (([JUDE] + JOHN_EP) - [ JOHN3 ]).sample(3)
+    when *PETER_EP
+      ((PETER_EP + [JUDE] + JOHN_EP + [JAMES]) - [ @book_number ]).sample(3)
+    when *JOHN_EP
+      (([JUDE] + JOHN_EP) - [ @book_number ]).sample(3)
     when JUDE
       (PETER_EP + JOHN_EP).sample(3)
     when REVELATION
