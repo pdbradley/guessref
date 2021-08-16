@@ -41,7 +41,7 @@ const GET_GAME = gql`
             correct
             label
           }
-          verse_words(order_by: {created_at: asc}) {
+          verse_words(order_by: {id: asc}) {
             id
             word_text
             visible
