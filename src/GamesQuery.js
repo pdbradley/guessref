@@ -1,12 +1,17 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import { useSubscription, gql } from '@apollo/client';
+import {useSubscription, gql} from '@apollo/client';
 import GamesList from './GamesList';
 
 const GET_GAMES = gql`
   subscription getGames($sixHoursAgo: timestamp = "2021-08-15T18:13:07.084Z") {
-    game_sessions(order_by: {status: asc, created_at: desc}}, where: {_not: {status: {_eq: "COMPLETED"}}, created_at: {_gte: $sixHoursAgo}}) {
-
+    game_sessions(
+      order_by: {status: asc, created_at: desc}
+      where: {
+        _not: {status: {_eq: "COMPLETED"}}
+        created_at: {_gte: $sixHoursAgo}
+      }
+    ) {
       id
       status
       uuid
@@ -43,7 +48,9 @@ function getTimestampSixHoursAgo() {
 
 const GamesQuery = () => {
   const sixHoursAgo = getTimestampSixHoursAgo();
-  const { loading, error, data } = useSubscription(GET_GAMES, { variables: { sixHoursAgo } });
+  const {loading, error, data} = useSubscription(GET_GAMES, {
+    variables: {sixHoursAgo},
+  });
 
   if (loading) {
     console.log('hi');
