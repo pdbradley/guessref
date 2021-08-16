@@ -1,7 +1,7 @@
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-function initializeScore(game_session_uuid, user_uuid) {
+export function initializeScore(game_session_uuid, user_uuid) {
     fetch(`${process.env.REACT_APP_HASURA_REST_API}/insert_game_session_score`, {
         method: 'POST',
         body: JSON.stringify({
