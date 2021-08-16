@@ -88,8 +88,8 @@ const BookChapterVerseAnswers = ({ verse }) => {
     <>
       {showAnyThing && <>
         {showBookAnswers && <BookAnswers onAnswerClicked={handleBookAnswerClick} book_answers={verse.book_answers} />}
-        {showChapterAnswers && <VerseAnswers onAnswerClicked={handleChapterAnswerClick} verse_answers={verse.chapter_answers} />}
-        {showVerseAnswers && <VerseAnswers onAnswerClicked={handleVerseAnswerClick} verse_answers={verse.verse_answers} />}
+        {showChapterAnswers && <VerseAnswers onAnswerClicked={handleChapterAnswerClick} verse_answers={verse.chapter_answers} LABEL={"Chapter"} />}
+        {showVerseAnswers && <VerseAnswers onAnswerClicked={handleVerseAnswerClick} verse_answers={verse.verse_answers} LABEL={"Verse"} />}
       </>}
     </>
   );
