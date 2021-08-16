@@ -16,7 +16,7 @@ const GET_GAME = gql`
       creator_uuid
       name
       status
-      chat_messages {
+      chat_messages(order_by: {created_at: asc}) {
         id
         message
         user {
@@ -49,7 +49,7 @@ const GET_GAME = gql`
           }
         }
       }
-      game_session_scores {
+      game_session_scores(order_by: {score: desc}) {
         user_uuid
         score
         user {
