@@ -2,12 +2,24 @@ import React from 'react';
 import 'bulma/css/bulma.min.css';
 import Verse from './Verse';
 import BookChapterVerseAnswers from './BookChapterVerseAnswers';
+import Cookies from 'universal-cookie';
 
 const GameRound = ({ gameRound }) => {
+  const cookies = new Cookies();
   if (!gameRound) {
     return <div>No Game Round</div>;
   }
   let verse = gameRound.verses[0];
+
+  if (verse) {
+    const verse_id = cookies.get('verse_id');
+    const current_verse_id = verse.id;
+
+    if (verse_id != current_verse_id) {
+      cookies.set('answers', 'NONE', { path: '/' });
+      cookies.set('verse_id', current_verse_id, { path: '/' });
+    }
+  }
   return (
     <>
       <Verse verse={verse} />
