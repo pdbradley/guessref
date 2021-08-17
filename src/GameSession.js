@@ -22,7 +22,6 @@ const GameSession = ({ game_session }) => {
   let ACTIVE = game_session.status === 'ACTIVE';
 
   if (game_session.game_session_scores.some(score => score.user_uuid === user_uuid)) {
-    console.log("You have a score");
   } else {
     initializeScore(game_session_uuid, user_uuid);
   }

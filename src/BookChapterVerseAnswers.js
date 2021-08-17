@@ -5,18 +5,36 @@ import BookAnswers from './BookAnswers';
 import VerseAnswers from './VerseAnswers';
 
 const BookChapterVerseAnswers = ({ verse }) => {
-  const [showAnyThing, setShowAnyThing] = useState(true);
-  const [showBookAnswers, setShowBookAnswers] = useState(true);
-  const [showChapterAnswers, setShowChapterAnswers] = useState(false);
-  const [showVerseAnswers, setShowVerseAnswers] = useState(false);
+  const cookies = new Cookies();
+  const user_uuid = cookies.get('user_uuid');
+  const game_session_uuid = cookies.get('game_session_uuid');
+  const [answers, setAnswers] = useState(cookies.get('answers'));
 
+  // const answers = cookies.get('answers');
   if (!verse) {
     return <></>;
   }
 
-  const cookies = new Cookies();
-  const user_uuid = cookies.get('user_uuid');
-  const game_session_uuid = cookies.get('game_session_uuid');
+  let showAnyThing = true;
+  let showBookAnswers = false;
+  let showChapterAnswers = false;
+  let showVerseAnswers = false;
+  switch (answers) {
+    case "ANSWER_DONE":
+      showAnyThing = false;
+      break;
+    case "NONE":
+    default:
+      showBookAnswers = true;
+      break;
+    case "BOOK_DONE":
+      showChapterAnswers = true;
+      break;
+    case "CHAPTER_DONE":
+      showVerseAnswers = true;
+      break;
+  }
+
 
   function getBookPoints() {
     let correct = verse.book_answers.filter(
@@ -41,39 +59,39 @@ const BookChapterVerseAnswers = ({ verse }) => {
 
   function handleBookAnswerClick(clickedAnswer) {
     if (clickedAnswer.correct) {
-      setShowBookAnswers(false);
-      setShowChapterAnswers(true);
+      sendScore(getBookPoints());
+      cookies.set('answers', 'BOOK_DONE', { path: '/' });
     } else {
-      setShowAnyThing(false);
+      cookies.set('answers', 'ANSWER_DONE', { path: '/' });
     }
+    setAnswers((cookies.get('answers')));
   }
 
   function handleChapterAnswerClick(clickedAnswer) {
     if (clickedAnswer.correct) {
-      setShowChapterAnswers(false);
-      setShowVerseAnswers(true);
+      sendScore(getChapterPoints());
+      cookies.set('answers', 'CHAPTER_DONE', { path: '/' });
     } else {
-      endGuessingAndSendScore(getBookPoints());
+      cookies.set('answers', 'ANSWER_DONE', { path: '/' });
     }
+    setAnswers((cookies.get('answers')));
   }
 
   function handleVerseAnswerClick(clickedAnswer) {
+    cookies.set('answers', 'ANSWER_DONE', { path: '/' });
     if (clickedAnswer.correct) {
-      endGuessingAndSendScore(getBookPoints() + getChapterPoints() + getVersePoints());
-    } else {
-      endGuessingAndSendScore(getBookPoints() + getChapterPoints());
+      sendScore(getVersePoints());
     }
+    setAnswers((cookies.get('answers')));
   }
 
-  function endGuessingAndSendScore(final_score) {
-    console.log("final_score:", final_score)
-    setShowAnyThing(false);
+  function sendScore(score) {
     fetch(`${process.env.REACT_APP_HASURA_REST_API}/insert_game_session_score`, {
       method: 'POST',
       body: JSON.stringify({
         game_session_uuid: game_session_uuid,
         user_uuid: user_uuid,
-        score: final_score
+        score: score
       })
     }).then(response =>
       response.json()
