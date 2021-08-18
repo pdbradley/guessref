@@ -57,6 +57,7 @@ class GameRound < ApplicationRecord
       current_verse.tick!
     else
       update_attribute(:status, COMPLETED_STATUS)
+      game_session.tick!
     end
   end
 
