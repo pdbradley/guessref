@@ -64,8 +64,8 @@ class Verse < ApplicationRecord
       next_hidden_word.visible! 
       VerseTickJob.set(wait: (0.5).seconds).perform_later(self.uuid)
     else
-      set_revealed!
       VerseTickJob.set(wait: (8).seconds).perform_later(self.uuid)
+      set_revealed!
     end
   end
 
@@ -76,8 +76,8 @@ class Verse < ApplicationRecord
   end
 
   def revealed_tick!
+    GameRoundTickJob.set(wait: 5.seconds).perform_later(game_round.uuid)
     set_complete!
-    GameRoundTickJob.set(wait: 3.seconds).perform_later(game_round.uuid)
   end
 
   def next_hidden_word
