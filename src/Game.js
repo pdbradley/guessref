@@ -84,11 +84,7 @@ const Game = () => {
   }
 
   return (
-    <>
-      <CustomHero />
-      <CustomNavbar />
       <GameSession game_session={data.game_sessions[0]} />
-    </>
   );
 };
 
