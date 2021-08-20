@@ -27,6 +27,7 @@ const GET_GAME = gql`
         id
         verses(where: {status: {_in: ["ACTIVE", "REVEALED"]}}) {
           id
+          status
           book_answers {
             point_value
             correct
