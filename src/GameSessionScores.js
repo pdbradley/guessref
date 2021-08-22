@@ -11,10 +11,14 @@ const GameSessionScores = ({ game_session_scores }) => {
     return a;
   }, Object.create(null));
 
+  let sortedScores = Object.values(combinedScores).sort(function (first, second) {
+    return second.score - first.score;
+  });
+
   return (
     <Panel>
       <Panel.Header>Scores</Panel.Header>
-      {Object.values(combinedScores).map(({ user_uuid, user_name, score }) => (
+      {Object.values(sortedScores).map(({ user_uuid, user_name, score }) => (
         <Panel.Block key={user_uuid}>
           {user_name}:{" "}{score}
         </Panel.Block>

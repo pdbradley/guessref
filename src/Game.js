@@ -3,8 +3,6 @@ import 'bulma/css/bulma.min.css';
 import { useSubscription, gql } from '@apollo/client';
 import { useHistory } from "react-router-dom";
 import GameSession from './GameSession';
-import CustomNavbar from './layout/CustomNavbar';
-import CustomHero from './layout/CustomHero';
 import { useParams } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
@@ -86,7 +84,7 @@ const Game = () => {
   }
 
   return (
-      <GameSession game_session={data.game_sessions[0]} />
+    <GameSession game_session={data.game_sessions[0]} />
   );
 };
 
