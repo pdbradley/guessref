@@ -28,7 +28,7 @@ const CustomNavbar = () => {
         <Navbar.Item textColor="info" renderAs="div">
           Hi, {cookies.get('username')}
         </Navbar.Item>
-        <Navbar.Item href="#" onClick={handleOnClick}>
+        <Navbar.Item onClick={handleOnClick}>
           Log Out
         </Navbar.Item>
       </Navbar.Container> : <></>}

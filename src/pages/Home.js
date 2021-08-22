@@ -12,6 +12,7 @@ const Home = () => {
 
   if (!usernameExists) {
     history.push('/login');
+    return (<></>);
   }
 
   return (

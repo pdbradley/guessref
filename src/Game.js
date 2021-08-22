@@ -65,14 +65,15 @@ const Game = () => {
   const cookies = new Cookies();
   const usernameExists = cookies.get('username') != null;
 
-  if (!usernameExists) {
-    history.push('/login');
-  }
-
   const { uuid } = useParams();
   const { loading, error, data } = useSubscription(GET_GAME, {
     variables: { uuid: uuid },
   });
+
+  if (!usernameExists) {
+    history.push('/login');
+    return (<></>);
+  }
 
   if (loading) {
     console.log('hi');
