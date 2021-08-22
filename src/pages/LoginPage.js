@@ -8,8 +8,10 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const cookies = new Cookies();
     let history = useHistory();
-    const goToPreviousPath = () => {
-        history.goBack()
+
+    const usernameExists = cookies.get('username') != null;
+    if (usernameExists) {
+        history.goBack();
     }
 
     function handleOnSubmit(e) {
@@ -25,10 +27,11 @@ const LoginPage = () => {
             ).then(data => {
                 cookies.set('user_uuid', data.insert_users_one.uuid, { path: '/' });
                 cookies.set('username', username, { path: '/' });
-                goToPreviousPath();
+                window.location.reload();
             }
             ).catch(error => {
                 console.log(error)
+                window.location.reload();
             })
         }
     }
@@ -44,6 +47,7 @@ const LoginPage = () => {
                             color="success"
                             placeholder={'What\'s your name?'}
                             value={username}
+                            onSubmit={handleOnSubmit}
                             onChange={(e) => {
                                 return setUsername(e.target.value);
                             }}
