@@ -19,7 +19,9 @@ const GameSession = ({ game_session }) => {
   const game_session_uuid = game_session.uuid;
 
   let CREATOR = user_uuid === game_session.creator_uuid
+  let LOBBY = game_session.status === 'LOBBY';
   let ACTIVE = game_session.status === 'ACTIVE';
+  let COMPLETED = game_session.status === 'COMPLETED';
 
   if (game_session.game_session_scores.some(score => score.user_uuid === user_uuid)) {
   } else {
@@ -38,9 +40,10 @@ const GameSession = ({ game_session }) => {
         </Columns.Column>
         <Columns.Column>
           <Section textAlign="center">
-            {!ACTIVE && CREATOR && <StartGameButton />}
-            {!ACTIVE && !CREATOR && "Wait for Creator to Start Game"}
+            {LOBBY && CREATOR && <StartGameButton />}
+            {LOBBY && !CREATOR && "Wait for Creator to Start Game"}
             {ACTIVE && <GameRound gameRound={game_session.game_rounds[0]} />}
+            {COMPLETED && "Game Completed!"}
           </Section>
           <Section textAlign="center">
             <LeaveGameButton />
