@@ -10,7 +10,14 @@ export function initializeScore(game_session_uuid, user_uuid) {
             score: 0
         })
     })
-        .then(response => response.json())
+        .then(response => {
+            if (response.status === 400) {
+                cookies.remove('username', { path: '/' });
+                cookies.remove('user_uuid', { path: '/' });
+                window.location.reload();
+            }
+            response.json()
+        })
         .then(data => console.log(data))
         .catch(error => console.log(error));
 }
