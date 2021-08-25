@@ -19,6 +19,11 @@ const GameRound = ({ gameRound }) => {
       cookies.set('answers', 'NONE', { path: '/' });
       cookies.set('verse_id', current_verse_id, { path: '/' });
     }
+
+    if (verse.status === 'REVEALED') {
+      cookies.set('answers', 'ANSWER_DONE', { path: '/' });
+      return <Verse verse={verse} />;
+    }
   }
   return (
     <>
