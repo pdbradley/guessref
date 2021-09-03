@@ -1,5 +1,13 @@
 version: "3"
 services:
+  guessref_app:
+    build: ./app
+    container_name: guessref_app
+    ports:
+    - "3000:3000"
+    volumes:
+      - ./app:/app
+
   postgres:
     image: postgres:12.6
     restart: always
@@ -8,7 +16,6 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: guessref_development
-    container_name: guessref_db
     ports:
       - "5433:5432"
   hasura:
@@ -21,18 +28,12 @@ services:
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:password@host.docker.internal:5433/guessref_development
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
-      ## enable debugging mode. It is recommended to disable this in production
-      ## HASURA_GRAPHQL_DEV_MODE: "true"
-      ## HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_ADMIN_SECRET: "nargh"
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
-  web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+  api:
+    build: ./api
     volumes:
       - ./api:/myapp
-    ports:
-      - "3000:3000"
     depends_on:
       - postgres
 volumes:
