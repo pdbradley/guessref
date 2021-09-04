@@ -11,8 +11,8 @@ COPY public $APP_HOME/public/
 COPY src $APP_HOME/src/
 COPY *.json $APP_HOME/
 
-RUN npm install
+RUN yarn install
 
 EXPOSE 3000
 
-ENTRYPOINT npm run start
+ENTRYPOINT yarn start
