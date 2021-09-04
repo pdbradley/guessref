@@ -1,9 +1,14 @@
 FROM ruby:2.7.3
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+WORKDIR /tmp
+# skip installing gem documentation
+RUN echo 'gem: --no-rdoc --no-ri' >> "$HOME/.gemrc"
+
+ADD Gemfile /tmp/ 
+ADD Gemfile.lock /tmp/ 
+RUN bundle install 
+
 WORKDIR /myapp
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
-RUN bundle install
 
 COPY . .
 
