@@ -10,6 +10,5 @@ COPY . .
 # Add a script to be executed every time the container starts.
 EXPOSE 3001
 
-ENTRYPOINT rm -f tmp/pids/server.pid
 # Configure the main process to run when running the image
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3001"]
+CMD rm -f tmp/pids/server.pid; rails server -b 0.0.0.0 -p 3001
