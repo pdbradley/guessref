@@ -10,7 +10,6 @@ const BookChapterVerseAnswers = ({ verse }) => {
   const game_session_uuid = cookies.get('game_session_uuid');
   const [answers, setAnswers] = useState(cookies.get('answers'));
 
-  // const answers = cookies.get('answers');
   if (!verse) {
     return <></>;
   }
@@ -64,7 +63,7 @@ const BookChapterVerseAnswers = ({ verse }) => {
     } else {
       cookies.set('answers', 'ANSWER_DONE', { path: '/' });
     }
-    setAnswers((cookies.get('answers')));
+    setAnswers(cookies.get('answers'));
   }
 
   function handleChapterAnswerClick(clickedAnswer) {
@@ -74,7 +73,7 @@ const BookChapterVerseAnswers = ({ verse }) => {
     } else {
       cookies.set('answers', 'ANSWER_DONE', { path: '/' });
     }
-    setAnswers((cookies.get('answers')));
+    setAnswers(cookies.get('answers'));
   }
 
   function handleVerseAnswerClick(clickedAnswer) {
@@ -82,16 +81,21 @@ const BookChapterVerseAnswers = ({ verse }) => {
     if (clickedAnswer.correct) {
       sendScore(getVersePoints());
     }
-    setAnswers((cookies.get('answers')));
+    setAnswers(cookies.get('answers'));
   }
 
   function sendScore(score) {
+    const seconds_past = (Date.now() - cookies.get('new_verse_time')) / 1000;
+    const multiplier = seconds_past < 10 ? (-0.2 * seconds_past + 3) : 1;
+    const final_score = Math.floor(multiplier * score);
+    console.log(final_score)
+
     fetch(`${process.env.REACT_APP_HASURA_REST_API}/insert_game_session_score`, {
       method: 'POST',
       body: JSON.stringify({
         game_session_uuid: game_session_uuid,
         user_uuid: user_uuid,
-        score: score
+        score: final_score
       })
     }).then(response =>
       response.json()
