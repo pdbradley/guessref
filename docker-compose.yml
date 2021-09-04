@@ -7,6 +7,10 @@ services:
     - "3000:3000"
     volumes:
       - ./app:/app
+    environment:
+      REACT_APP_HASURA_WEBSOCKET_URL: ws://localhost:8080/v1/graphql
+      REACT_APP_HASURA_REST_API: http://localhost:8080/api/rest
+      REACT_APP_RAILS: http://localhost:3001
 
   postgres:
     image: postgres:12.6
