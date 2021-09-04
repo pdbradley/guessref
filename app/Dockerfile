@@ -1,17 +1,16 @@
 FROM node:slim
 
-ENV APP_HOME /app
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
+RUN mkdir /app
+WORKDIR /app
 
 ENV NODE_ENV=development \
-  PATH=$APP_HOME/node_modules/.bin:$PATH
+  PATH=/app/node_modules/.bin:$PATH
 
-COPY public $APP_HOME/public/
-COPY src $APP_HOME/src/
-COPY *.json $APP_HOME/
-
+COPY *.json .
 RUN yarn install
+
+COPY public public/
+COPY src src/
 
 EXPOSE 3000
 
