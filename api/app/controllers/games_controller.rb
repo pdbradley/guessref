@@ -5,7 +5,9 @@ class GamesController < ApplicationController
 
     if game_session.persisted?
       # background this?
-      BuildsGameSessionStructure.new(game_session.id).build(num_rounds: 1, num_verses: 10)
+      num_verses = params[:num_verses]
+      num_rounds = params[:num_rounds]
+      BuildsGameSessionStructure.new(game_session.id).build(num_rounds: num_rounds, num_verses: num_verses*num_rounds)
       game_session.reload
       render json: game_session
     else
