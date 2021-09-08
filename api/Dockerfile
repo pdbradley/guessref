@@ -4,16 +4,18 @@ WORKDIR /tmp
 # skip installing gem documentation
 RUN echo 'gem: --no-rdoc --no-ri' >> "$HOME/.gemrc"
 
-ADD Gemfile /tmp/ 
-ADD Gemfile.lock /tmp/ 
+COPY Gemfile /tmp/ 
+COPY Gemfile.lock /tmp/ 
 RUN bundle install 
 
 WORKDIR /myapp
 
 COPY . .
 
-# Add a script to be executed every time the container starts.
 EXPOSE 3001
 
+
+# Add a script to be executed every time the container starts.
+ENTRYPOINT ["bin/entry"]
 # Configure the main process to run when running the image
-CMD rm -f tmp/pids/server.pid; rails server -b 0.0.0.0 -p 3001
+CMD rails server -b 0.0.0.0 -p 3001
