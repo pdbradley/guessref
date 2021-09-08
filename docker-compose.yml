@@ -28,11 +28,12 @@ services:
     - "8080:8080"
     depends_on:
     - "postgres"
+    - "api"
     restart: always
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:password@host.docker.internal:5433/guessref_development
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
-      HASURA_GRAPHQL_ADMIN_SECRET: "nargh"
+      HASURA_GRAPHQL_ADMIN_SECRET: "secret"
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
   api:
     build: ./api

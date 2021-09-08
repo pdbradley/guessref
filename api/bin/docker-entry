@@ -11,4 +11,9 @@ fi
 rake db:create
 rake db:migrate
 
+sleep 10
+cd hasura
+hasura metadata apply --endpoint http://hasura:8080 --admin-secret secret
+cd ..
+
 exec "$@"
