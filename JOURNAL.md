@@ -97,3 +97,13 @@ Verse.tick
   end
 end
 ```
+
+**9/9/21**
+
+Stalled.  Basically because we stopped to try to figure out how to dockerize all dependencies.
+
+The goal is for anyone to be able to clone this thing and with one or two commands get it up and running locally so they can tweak it.
+
+got pretty close to that actually
+
+
