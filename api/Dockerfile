@@ -16,7 +16,6 @@ COPY . .
 
 EXPOSE 3001
 
-
 # Add a script to be executed every time the container starts.
 ENTRYPOINT ["bin/docker-entry"]
 # Configure the main process to run when running the image
