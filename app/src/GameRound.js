@@ -7,7 +7,7 @@ import Cookies from 'universal-cookie';
 const GameRound = ({ gameRound }) => {
   const cookies = new Cookies();
   if (!gameRound) {
-    return <div>No Game Round</div>;
+    return <div>Get ready!</div>;
   }
   let verse = gameRound.verses[0];
 
@@ -17,6 +17,7 @@ const GameRound = ({ gameRound }) => {
 
     if (verse_id != current_verse_id) {
       cookies.set('answers', 'NONE', { path: '/' });
+      cookies.set('new_verse_time', Date.now(), { path: '/' });
       cookies.set('verse_id', current_verse_id, { path: '/' });
     }
 
