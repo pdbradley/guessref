@@ -23,7 +23,7 @@ const GamesList = ({game_sessions}) => {
                           accumulator + item.verses_aggregate.aggregate.count,
                         0,
                       )}{' '}
-                      Total Verses
+                      Total Versess
                     </Heading>
                   </Tile>
                 </Tile>
