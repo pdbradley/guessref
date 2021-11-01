@@ -9,7 +9,13 @@ export default {
 
 const Template = args => <GameSession {...args} />;
 
+const game_session_fixture = {
+  game_rounds: [],
+  game_session_scores: [],
+  chat_messages: [],
+};
+
 export const Small = Template.bind({});
 Small.args = {
-  game_session: data.game_sessions[0],
+  game_session: game_session_fixture,
 };
