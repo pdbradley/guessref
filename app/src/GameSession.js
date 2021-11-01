@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.min.css';
-import { Columns, Section } from 'react-bulma-components';
+import {Columns, Section} from 'react-bulma-components';
 import GameRound from './GameRound';
 import LeaveGameButton from './LeaveGameButton';
 import GameSessionScores from './GameSessionScores';
@@ -8,9 +8,9 @@ import StartGameButton from './StartGameButton';
 import Chats from './Chats';
 import ChatInput from './ChatInput';
 import Cookies from 'universal-cookie';
-import { initializeScore } from './FetchHelpers';
+import {initializeScore} from './FetchHelpers';
 
-const GameSession = ({ game_session }) => {
+const GameSession = ({game_session}) => {
   if (!game_session) {
     return <div>No Session</div>;
   }
@@ -18,17 +18,19 @@ const GameSession = ({ game_session }) => {
   const user_uuid = cookies.get('user_uuid');
   const game_session_uuid = game_session.uuid;
 
-  let CREATOR = user_uuid === game_session.creator_uuid
+  let CREATOR = user_uuid === game_session.creator_uuid;
   let LOBBY = game_session.status === 'LOBBY';
   let ACTIVE = game_session.status === 'ACTIVE';
   let COMPLETED = game_session.status === 'COMPLETED';
 
-  if (game_session.game_session_scores.some(score => score.user_uuid === user_uuid)) {
+  if (
+    game_session.game_session_scores.some(
+      score => score.user_uuid === user_uuid,
+    )
+  ) {
   } else {
     initializeScore(game_session_uuid, user_uuid);
   }
-
-
 
   return (
     <>
@@ -41,9 +43,9 @@ const GameSession = ({ game_session }) => {
         <Columns.Column>
           <Section textAlign="center">
             {LOBBY && CREATOR && <StartGameButton />}
-            {LOBBY && !CREATOR && "Wait for Creator to Start Game"}
+            {LOBBY && !CREATOR && 'Wait for Creator to Start Game'}
             {ACTIVE && <GameRound gameRound={game_session.game_rounds[0]} />}
-            {COMPLETED && "Game Completed!"}
+            {COMPLETED && 'Game Completed!'}
           </Section>
           <Section textAlign="center">
             <LeaveGameButton />
