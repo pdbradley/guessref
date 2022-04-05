@@ -3,7 +3,7 @@ RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 WORKDIR /tmp
 # skip installing gem documentation
 RUN echo 'gem: --no-rdoc --no-ri' >> "$HOME/.gemrc"
-RUN curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash
+# RUN curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash
 
 
 COPY Gemfile /tmp/ 
