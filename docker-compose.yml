@@ -23,6 +23,7 @@ services:
     ports:
       - "${DOCKER_POSTGRES_EXTERNAL_PORT:-5432}:5432"
   hasura:
+    # this image automatically will apply metadata
     image: "${HASURA_IMAGE:-hasura/graphql-engine:v2.3.1.cli-migrations-v3}"
     volumes:
       - ./hasura/metadata:/hasura-metadata
@@ -45,6 +46,11 @@ services:
       - "3001:3001"
     depends_on:
       - postgres
+    # supposedly this healthcheck causes services that depend on "api" (like hasura) to wait until the 
+    # rails server is running
+    # that would mean that bundle install and rails migrations had run.
+    # the hasura metadata application needs to run after rails migrations are done.
+    # the output of docker-compose up seems to indicate that hasura is not waiting though
     healthcheck:
         test: ["CMD", "curl", "-f", "http://localhost:3001"]
         interval: 30s
