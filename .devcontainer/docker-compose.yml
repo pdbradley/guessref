@@ -1,0 +1,7 @@
+version: '3'
+services:
+  rails_api:
+    volumes:
+      - .:/workspace:cached
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: /bin/sh -c "while sleep 1000; do :; done"
