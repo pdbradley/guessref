@@ -4,7 +4,7 @@ services:
     build: ./app
     container_name: guessref_app
     ports:
-    - "3000:3000"
+      - "3000:3000"
     volumes:
       - ./app:/app
     environment:
@@ -28,17 +28,17 @@ services:
     volumes:
       - ./hasura/metadata:/hasura-metadata
     ports:
-    - "8080:8080"
+      - "8080:8080"
     depends_on:
-    - "postgres"
-    - "api"
+      - "postgres"
+      - "rails_api"
     restart: always
     environment:
       HASURA_GRAPHQL_DATABASE_URL: "postgres://postgres:password@${DOCKER_POSTGRES_HOST:-postgres}:${DOCKER_POSTGRES_EXTERNAL_PORT:-5432}/guessref_development"
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       HASURA_GRAPHQL_ADMIN_SECRET: "secret"
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: "anonymous"
-  api:
+  rails_api:
     build: ./api
     volumes:
       - ./api:/myapp
@@ -46,15 +46,15 @@ services:
       - "3001:3001"
     depends_on:
       - postgres
-    # supposedly this healthcheck causes services that depend on "api" (like hasura) to wait until the 
+    # supposedly this healthcheck causes services that depend on "rails_api" (like hasura) to wait until the 
     # rails server is running
     # that would mean that bundle install and rails migrations had run.
     # the hasura metadata application needs to run after rails migrations are done.
     # the output of docker-compose up seems to indicate that hasura is not waiting though
     healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:3001"]
-        interval: 30s
-        timeout: 10s
-        retries: 5
+      test: [ "CMD", "curl", "-f", "http://localhost:3001" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 volumes:
   db_data:
