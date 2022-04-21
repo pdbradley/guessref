@@ -1,4 +1,6 @@
 {
   "dockerComposeFile": ["../docker-compose.yml", "docker-compose.yml"],
-  "service": "rails_api"
+  "service": "rails_api",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [8080, 3000, 5432]
 }
