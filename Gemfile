@@ -43,6 +43,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem 'factory_bot_rails'
 gem 'haml-rails'
+gem 'view_component'
 
 
 # Use Sass to process CSS
