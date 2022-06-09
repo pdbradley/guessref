@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :game_round do
-    game_session { nil }
+    game_session
   end
 end

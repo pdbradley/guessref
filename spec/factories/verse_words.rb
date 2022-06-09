@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :verse_word do
-    word_text { 'Rando' }
+    word_text { Faker::Lorem.word }
     visible { false }
-    verse { nil }
+    verse
   end
-
 end

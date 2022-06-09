@@ -11,6 +11,14 @@ module GuessrefHotwire
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # don't uncomment this without making sure that the component 
+    # generator is actually generating previews in the path set below
+    #
+    # when I set it to generate in the rspec folder via this path,
+    # it failed to do so so I left the default path
+    # config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
+
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

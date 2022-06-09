@@ -1,0 +1,4 @@
+.h-full.flex.flex-wrap.content-center.p-5.justify-center
+  - @verse_words.each do |verse_word|
+    .text-xl.my-2.mx-1
+      = render(VerseWordComponent.new(word_text: verse_word.word_text, visible: verse_word.visible))

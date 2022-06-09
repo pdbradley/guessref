@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :verse do
-    game_round { nil }
+    game_round
     book_number { 1 }
     chapter_number { 1 }
     verse_number { 1 }
