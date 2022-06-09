@@ -1,16 +1,18 @@
 class GamesController < ApplicationController
 
+  def index
+    @games = GameSession.all
+  end
+
+  def new
+
+  end
+
   def create
     game_session = GameSession.create(creator_uuid: params[:creator_uuid], name: params[:name], status: GameSession::LOBBY_STATUS)
 
-    if game_session.persisted?
-      # background this?
-      BuildsGameSessionStructure.new(game_session.id).build(num_rounds: 1, num_verses: 10)
-      game_session.reload
-      render json: game_session
-    else
-      render error: { error: 'Unable to create game session' }
-    end
+    BuildsGameSessionStructure.new(game_session.id).build(num_rounds: 1, num_verses: 10)
+    redirect_to games_path
   end
 
   def start
