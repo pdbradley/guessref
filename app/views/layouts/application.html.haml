@@ -29,6 +29,10 @@
                   %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} Reports
             .hidden.md:block
               .ml-4.flex.items-center.md:ml-6
+                - if current_user
+                  .text-gray-400.mr-5
+                    Welcome 
+                    ="#{current_user.name}!"
                 %button.bg-gray-800.p-1.rounded-full.text-gray-400.hover:text-white.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-offset-gray-800.focus:ring-white{:type => "button"}
                   %span.sr-only View notifications
                   / Heroicon name: outline/bell
