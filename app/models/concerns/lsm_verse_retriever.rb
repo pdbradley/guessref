@@ -4,7 +4,6 @@ class LsmVerseRetriever
 
   ENDPOINT = 'https://api.lsm.org/recver.php'
 
-
   def retrieve(reference)
     params = { String: reference, Out: 'json' }
 

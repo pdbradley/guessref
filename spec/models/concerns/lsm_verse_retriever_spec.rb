@@ -2,20 +2,20 @@ require 'rails_helper'
 
 RSpec.describe LsmVerseRetriever do
   # this spec is baaaad because it actually hits the api but whatev
-  describe "#retrieve" do
-    it "populates the result with verse attributes when valid" do
-      retriever = LsmVerseRetriever.new
-      retriever.retrieve("Matthew 1:1")
-      expect(retriever.valid?).to be_truthy
-      expect(retriever.text).to match(/generation/)
-    end
-    it "detects an invalid reference" do
-      retriever = LsmVerseRetriever.new
-
-      retriever.retrieve("Nargh")
-      expect(retriever.valid?).to be_falsey
-    end
-  end
+  # describe "#retrieve" do
+  #   it "populates the result with verse attributes when valid" do
+  #     retriever = LsmVerseRetriever.new
+  #     retriever.retrieve("Matthew 1:1")
+  #     expect(retriever.valid?).to be_truthy
+  #     expect(retriever.text).to match(/generation/)
+  #   end
+  #   it "detects an invalid reference" do
+  #     retriever = LsmVerseRetriever.new
+  #
+  #     retriever.retrieve("Nargh")
+  #     expect(retriever.valid?).to be_falsey
+  #   end
+  # end
 end
 
 # valid JSON response for one verse:

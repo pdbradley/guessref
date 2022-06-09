@@ -20,7 +20,7 @@ class UnpacksReferenceRowIntoVerseData
 
   def retrieve_verse
     retriever = LsmVerseRetriever.new
-    puts "RETRIEVING #{@reference}"
+    # puts "RETRIEVING #{@reference}"
     retriever.retrieve(@reference)
     if retriever.valid?
       @text = retriever.text 
