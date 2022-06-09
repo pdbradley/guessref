@@ -11,4 +11,7 @@
 
     = javascript_importmap_tags
   %body
+    - if current_user
+      Welcome 
+      =current_user.name
     = yield

@@ -22,6 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-api/.env
-app/.env
-.env
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+dump.rdb
