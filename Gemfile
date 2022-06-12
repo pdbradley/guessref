@@ -79,3 +79,5 @@ group :test do
 end
 
 gem "faker", "~> 2.21"
+gem "hotwire-livereload", "~> 1.1"
+
