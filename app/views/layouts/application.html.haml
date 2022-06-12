@@ -76,7 +76,8 @@
                 "aria-controls" => "mobile-menu", 
                 "aria-expanded" => "false", 
                 "aria-expanded" => "false", 
-                :type => "button"
+                :type => "button",
+                "@click" => "mobileMenuIsOpen = !mobileMenuIsOpen"
                 }
                 %span.sr-only Open main menu
                 /
@@ -103,7 +104,9 @@
                 %svg.hidden.h-6.w-6{"aria-hidden" => "true", :fill => "none", :stroke => "currentColor", "stroke-width" => "2", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
                   %path{:d => "M6 18L18 6M6 6l12 12", "stroke-linecap" => "round", "stroke-linejoin" => "round"}
         / Mobile menu, show/hide based on menu state.
-        #mobile-menu.md:hidden
+        #mobile-menu.md:hidden{
+          "x-show" => "mobileMenuIsOpen",
+          }
           .px-2.pt-2.pb-3.space-y-1.sm:px-3
             / Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
             %a.bg-gray-900.text-white.block.px-3.py-2.rounded-md.text-base.font-medium{"aria-current" => "page", :href => "#"} Play
