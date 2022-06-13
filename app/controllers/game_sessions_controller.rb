@@ -1,7 +1,11 @@
-class GamesController < ApplicationController
+class GameSessionsController < ApplicationController
 
   def index
-    @games = GameSession.all
+    @game_sessions = GameSession.all
+  end
+
+  def show
+    @game_session = GameSession.find params[:id]
   end
 
   def new

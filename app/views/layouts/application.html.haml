@@ -24,7 +24,7 @@
               .hidden.md:block
                 .ml-10.flex.items-baseline.space-x-4
                   / Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
-                  %a.bg-gray-900.text-white.px-3.py-2.rounded-md.text-sm.font-medium{"aria-current" => "page", :href => "#"} Play
+                  %a.bg-gray-900.text-white.px-3.py-2.rounded-md.text-sm.font-medium{"aria-current" => "page", :href => game_sessions_path} Play
                   %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} FAQ
                   %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} About
                   %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} Feedback
@@ -109,7 +109,7 @@
           }
           .px-2.pt-2.pb-3.space-y-1.sm:px-3
             / Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
-            %a.bg-gray-900.text-white.block.px-3.py-2.rounded-md.text-base.font-medium{"aria-current" => "page", :href => "#"} Play
+            %a.bg-gray-900.text-white.block.px-3.py-2.rounded-md.text-base.font-medium{"aria-current" => "page", :href => "/game_sessions"} Play
             %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} FAQ
             %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} About
             %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} Feedback
@@ -138,5 +138,5 @@
       %main
         .max-w-7xl.mx-auto.py-2.sm:px-6.lg:px-8
           .px-4.py-4.sm:px-0
-            .border-4.border-dashed.border-gray-200.rounded-lg.h-96
+            .border-4.border-dashed.border-gray-200.rounded-lg
               = yield

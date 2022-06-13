@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/sign_in', to: "sessions#new"
 
   resource :session, only: [:create]
-  resources :games
+  resources :game_sessions
 
   root "pages#home"
 end
