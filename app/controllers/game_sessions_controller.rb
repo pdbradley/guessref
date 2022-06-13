@@ -13,10 +13,14 @@ class GameSessionsController < ApplicationController
   end
 
   def create
-    game_session = GameSession.create(creator_uuid: params[:creator_uuid], name: params[:name], status: GameSession::LOBBY_STATUS)
-
-    BuildsGameSessionStructure.new(game_session.id).build(num_rounds: 1, num_verses: 10)
-    redirect_to games_path
+    game_session = GameSession.new(name: params[:name], status: GameSession::LOBBY_STATUS)
+    if game_session.valid?
+      game_session.save
+      BuildsGameSessionStructure.new(game_session.id).build(num_rounds: 1, num_verses: 3)
+      redirect_to games_path
+    else
+      render :new
+    end
   end
 
   def start

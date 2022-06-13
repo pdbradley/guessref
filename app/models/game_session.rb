@@ -1,6 +1,8 @@
 class GameSession < ApplicationRecord
 
-  has_many :game_rounds
+  has_many :game_rounds, dependent: :destroy
+
+  validates :name, presence: true
 
   LOBBY_STATUS = 'LOBBY'
   ACTIVE_STATUS= 'ACTIVE'

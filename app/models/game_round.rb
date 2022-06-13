@@ -1,6 +1,6 @@
 class GameRound < ApplicationRecord
   belongs_to :game_session
-  has_many :verses
+  has_many :verses, dependent: :destroy
 
   QUEUED_STATUS = 'QUEUED'
   ACTIVE_STATUS = 'ACTIVE'

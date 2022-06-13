@@ -1,10 +1,10 @@
 class Verse < ApplicationRecord
   belongs_to :game_round
   has_one :game_session, through: :game_round
-  has_many :verse_words
-  has_many :book_answers
-  has_many :chapter_answers
-  has_many :verse_answers
+  has_many :verse_words, dependent: :destroy
+  has_many :book_answers, dependent: :destroy
+  has_many :chapter_answers, dependent: :destroy
+  has_many :verse_answers, dependent: :destroy
 
   QUEUED_STATUS = 'QUEUED'
   ACTIVE_STATUS = 'ACTIVE'
