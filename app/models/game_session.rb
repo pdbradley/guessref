@@ -1,6 +1,8 @@
 class GameSession < ApplicationRecord
 
   has_many :game_rounds, dependent: :destroy
+  has_many :user_game_sessions
+  has_many :users, through: :user_game_sessions
 
   validates :name, presence: true
 

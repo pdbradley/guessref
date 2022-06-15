@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2021_08_15_171519) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_15_224507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -81,6 +81,16 @@ ActiveRecord::Schema[7.0].define(version: 2021_08_15_171519) do
     t.index ["user_uuid"], name: "index_participants_on_user_uuid"
   end
 
+  create_table "user_game_sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "game_session_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_session_id"], name: "index_user_game_sessions_on_game_session_id"
+    t.index ["user_id", "game_session_id"], name: "index_user_game_sessions_on_user_id_and_game_session_id", unique: true
+    t.index ["user_id"], name: "index_user_game_sessions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
@@ -123,6 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2021_08_15_171519) do
   add_foreign_key "book_answers", "verses"
   add_foreign_key "chapter_answers", "verses"
   add_foreign_key "game_rounds", "game_sessions"
+  add_foreign_key "user_game_sessions", "game_sessions"
+  add_foreign_key "user_game_sessions", "users"
   add_foreign_key "verse_answers", "verses"
   add_foreign_key "verse_words", "verses"
   add_foreign_key "verses", "game_rounds"
