@@ -8,13 +8,6 @@ describe "the signin process", type: :feature do
       fill_in 'name', with: 'Billy'
     end
 
-    # debugger
-
-    # page.driver.debug(binding)
-    # screenshot_and_open_image
-    screenshot_and_save_page
-
-    page.driver.render_base64
     click_button 'Go!'
 
     expect(page).to have_content 'Welcome Billyooo'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'screenshots/index'
 
   get '/sign_out', to: "sessions#destroy"
   get '/sign_in', to: "sessions#new"
