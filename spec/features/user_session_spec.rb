@@ -10,6 +10,6 @@ describe "the signin process", type: :feature do
 
     click_button 'Go!'
 
-    expect(page).to have_content 'Welcome Billyooo'
+    expect(page).to have_content 'Welcome Billy'
   end
 end
