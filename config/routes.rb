@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resource :session, only: [:create]
   resources :game_sessions
 
-  root "pages#home"
+  root "game_sessions#index"
 end

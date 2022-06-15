@@ -1,7 +1,7 @@
 class GameSessionsController < ApplicationController
 
   def index
-    @game_sessions = GameSession.all
+    @game_sessions = GameSession.active_and_lobby
   end
 
   def show

@@ -1,5 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
+require 'capybara/cuprite'
 require 'spec_helper'
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -66,4 +68,19 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  #
+  Capybara.javascript_driver = :cuprite
+  Capybara.register_driver(:cuprite) do |app|
+    Capybara::Cuprite::Driver.new(app, window_size: [390, 844], inspector: true)
+    # Capybara::Cuprite::Driver.new(app, window_size: [1200, 800], inspector: true)
+  end
+
+  Capybara.default_driver = :cuprite
+
+
+  # only keep the last 20 screenshots in /tmp/capybara
+  Capybara::Screenshot::prune_strategy = { keep: 20 }
+  # helps load assets when opening a saved failed test page with html
+  Capybara.asset_host = 'http://127.0.0.1:3000'
+
 end

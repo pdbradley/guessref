@@ -9,6 +9,11 @@ class GameSession < ApplicationRecord
   COMPLETED_STATUS = 'COMPLETED'
   STATUSES = [LOBBY_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
 
+  scope :lobby, -> { where(status: LOBBY_STATUS) }
+  scope :active, -> { where(status: ACTIVE_STATUS) }
+  scope :completed, -> { where(status: COMPLETED_STATUS) }
+  scope :active_and_lobby, -> { where(status: [LOBBY_STATUS, COMPLETED_STATUS]) }
+
   def tick!
     if lobby?
       lobby_tick!

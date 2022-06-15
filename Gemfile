@@ -74,8 +74,9 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "cuprite"
   gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem "capybara-screenshot"
+  # gem "selenium-webdriver"
+  # gem "webdrivers"
 end
 
 gem "faker", "~> 2.21"
