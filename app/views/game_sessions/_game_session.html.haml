@@ -1,1 +1,16 @@
-= game_session.name
+-# = turbo_stream_from game_session, "show"
+= turbo_stream_from "guessref"
+
+#game-session-show
+  %p
+  = game_session.name
+  %p
+    Game Rounds
+    = @game_session.game_rounds.size
+  %p
+    Players
+    = @game_session.users.size
+
+- @game_session.game_rounds.each do |game_round|
+  - game_round.verses.each do |verse|
+    = render(VerseComponent.new(verse_words: verse.verse_words))

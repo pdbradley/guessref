@@ -1,8 +1,8 @@
 class VerseWordComponent < ViewComponent::Base
-  def initialize(word_text:, visible: false)
-    @word_text = word_text
-    @visible = visible
+  def initialize(verse_word)
+    @verse_word = verse_word
+    @word_text = verse_word.word_text
+    @visible = verse_word.visible
   end
-
 
 end

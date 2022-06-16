@@ -1,4 +1,9 @@
 class VerseWord < ApplicationRecord
+
+  after_update_commit -> {
+    Broadcast::VerseWord.update(self)
+  }
+
   belongs_to :verse
 
   def self.hidden

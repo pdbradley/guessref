@@ -8,8 +8,11 @@ class GameSessionsController < ApplicationController
     @game_session = GameSession.find params[:id]
   end
 
-  def new
+  def staging
+    @game_session = GameSession.find params[:id]
+  end
 
+  def new
   end
 
   def create

@@ -14,6 +14,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    # log out of all games
+    UserGameSession.where(user_id: session[:user_id]).destroy_all
+
     session[:user_id] = nil
     redirect_to root_path
   end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :game_sessions do
     member do
       post 'start'
+      get 'staging'
     end
   end
 
