@@ -9,7 +9,9 @@ Bundler.require(*Rails.groups)
 module GuessrefHotwire
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.autoload_paths += %W(#{config.root}/lib/)
     config.load_defaults 7.0
+
 
     # don't uncomment this without making sure that the component 
     # generator is actually generating previews in the path set below

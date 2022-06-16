@@ -19,7 +19,10 @@ class UnpacksReferenceRowIntoVerseData
   end
 
   def retrieve_verse
-    retriever = LsmVerseRetriever.new
+    # opportunity to substitute a stub for the real thing here like in test.rb
+    retriever_service_class = Rails.configuration.x.lsm_retriever.service || LsmVerseRetriever
+    retriever = retriever_service_class.new
+
     # puts "RETRIEVING #{@reference}"
     retriever.retrieve(@reference)
     if retriever.valid?
