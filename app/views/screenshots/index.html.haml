@@ -3,8 +3,9 @@
 %p.mb-16 useful for working on feature specs
 
 - @screenshots.each do |screenshot_filename|
-  - screenshot_data = File.read(screenshot_filename)
+  %p= screenshot_filename
 
   -# https://stackoverflow.com/questions/4294427/rails-displaying-an-image-from-a-blob-field-in-a-database
+  - screenshot_data = File.read(screenshot_filename)
   = ('<img src="data:image/jpg;base64,%s">' % Base64.encode64(screenshot_data)).html_safe
 

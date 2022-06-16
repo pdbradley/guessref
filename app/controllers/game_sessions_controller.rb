@@ -17,7 +17,7 @@ class GameSessionsController < ApplicationController
     if game_session.valid?
       game_session.save
       BuildsGameSessionStructure.new(game_session.id).build(num_rounds: 1, num_verses: 3)
-      redirect_to games_path
+      redirect_to game_session_path(game_session)
     else
       render :new
     end

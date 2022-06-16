@@ -6,7 +6,7 @@
         = game_session.name || "Game Name"
       %p.text-gray-500
         = "16 Players"
-    .flex-shrink-0.pr-2
+    .flex-shrink-0.pr-2#show-game-session-button
       = link_to game_session_path(game_session) do
         %button.w-8.h-8.bg-white.inline-flex.items-center.justify-center.text-gray-400.rounded-full.bg-transparent.hover:text-gray-500.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-indigo-500{:type => "button"}
           %svg.h-6.w-6{:fill => "none", :stroke => "currentColor", "stroke-width" => "2", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
