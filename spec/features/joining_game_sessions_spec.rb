@@ -17,11 +17,11 @@ describe "User creates a game", type: :feature do
       expect(page).to have_content 'Phil Game'
       click_link 'Phil Game'
 
-      within('#game-session-show') do
+      within('#game-session-staging') do
         click_button 'Join'
       end
 
-      within('#game-session-lobby') do
+      within('#game-session-show') do
         expect(page).to have_content 'Phil Game'
       end
 

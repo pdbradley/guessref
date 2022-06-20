@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_action :authenticate!, only: [:new, :create]
+
   def new
   end
 
@@ -14,8 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # log out of all games
-    UserGameSession.where(user_id: session[:user_id]).destroy_all
+    current_user.user_game_sessions.destroy_all
 
     session[:user_id] = nil
     redirect_to root_path

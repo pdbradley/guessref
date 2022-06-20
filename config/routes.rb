@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'screenshots/index'
 
   get '/sign_out', to: "sessions#destroy"
-  get '/sign_in', to: "sessions#new"
+  get '/sign_in', to: "sessions#new", as: :sign_in
   get '/sessions/new', to: "sessions#new"
 
   resource :session, only: [:create]
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get 'staging'
     end
   end
+
+  resources :user_game_sessions, only: [:create, :destroy]
 
   root "game_sessions#index"
 end

@@ -43,6 +43,7 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include Support::Feature::HelperMethods, type: :feature
+  config.include Support::Request::HelperMethods, type: :request
 
 
 

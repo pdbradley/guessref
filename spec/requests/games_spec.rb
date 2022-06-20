@@ -6,10 +6,11 @@ RSpec.describe "Games", type: :request do
     it 'creates a new game session when given good params' do
       creator_uuid = SecureRandom.uuid
 
-      post game_sessions_path, params: {creator_uuid: creator_uuid}
+      as_logged_in_user do
+        post game_sessions_path, params: {creator_uuid: creator_uuid}
+      end
 
       expect(response).to have_http_status(:success)
-      # expect(json["creator_uuid"]).to eq creator_uuid
     end
   end
 
@@ -18,14 +19,13 @@ RSpec.describe "Games", type: :request do
       game_session = create(:game_session)
       uuid = game_session.reload.uuid
 
-      post start_game_session_path(game_session), params: {uuid: uuid}
+      as_logged_in_user do
+        post start_game_session_path(game_session), params: {uuid: uuid}
+      end
 
       expect(response).to have_http_status(:success)
       expect(game_session.reload.status).to eq GameSession::ACTIVE_STATUS
     end
   end
 
-  def json
-    JSON.parse(response.body)
-  end
 end
