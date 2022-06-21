@@ -1,4 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'view_component/test_helpers'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'capybara/cuprite'
@@ -44,6 +45,8 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Support::Feature::HelperMethods, type: :feature
   config.include Support::Request::HelperMethods, type: :request
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
 
 
 

@@ -3,13 +3,19 @@
 require "rails_helper"
 
 RSpec.describe VerseWordComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "renders a visible word" do
+    verse_word = create(:verse_word, word_text: 'Foo', visible: true)
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+    render_inline(VerseWordComponent.new(verse_word))
+
+    expect(page).to have_css ".visible", text: 'Foo'
+    expect(page).to have_css ".invisible", text: 'Foo'
+  end
+  it "renders an invisible word" do
+    verse_word = create(:verse_word, word_text: 'Bar', visible: false)
+
+    render_inline(VerseWordComponent.new(verse_word))
+
+    expect(page).to have_css ".invisible", text: 'Bar'
+  end
 end
