@@ -2,10 +2,12 @@
 
 class VerseWordComponentPreview < ViewComponent::Preview
   def invisible
-    render(VerseWordComponent.new(word_text: 'Behold'))
+    verse_word = FactoryBot.create(:verse_word, word_text: 'Behold', visible: false)
+    render(VerseWordComponent.new(verse_word))
   end
 
   def visible
-    render(VerseWordComponent.new(word_text: 'Behold', visible: true))
+    verse_word = FactoryBot.create(:verse_word, word_text: 'Behold', visible: true)
+    render(VerseWordComponent.new(verse_word))
   end
 end
