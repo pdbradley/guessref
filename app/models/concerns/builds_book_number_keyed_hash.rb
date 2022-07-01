@@ -18,7 +18,11 @@ class BuildsBookNumberKeyedHash
 
     hash_keyed_on_book_number = Hash[stuff.map do |item| 
       [item['book_number'], 
-       Hash[item['chapters'].map{|chapters| [chapters['chapter'], chapters['verses']]}]
+       {
+         'chapters' => Hash[item['chapters'].map{|chapters| [chapters['chapter'], chapters['verses']]}],
+         'abbreviation' => item['abbr'],
+         'book_name' => item['book']
+       }
       ]
     end]
   end
