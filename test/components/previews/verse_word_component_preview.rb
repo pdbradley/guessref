@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class VerseWordComponentPreview < ViewComponent::Preview
+  layout 'component_preview'
   def invisible
     verse_word = FactoryBot.create(:verse_word, word_text: 'Behold', visible: false)
     render(VerseWordComponent.new(verse_word))

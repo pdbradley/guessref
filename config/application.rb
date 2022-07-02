@@ -12,7 +12,7 @@ module GuessrefHotwire
     config.autoload_paths += %W(#{config.root}/lib/)
     config.load_defaults 7.0
 
-    config.view_component.default_preview_layout = "component_preview"
+    # config.view_component.default_preview_layout = "component_preview"
 
     # don't uncomment this without making sure that the component 
     # generator is actually generating previews in the path set below

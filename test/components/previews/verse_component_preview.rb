@@ -1,4 +1,7 @@
 class VerseComponentPreview < ViewComponent::Preview
+
+  layout 'component_preview'
+
   def visible
     render(VerseComponent.new(verse_words: visible_verses))
   end
