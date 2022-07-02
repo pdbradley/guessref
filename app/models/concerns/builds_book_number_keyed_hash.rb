@@ -17,9 +17,9 @@ class BuildsBookNumberKeyedHash
     stuff = JSON.parse(file.read)
 
     hash_keyed_on_book_number = Hash[stuff.map do |item| 
-      [item['book_number'], 
+      [item['book_number'].to_i, 
        {
-         'chapters' => Hash[item['chapters'].map{|chapters| [chapters['chapter'], chapters['verses']]}],
+         'chapters' => Hash[item['chapters'].map{|chapters| [chapters['chapter'].to_i, chapters['verses'].to_i]}],
          'abbreviation' => item['abbr'],
          'book_name' => item['book']
        }
