@@ -1,0 +1,23 @@
+.grid.grid-rows-8.h-full
+  .lobby-game-session-name{class: "bg-[#f1faee]"}
+    Session Name:
+    = @game_session.name
+  .lobby-player-list.row-span-4
+    Here are a bunch of players
+    - @game_session.users.each do |user|
+      = user.name
+
+  .chat-display
+    nope
+  .chat-display
+    nope
+  .chat-display
+    nope
+
+
+
+-# e63946 red
+-# f1faee light
+-# a8dadc to
+-# 457b9d dark 
+-# 1d3557

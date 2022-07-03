@@ -64,6 +64,7 @@ class GameSession < ApplicationRecord
         verse.random_from_fixture
       end
     end
+    self
   end
 
   private
