@@ -1,20 +1,19 @@
-.grid.grid-rows-8.h-full
-  .lobby-game-session-name{class: "bg-[#f1faee]"}
+.h-screen.bg-slate-200
+  .lobby-game-session-name{class: "h-[10%] bg-[#f1faee]"}
     Session Name:
     = @game_session.name
-  .lobby-player-list.row-span-4
-    Here are a bunch of players
-    - @game_session.users.each do |user|
-      = user.name
+  .lobby-player-list.overflow-auto{class: "h-[40%] bg-[#a8dadc]"}
+    - if @game_session.users.any?
+      Here are a bunch of players
+      .flex.flex-wrap.gap-x-2.gap-y-2.items-center.h-full
+        - @game_session.users.each do |user|
+          .px-2.truncate.align-middle.rounded-md.drop-shadow-xl{class: "max-w-[40%] bg-[#457b9d] text-[#f1faee]"}
+            = user.name
 
-  .chat-display
+  .lobby-chat{class: "h-[40%] bg-[#a8dadc]"}
+    Chat here
+  .lets-go{class: "h-[10%] bg-[#1d3557]"}
     nope
-  .chat-display
-    nope
-  .chat-display
-    nope
-
-
 
 -# e63946 red
 -# f1faee light
