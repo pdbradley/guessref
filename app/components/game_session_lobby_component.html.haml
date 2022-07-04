@@ -5,10 +5,9 @@
   .lobby-player-list.overflow-auto{class: "h-[40%] bg-[#a8dadc]"}
     - if @game_session.users.any?
       Here are a bunch of players
-      .flex.flex-wrap.gap-x-2.gap-y-2.items-center.h-full
+      #game-session-lobby-users-list.flex.flex-wrap.gap-x-2.gap-y-2.items-center.h-full
         - @game_session.users.each do |user|
-          .px-2.truncate.align-middle.rounded-md.drop-shadow-xl{class: "max-w-[40%] bg-[#457b9d] text-[#f1faee]"}
-            = user.name
+          = render PlayerBadgeComponent.new(user: user)
 
   .lobby-chat{class: "h-[40%] bg-[#a8dadc]"}
     Chat here

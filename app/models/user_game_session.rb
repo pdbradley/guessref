@@ -1,4 +1,7 @@
 class UserGameSession < ApplicationRecord
+
+  broadcasts
+
   belongs_to :user
   belongs_to :game_session
 

@@ -13,6 +13,7 @@
       = javascript_include_tag "hotwire-livereload", defer: true
     = javascript_importmap_tags
   %body
+    = turbo_stream_from :guessref
 
     .nargh
       %nav.bg-gray-800{"x-data"=>"{ profileIsOpen: false, mobileMenuIsOpen: false }"}
