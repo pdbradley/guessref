@@ -1,3 +1,5 @@
+= turbo_stream_from "guessref"
+
 -# - @game_sessions.each do |game_session|
 -#   %p
 -#     =game_session.id
@@ -7,9 +9,10 @@
   =link_to "New Game", new_game_session_path
 %div
   %h2.text-gray-500.font-medium.uppercase.tracking-wide.text-center Active Games
-  %ul.mt-3.grid.grid-cols-1.gap-3.sm:gap-6.sm:grid-cols-2.lg:grid-cols-4{:role => "list"}
+  %ul#game_sessions.mt-3.grid.grid-cols-1.gap-3.sm:gap-6.sm:grid-cols-2.lg:grid-cols-4{:role => "list"}
     - @game_sessions.each do |game_session|
-      = render partial: 'game_session_li', locals: {game_session: game_session}
+      -# = render partial: 'game_session_li', locals: {game_session: game_session}
+      = render GameSessionBadgeComponent.new(game_session: game_session)
 
     %li.col-span-1.flex.shadow-sm.rounded-md
       .flex-shrink-0.flex.items-center.justify-center.w-16.bg-pink-600.text-white.text-sm.font-medium.rounded-l-md Lobby

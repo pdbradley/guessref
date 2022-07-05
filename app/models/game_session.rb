@@ -1,7 +1,13 @@
 class GameSession < ApplicationRecord
 
+  # broadcasts partial: :game_session_badge
+
+  after_create_commit -> {
+    Broadcast::GameSession.add_to_index(self)
+  }
+
   has_many :game_rounds, dependent: :destroy
-  has_many :user_game_sessions
+  has_many :user_game_sessions, dependent: :destroy
   has_many :users, through: :user_game_sessions
 
   validates :name, presence: true
