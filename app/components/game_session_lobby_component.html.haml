@@ -1,8 +1,8 @@
 .h-screen.bg-slate-200
-  .lobby-game-session-name{class: "h-[10%] bg-[#f1faee]"}
+  .lobby-game-session-name{class: "h-[15%] bg-[#f1faee]"}
     Session Name:
     = @game_session.name
-  .lobby-player-list.overflow-auto{class: "h-[40%] bg-[#a8dadc]"}
+  .lobby-player-list.overflow-auto{class: "h-[35%] bg-[#a8dadc]"}
     - if @game_session.users.any?
       Here are a bunch of players
       #game-session-lobby-users-list.flex.flex-wrap.gap-x-2.gap-y-2.items-center.h-full

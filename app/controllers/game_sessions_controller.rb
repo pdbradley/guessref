@@ -8,6 +8,7 @@ class GameSessionsController < ApplicationController
 
   def show
     @game_session = GameSession.find params[:id]
+    render layout: 'no_nav'
   end
 
   def staging
