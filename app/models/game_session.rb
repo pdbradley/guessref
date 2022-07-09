@@ -74,8 +74,6 @@ class GameSession < ApplicationRecord
     self
   end
 
-  private
-
   def lobby?
     self.status == LOBBY_STATUS
   end
@@ -87,6 +85,8 @@ class GameSession < ApplicationRecord
   def completed?
     self.status == COMPLETED_STATUS
   end
+
+  private
 
   def active!
     update_attribute(:status, ACTIVE_STATUS)

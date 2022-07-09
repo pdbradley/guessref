@@ -1,0 +1,27 @@
+.h-screen.bg-slate-200
+  .active-game-session-name{class: "h-[15%] bg-[#f1faee]"}
+    %p
+      Active Session
+      = @game_session.name
+      Current Round 
+      = @game_session.current_round
+    %p
+      = button_to user_game_session_path(@game_session), method: :delete do
+        Leave
+  .active-player-list.overflow-auto{class: "h-[35%] bg-[#a8dadc]"}
+    - if @game_session.users.any?
+      Here are a bunch of players
+      #game-session-lobby-users-list.flex.flex-wrap.gap-x-2.gap-y-2.items-center.h-full
+        - @game_session.users.each do |user|
+          = render PlayerBadgeComponent.new(user: user)
+
+  .active-chat{class: "h-[40%] bg-[#a8dadc]"}
+    Chat here
+  .active-go{class: "h-[10%] bg-[#1d3557]"}
+    nope
+
+-# e63946 red
+-# f1faee light
+-# a8dadc to
+-# 457b9d dark 
+-# 1d3557

@@ -1,16 +1,4 @@
-.grid.grid-rows-3.h-full
-  .verse-display{class: "bg-[#f1faee]"}
-    = @game_session.name
-    hello bro
-  .guess-display
-    guesses
-  .chat-display
-    nope
-
-
-
--# e63946 red
--# f1faee light
--# a8dadc to
--# 457b9d dark 
--# 1d3557
+- if @game_session.lobby?
+  = render(GameSessionLobbyComponent.new(game_session: @game_session))
+- elsif @game_session.active?
+  = render(GameSessionActiveComponent.new(game_session: @game_session))
