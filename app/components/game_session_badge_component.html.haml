@@ -5,7 +5,8 @@
       %a.text-gray-900.font-medium.hover:text-gray-600{:href => staging_game_session_path(@game_session)}
         = @game_session.name || "Game Name"
       %p.text-gray-500
-        = "16 Players"
+        = @game_session.users.count
+        players
     .flex-shrink-0.pr-2#show-game-session-button
       = link_to staging_game_session_path(@game_session) do
         %button.w-8.h-8.bg-white.inline-flex.items-center.justify-center.text-gray-400.rounded-full.bg-transparent.hover:text-gray-500.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-indigo-500{:type => "button"}

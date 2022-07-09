@@ -1,7 +1,11 @@
 .h-screen.bg-slate-200
   .lobby-game-session-name{class: "h-[15%] bg-[#f1faee]"}
-    Session Name:
-    = @game_session.name
+    %p
+      Session Name:
+      = @game_session.name
+    %p
+      = button_to user_game_session_path(@game_session), method: :delete do
+        Leave
   .lobby-player-list.overflow-auto{class: "h-[35%] bg-[#a8dadc]"}
     - if @game_session.users.any?
       Here are a bunch of players
