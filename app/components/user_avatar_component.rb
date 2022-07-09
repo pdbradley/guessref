@@ -1,8 +1,8 @@
 class UserAvatarComponent < ViewComponent::Base
 
   def initialize(name:, color: nil)
-    @words = name.split
-    @color = color || random_color
+    @words = name.to_s.split
+    @color = color || ColorPicker.random
     @text = avatar_text
   end
 
@@ -10,6 +10,10 @@ class UserAvatarComponent < ViewComponent::Base
 
   def one_word_name?
     @words.size == 1
+  end
+  
+  def multi_word_name?
+    @words.size > 1
   end
 
   def first_two_letters
@@ -23,14 +27,11 @@ class UserAvatarComponent < ViewComponent::Base
   def avatar_text
     if one_word_name?
       first_two_letters
-    else
+    elsif multi_word_name?
       first_two_initials
+    else
+      '?'
     end
-  end
-
-  def random_color
-    #https://www.randomlists.com/random-color
-    %w(#FFA07A #CD853F #00FFFF #B0E0E6 #DA70D6 #2F4F4F).sample
   end
 
 end
