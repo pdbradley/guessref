@@ -17,6 +17,7 @@ class GameSession < ApplicationRecord
   COMPLETED_STATUS = 'COMPLETED'
   STATUSES = [LOBBY_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
 
+  scope :recent, -> { where("created_at > ?", 120.minutes.ago) }
   scope :lobby, -> { where(status: LOBBY_STATUS) }
   scope :active, -> { where(status: ACTIVE_STATUS) }
   scope :completed, -> { where(status: COMPLETED_STATUS) }
