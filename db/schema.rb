@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_15_224507) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_09_134813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -94,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_15_224507) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
+    t.string "color", default: "black"
     t.index ["uuid"], name: "index_users_on_uuid"
   end
 
