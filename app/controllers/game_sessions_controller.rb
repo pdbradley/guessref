@@ -30,13 +30,10 @@ class GameSessionsController < ApplicationController
   end
 
   def start
-    game_session = GameSession.find_by(uuid: params[:uuid])
-
+    game_session = GameSession.find params[:id]
     if game_session
-      game_session.tick!
-      render json: :success
-    else
-      render error: { error: 'Unable to start game session' }
+      game_session.tick! 
+      redirect_to game_session_path(game_session)
     end
   end
 end

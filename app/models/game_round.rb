@@ -71,6 +71,10 @@ class GameRound < ApplicationRecord
     verses.active + verses.queued
   end
 
+  def num_verses_remaining
+    verses.queued.size
+  end
+
   def current_verse
     next_verses.first
   end

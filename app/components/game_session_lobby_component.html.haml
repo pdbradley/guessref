@@ -16,7 +16,8 @@
   .lobby-chat{class: "h-[40%] bg-[#a8dadc]"}
     Chat here
   .lets-go{class: "h-[10%] bg-[#1d3557]"}
-    nope
+    = button_to start_game_session_path(@game_session) do
+      Lets Go
 
 -# e63946 red
 -# f1faee light
