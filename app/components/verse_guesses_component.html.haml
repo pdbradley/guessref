@@ -1,0 +1,12 @@
+.h-max.grid.grid-cols-2.align-center
+  - @verse.book_answers.each do |book_answer|
+    .p-2.mx-6.my-8.bg-red-200.rounded.text-center{class: "
+      =book_answer.label
+    -# = render(VerseComponent.new(verse_words: @verse.verse_words))
+    -# .p-2
+    -#   = render(VerseGuessesComponent.new(verse: @verse))
+
+:javascript
+  function sendGuess(e) {
+    console.log('hey now');
+  }

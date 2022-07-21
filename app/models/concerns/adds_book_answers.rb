@@ -13,12 +13,12 @@ class AddsBookAnswers
 
   def three_guesses_attributes
     three_guesses.map do |guess| 
-      { label: guess, correct: false, point_value: 0 }
+      { label: BookNameFromBookNumber.new(guess).name, correct: false, point_value: 0 }
     end
   end
 
   def correct_answer_attributes
-    {label: @verse.book_number, correct: true, point_value: 1}
+    {label: BookNameFromBookNumber.new(@verse.book_number).name, correct: true, point_value: 1}
   end
 
   def all_guesses_random_order
