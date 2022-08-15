@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'securerandom'
 
-RSpec.describe "Games", type: :request do
+RSpec.describe "Game Sessions", type: :request do
   describe "POST /games" do
     it 'creates a new game session when given good params' do
       creator_uuid = SecureRandom.uuid
@@ -11,6 +11,7 @@ RSpec.describe "Games", type: :request do
       end
 
       expect(response).to have_http_status(:success)
+      expect(game_session
     end
   end
 
