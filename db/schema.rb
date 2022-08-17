@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_09_134813) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_111944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -52,6 +52,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_134813) do
     t.string "status", default: "QUEUED"
     t.uuid "uuid", default: -> { "uuid_generate_v1()" }, null: false
     t.index ["game_session_id"], name: "index_game_rounds_on_game_session_id"
+  end
+
+  create_table "game_session_chat_messages", force: :cascade do |t|
+    t.bigint "game_session_id", null: false
+    t.bigint "user_id", null: false
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_session_id"], name: "index_game_session_chat_messages_on_game_session_id"
+    t.index ["user_id"], name: "index_game_session_chat_messages_on_user_id"
   end
 
   create_table "game_session_scores", force: :cascade do |t|
@@ -134,6 +144,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_134813) do
   add_foreign_key "book_answers", "verses"
   add_foreign_key "chapter_answers", "verses"
   add_foreign_key "game_rounds", "game_sessions"
+  add_foreign_key "game_session_chat_messages", "game_sessions"
+  add_foreign_key "game_session_chat_messages", "users"
   add_foreign_key "user_game_sessions", "game_sessions"
   add_foreign_key "user_game_sessions", "users"
   add_foreign_key "verse_answers", "verses"
