@@ -1,7 +1,8 @@
 class UserGameSessionsController < ApplicationController
 
   def create
-    current_user.user_game_sessions.create(game_session_id: params[:game_session_id])
+    game_session = GameSession.find params[:game_session_id]
+    current_user.game_sessions << game_session
     redirect_to game_session_path(id: params[:game_session_id])
   end
 

@@ -13,7 +13,7 @@
     - if @game_session.users.any?
       .text-bold.text-xl.pb-4
         Who's playing?
-      #game-session-lobby-users-list.flex.flex-wrap.items-top.gap-x-2.gap-y-2.items-top
+      #user-sessions.flex.flex-wrap.items-top.gap-x-2.gap-y-2.items-top
         - @game_session.users.each do |user|
           = render PlayerBadgeComponent.new(user: user)
 
