@@ -9,7 +9,7 @@
     .m-auto.w-24.text-center
       = button_to user_game_session_path(@game_session), method: :delete do
         Start
-  .lobby-player-list.overflow-auto{class: "h-[35%] bg-[#a8dadc]"}
+  .lobby-player-list.overflow-auto{class: "h-[25%] bg-[#a8dadc]"}
     - if @game_session.users.any?
       .text-bold.text-xl.pb-4
         Who's playing?
@@ -17,8 +17,8 @@
         - @game_session.users.each do |user|
           = render PlayerBadgeComponent.new(user: user)
 
-  .lobby-chat{class: "h-[40%] bg-[#a8dadc]"}
-    Chat here
+  .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[50%] bg-[#a8dadc]"}
+    = render(GameSessionChatComponent.new(game_session: @game_session))
   .lets-go{class: "h-[10%] bg-[#1d3557]"}
     = button_to start_game_session_path(@game_session) do
       Lets Go
