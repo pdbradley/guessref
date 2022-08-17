@@ -1,1 +1,6 @@
-%div Add GameSessionChat template here
+.h-max
+  - @chat_messages.each do |chat_message|
+    .p-1.mx-2.my-2.bg-red-200.rounded.rounded-xl.text-left
+      %span.font-bold
+        = "#{chat_message.user.name}:"
+      =chat_message.body
