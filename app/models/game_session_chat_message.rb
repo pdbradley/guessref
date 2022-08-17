@@ -1,7 +1,7 @@
 class GameSessionChatMessage < ApplicationRecord
 
   after_create_commit -> {
-    broadcast_append_later_to(game_session, target: 'game-session-chat-messages', html: 'hi')
+    Broadcast::GameSessionChatMessage.new(self).add_to_game_session
   }
 
   belongs_to :game_session

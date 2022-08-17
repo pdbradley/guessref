@@ -37,5 +37,3 @@ module Broadcast
     end
   end
 end
-
-

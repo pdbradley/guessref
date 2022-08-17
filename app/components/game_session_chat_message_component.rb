@@ -2,7 +2,8 @@
 
 class GameSessionChatMessageComponent < ViewComponent::Base
 
-  def initialize(chat_message:)
-    @chat_message = chat_message
+  def initialize(game_session_chat_message)
+    @game_session_chat_message = game_session_chat_message
   end
 end
+
