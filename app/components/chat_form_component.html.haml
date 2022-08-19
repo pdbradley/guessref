@@ -1,4 +1,4 @@
 = form_tag('/chats') do
   = hidden_field_tag 'game_session_id', @game_session.id
-  = text_field_tag 'message'
+  = text_field_tag 'message', nil, autofocus: 'autofocus'
   = submit_tag 'GO'
