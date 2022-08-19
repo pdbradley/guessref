@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :chats, only: [:new, :create]
+
   resources :user_game_sessions, only: [:create, :destroy]
 
   root "game_sessions#index"

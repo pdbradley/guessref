@@ -1,3 +1,6 @@
-#chat-messages.h-max
-  - @chat_messages.each do |chat_message|
-    = render ChatMessageComponent.new(chat_message)
+#chat-component.h-max
+  #chat-messages
+    - @chat_messages.each do |chat_message|
+      = render ChatMessageComponent.new(chat_message)
+  %turbo-frame#chat-turbo-frame
+    = render ChatFormComponent.new(game_session: @game_session)
