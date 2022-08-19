@@ -18,3 +18,7 @@
 [x-cloak] {
     display: none !important;
 }
+
+input {
+ outline:none;
+}
