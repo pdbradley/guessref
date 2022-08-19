@@ -18,7 +18,7 @@
           = render PlayerBadgeComponent.new(user: user)
 
   .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[50%] bg-[#a8dadc]"}
-    = render(GameSessionChatComponent.new(game_session: @game_session))
+    = render(ChatComponent.new(game_session: @game_session))
   .lets-go{class: "h-[10%] bg-[#1d3557]"}
     = button_to start_game_session_path(@game_session) do
       Lets Go

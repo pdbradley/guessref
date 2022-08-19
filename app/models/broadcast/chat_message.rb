@@ -1,17 +1,17 @@
 include ActionView::RecordIdentifier
 module Broadcast
-  class GameSessionChatMessage
+  class ChatMessage
 
-    def initialize(game_session_chat_message)
-      @game_session_chat_message = game_session_chat_message
-      @user = game_session_chat_message.user
-      @game_session = game_session_chat_message.game_session
+    def initialize(chat_message)
+      @chat_message = chat_message
+      @user = chat_message.user
+      @game_session = chat_message.game_session
     end
 
     def add_to_game_session
       Turbo::StreamsChannel.broadcast_append_later_to(
         @game_session,
-        target: "game-session-chat-messages",
+        target: "chat-messages",
         html: chat_message_component
       )
     end
@@ -19,7 +19,7 @@ module Broadcast
     def remove_from_game_session
       Turbo::StreamsChannel.broadcast_remove_to(
         @game_session,
-        target: @game_session_chat_message
+        target: @chat_message
       )
     end
 
@@ -27,7 +27,7 @@ module Broadcast
 
     def chat_message_component
       ApplicationController.render(
-        GameSessionChatMessageComponent.new(@game_session_chat_message),
+        ChatMessageComponent.new(@chat_message),
         layout: false
       )
     end

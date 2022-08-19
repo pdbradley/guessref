@@ -1,0 +1,4 @@
+.p-1.mx-2.my-1.bg-red-200.rounded.text-left{id: dom_id(@chat_message)}
+  %span.font-bold
+    = "#{@chat_message.user.name}:"
+  =@chat_message.message

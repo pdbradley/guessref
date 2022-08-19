@@ -9,7 +9,7 @@ class GameSession < ApplicationRecord
   has_many :game_rounds, dependent: :destroy
   has_many :user_game_sessions, dependent: :destroy
   has_many :users, through: :user_game_sessions
-  has_many :game_session_chat_messages, dependent: :destroy
+  has_many :chat_messages, dependent: :destroy
 
   validates :name, presence: true
 
