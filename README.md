@@ -1,7 +1,24 @@
 # Guessref
 
-This project is an experiment so I can learn React, play with graphql subscriptions and the Hasura graphql engine,
-practice using Storybook to prototype front end components, and play with the Bulma CSS framework.
+Guessref has been dockerized, so getting it up and running in development is not supposed to be hard.
+
+Assuming you have docker installed, you should be able to go into the root of the project
+where the docker-compose.yml file is, and simply type
+
+```docker-compose up```
+
+This should build or pull, then run, the images you need (basically to run rails, postgres, and redis)
+
+Note that locally, if you have ports 3000, 
+
+I hope my docker terminology is correct.  
+
+
+
+
+
+
+
 
 A lot to chew on! Also if this game works, it will be a nice way to learn the references of many Bible verses.
 
