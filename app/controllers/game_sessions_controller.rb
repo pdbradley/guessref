@@ -11,10 +11,6 @@ class GameSessionsController < ApplicationController
     render layout: 'no_nav'
   end
 
-  def staging
-    @game_session = GameSession.find params[:id]
-  end
-
   def new
   end
 
