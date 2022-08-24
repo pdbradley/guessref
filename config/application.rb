@@ -13,6 +13,9 @@ module GuessrefHotwire
     config.load_defaults 7.0
 
     config.hosts << /[a-z0-9-]+\.ngrok\.io/
+    config.hosts << /[a-z0-9-]+\.hatchboxapp\.com/
+    config.hosts << /guessref\.com/
+    config.hosts << /www\.guessref\.com/
 
     # config.view_component.default_preview_layout = "component_preview"
 
