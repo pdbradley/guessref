@@ -1,7 +1,6 @@
 class VerseAnswersController < ApplicationController
 
   def show
-    @verse = 
 
   end
 
