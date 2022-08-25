@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
-      redirect_to root_url
+      redirect_after_login
     else
       render :new
     end
@@ -21,5 +21,15 @@ class SessionsController < ApplicationController
 
     session[:user_id] = nil
     redirect_to root_path
+  end
+
+  def redirect_after_login
+    original_target = session[:original_target]
+    if original_target
+      session[:original_target] = nil
+      redirect_to original_target
+    else
+      redirect_to root_url
+    end
   end
 end
