@@ -39,6 +39,13 @@ So to run rake db:migrate would be:
 
 
 
+## Debugging
+
+Because the rails server runs in a container, tools like debugger or pry require a little bit more work.
+
+To attach to the docker container when you have added a breakpoint run
+
+```docker attach <container id>```
 
 
 
