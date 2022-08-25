@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/sign_in', to: "sessions#new", as: :sign_in
   get '/sessions/new', to: "sessions#new"
 
+  get '/about', to: 'pages#about', as: :about
+
   resource :session, only: [:create]
   resources :game_sessions do
     member do

@@ -28,7 +28,7 @@
                   / Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
                   %a.bg-gray-900.text-white.px-3.py-2.rounded-md.text-sm.font-medium{"aria-current" => "page", :href => game_sessions_path} Play
                   %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} FAQ
-                  %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} About
+                  %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "/about"} About
                   %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} Feedback
               - if current_user
                 .text-gray-400.ml-5
@@ -118,7 +118,7 @@
             / Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
             %a.bg-gray-900.text-white.block.px-3.py-2.rounded-md.text-base.font-medium{"aria-current" => "page", :href => "/game_sessions"} Play
             %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} FAQ
-            %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} About
+            %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "/about"} About
             %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} Feedback
           .pt-4.pb-3.border-t.border-gray-700
             -# .flex.items-center.px-5
