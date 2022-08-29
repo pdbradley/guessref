@@ -62,4 +62,8 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
   config.x.lsm_retriever.service = LocalLsmVerseRetrieverService
 
+  # so rspec works
+  config.hosts.clear
+
+
 end

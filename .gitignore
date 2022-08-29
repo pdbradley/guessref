@@ -26,3 +26,5 @@ yarn-error.log*
 /config/master.key
 
 dump.rdb
+.nvimrc
+.byebug_history

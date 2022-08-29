@@ -8,6 +8,7 @@ class GameSessionsController < ApplicationController
 
   def show
     @game_session = GameSession.find params[:id]
+    current_user.game_sessions << @game_session unless current_user.game_sessions.include? @game_session
     render layout: 'no_nav'
   end
 
