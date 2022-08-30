@@ -80,7 +80,7 @@ RSpec.configure do |config|
   #
   Capybara.javascript_driver = :cuprite
   Capybara.register_driver(:cuprite) do |app|
-    Capybara::Cuprite::Driver.new(app, window_size: [390, 844], inspector: true)
+    Capybara::Cuprite::Driver.new(app, window_size: [390, 844], inspector: true, browser_options: { 'no-sandbox': nil })
     # Capybara::Cuprite::Driver.new(app, window_size: [1200, 800], inspector: true)
   end
 
