@@ -77,7 +77,7 @@ class Verse < ApplicationRecord
   end
 
   def revealed_tick!
-    GameRoundTickJob.set(wait: 5.seconds).perform_later(game_round.uuid)
+    GameRoundTickJob.set(wait: 5.seconds).perform_later(game_round.id)
     set_complete!
   end
 

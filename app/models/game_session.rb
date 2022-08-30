@@ -38,12 +38,12 @@ class GameSession < ApplicationRecord
 
   def lobby_tick!
     active!
-    GameSessionTickJob.set(wait: 3.seconds).perform_later(self.uuid)
+    GameSessionTickJob.set(wait: 3.seconds).perform_later(self.id)
   end
 
   def active_tick!
     if current_round
-      GameRoundTickJob.set(wait: 3.seconds).perform_later(current_round.uuid)
+      GameRoundTickJob.set(wait: 3.seconds).perform_later(current_round.id)
     else
       completed!
     end

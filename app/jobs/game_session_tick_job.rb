@@ -1,8 +1,8 @@
 class GameSessionTickJob < ApplicationJob
   queue_as :default
 
-  def perform(uuid)
-    if game_session = GameSession.find_by(uuid: uuid)
+  def perform(id)
+    if game_session = GameSession.find_by(id: id)
       game_session.tick!
     end
   end
