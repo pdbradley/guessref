@@ -11,7 +11,7 @@ RSpec.describe "Game Sessions", type: :request do
       end
 
       expect(response).to have_http_status(:success)
-      expect(game_session
+      # expect(game_session
     end
   end
 

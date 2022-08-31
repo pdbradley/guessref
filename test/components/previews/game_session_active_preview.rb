@@ -2,7 +2,7 @@ class GameSessionActivePreview < ViewComponent::Preview
 
   layout 'component_preview'
 
-  def visible
+  def active
     render(GameSessionActiveComponent.new(game_session: active_game_session))
   end
 

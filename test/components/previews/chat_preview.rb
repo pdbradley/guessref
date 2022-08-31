@@ -2,7 +2,7 @@ class ChatPreview < ViewComponent::Preview
 
   layout 'component_preview'
 
-  def visible
+  def lots_of_messages
     render(ChatComponent.new(game_session: game_session))
   end
 

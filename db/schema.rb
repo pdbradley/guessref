@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_19_100510) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_31_115329) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -76,6 +76,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_100510) do
     t.index ["user_uuid"], name: "index_participants_on_user_uuid"
   end
 
+  create_table "user_answers", force: :cascade do |t|
+    t.bigint "game_session_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "verse_id", null: false
+    t.bigint "book_answer_id", null: false
+    t.bigint "chapter_answer_id", null: false
+    t.bigint "verse_answer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_answer_id"], name: "index_user_answers_on_book_answer_id"
+    t.index ["chapter_answer_id"], name: "index_user_answers_on_chapter_answer_id"
+    t.index ["game_session_id"], name: "index_user_answers_on_game_session_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
+    t.index ["verse_answer_id"], name: "index_user_answers_on_verse_answer_id"
+    t.index ["verse_id"], name: "index_user_answers_on_verse_id"
+  end
+
   create_table "user_game_sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "game_session_id", null: false
@@ -131,6 +148,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_19_100510) do
   add_foreign_key "chat_messages", "game_sessions"
   add_foreign_key "chat_messages", "users"
   add_foreign_key "game_rounds", "game_sessions"
+  add_foreign_key "user_answers", "book_answers"
+  add_foreign_key "user_answers", "chapter_answers"
+  add_foreign_key "user_answers", "game_sessions"
+  add_foreign_key "user_answers", "users"
+  add_foreign_key "user_answers", "verse_answers"
+  add_foreign_key "user_answers", "verses"
   add_foreign_key "user_game_sessions", "game_sessions"
   add_foreign_key "user_game_sessions", "users"
   add_foreign_key "verse_answers", "verses"

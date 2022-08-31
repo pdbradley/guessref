@@ -2,7 +2,7 @@ class ChatFormPreview < ViewComponent::Preview
 
   layout 'component_preview'
 
-  def visible
+  def blank
     render(ChatFormComponent.new(game_session: game_session))
   end
 

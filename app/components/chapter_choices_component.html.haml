@@ -1,0 +1,6 @@
+.h-max.grid.grid-cols-2.align-center
+  - @verse.chapter_answers.each do |chapter_answer|
+    = button_to handle_chapter_guess_path(verse_id: @verse.id, chapter_answer_id: chapter_answer.id) do
+      .p-2.mx-6.my-8.bg-red-200.rounded.text-center
+        Chapter
+        =chapter_answer.label
