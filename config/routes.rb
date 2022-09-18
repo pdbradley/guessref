@@ -17,9 +17,9 @@ Rails.application.routes.draw do
 
   get '/verse_answers/:id', to: "verse_answers#show", as: :verse_answer
   
-  post '/handle_book_guess', to: "verse_answers#handle_book_guess", as: :handle_book_guess
-  post '/handle_verse_guess', to: "verse_answers#handle_verse_guess", as: :handle_verse_guess
-  post '/handle_chapter_guess', to: "verse_answers#handle_chapter_guess", as: :handle_chapter_guess
+  post '/handle_book_name_guess', to: "verse_answers#handle_book_guess", as: :handle_book_guess
+  post '/handle_verse_number_guess', to: "verse_answers#handle_verse_guess", as: :handle_verse_guess
+  post '/handle_chapter_number_guess', to: "verse_answers#handle_chapter_guess", as: :handle_chapter_guess
 
   resources :chats, only: [:new, :create, :show]
 

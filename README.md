@@ -54,8 +54,7 @@ To attach to the docker container when you have added a breakpoint run
 
 
 
-
-A lot to chew on! Also if this game works, it will be a nice way to learn the references of many Bible verses.
+Things you may want to cover:
 
 [Journal of progress](JOURNAL.md)
 

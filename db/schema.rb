@@ -78,15 +78,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_115329) do
 
   create_table "user_answers", force: :cascade do |t|
     t.bigint "game_session_id", null: false
+    t.bigint "game_round_id", null: false
     t.bigint "user_id", null: false
     t.bigint "verse_id", null: false
-    t.bigint "book_answer_id", null: false
-    t.bigint "chapter_answer_id", null: false
-    t.bigint "verse_answer_id", null: false
+    t.bigint "book_answer_id"
+    t.bigint "chapter_answer_id"
+    t.bigint "verse_answer_id"
+    t.integer "answer_point_value", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_answer_id"], name: "index_user_answers_on_book_answer_id"
     t.index ["chapter_answer_id"], name: "index_user_answers_on_chapter_answer_id"
+    t.index ["game_round_id"], name: "index_user_answers_on_game_round_id"
     t.index ["game_session_id"], name: "index_user_answers_on_game_session_id"
     t.index ["user_id"], name: "index_user_answers_on_user_id"
     t.index ["verse_answer_id"], name: "index_user_answers_on_verse_answer_id"
@@ -150,6 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_115329) do
   add_foreign_key "game_rounds", "game_sessions"
   add_foreign_key "user_answers", "book_answers"
   add_foreign_key "user_answers", "chapter_answers"
+  add_foreign_key "user_answers", "game_rounds"
   add_foreign_key "user_answers", "game_sessions"
   add_foreign_key "user_answers", "users"
   add_foreign_key "user_answers", "verse_answers"

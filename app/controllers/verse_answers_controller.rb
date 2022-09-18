@@ -4,15 +4,15 @@ class VerseAnswersController < ApplicationController
 
   end
 
-  def handle_book_guess
+  def handle_book_name_guess
 
   end
 
-  def handle_chapter_guess
+  def handle_chapter_number_guess
 
   end
 
-  def handle_verse_guess
+  def handle_verse_number_guess
 
   end
 
