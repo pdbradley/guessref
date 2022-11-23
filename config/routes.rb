@@ -25,5 +25,9 @@ Rails.application.routes.draw do
 
   resources :user_game_sessions, only: [:create, :destroy]
 
+  if Rails.env.development?
+    mount Lookbook::Engine, at: "/lookbook"
+  end
+
   root "game_sessions#index"
 end

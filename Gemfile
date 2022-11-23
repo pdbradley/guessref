@@ -44,6 +44,7 @@ gem "bootsnap", require: false
 gem 'factory_bot_rails'
 gem 'haml-rails'
 gem 'view_component'
+gem 'lookbook'
 
 
 # Use Sass to process CSS
