@@ -1,0 +1,2 @@
+class VerseGuessesController < ApplicationController
+end
