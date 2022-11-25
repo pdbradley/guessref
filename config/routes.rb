@@ -16,8 +16,12 @@ Rails.application.routes.draw do
   end
 
   get '/verse_answers/:id', to: "verse_answers#show", as: :verse_answer
-  
+
   resources :chats, only: [:new, :create, :show]
+
+  resources :book_guesses, only: [:create]
+  resources :chapter_guesses, only: [:create]
+  resources :verse_guesses, only: [:create]
 
   resources :user_game_sessions, only: [:create, :destroy]
 

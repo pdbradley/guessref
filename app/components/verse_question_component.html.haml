@@ -2,3 +2,5 @@
 .h-max.grid.grid-rows-2
   .p-2
     = render(VerseComponent.new(verse_words: @verse.verse_words))
+  .p-2
+    = render(PossibleAnswersComponent.new(verse: @verse))
