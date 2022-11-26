@@ -1,2 +1,5 @@
 = turbo_frame_tag 'possible-answers' do
-  = render(VerseChoicesComponent.new(verse: @verse))
+  - if @chapter_answer.correct
+    = render(VerseChoicesComponent.new(verse: @verse))
+  - else
+    = render(WrongResponseComponent.new())

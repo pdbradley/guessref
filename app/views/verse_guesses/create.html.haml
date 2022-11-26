@@ -1,2 +1,5 @@
 = turbo_frame_tag 'possible-answers' do
-  %p yeah buddy
+  - if @verse_answer.correct
+    %p woot all 3
+  - else
+    = render(WrongResponseComponent.new())
