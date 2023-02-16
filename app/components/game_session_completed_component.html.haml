@@ -1,0 +1,18 @@
+.h-screen.bg-slate-200
+  %h1 Nice Game!
+  %p
+    Some game summary stuff here.  maybe chat also?
+
+  .summary-player-list.overflow-auto{class: "h-[25%] bg-[#a8dadc]"}
+    - if @game_session.users.any?
+      .text-bold.text-xl.pb-4
+        Who's playing?
+      #user-sessions.flex.flex-wrap.items-top.gap-x-2.gap-y-2.items-top
+        - @game_session.users.each do |user|
+          = render PlayerBadgeComponent.new(user: user)
+
+  .summary-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[50%] bg-[#a8dadc]"}
+    = render(ChatComponent.new(game_session: @game_session))
+  .lets-go{class: "h-[10%] bg-[#1d3557]"}
+    = button_to start_game_session_path(@game_session) do
+      Lets Go
