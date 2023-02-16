@@ -1,1 +1,2 @@
-= render @game_session
+= turbo_stream_from @game_session
+= render(GameSessionComponent.new(game_session: @game_session))

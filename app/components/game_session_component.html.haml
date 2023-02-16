@@ -1,6 +1,7 @@
-- if @game_session.lobby?
-  = render(GameSessionLobbyComponent.new(game_session: @game_session))
-- elsif @game_session.active?
-  = render(GameSessionActiveComponent.new(game_session: @game_session))
-- elsif @game_session.completed?
-  = render(GameSessionCompletedComponent.new(game_session: @game_session))
+#game-session-show
+  - if @game_session.lobby?
+    = render(GameSessionLobbyComponent.new(game_session: @game_session))
+  - elsif @game_session.active?
+    = render(GameSessionActiveComponent.new(game_session: @game_session))
+  - elsif @game_session.completed?
+    = render(GameSessionCompletedComponent.new(game_session: @game_session))

@@ -25,7 +25,7 @@ module Broadcast
     def update
       Turbo::StreamsChannel.broadcast_replace_later_to(
         @game_session,
-        target: "game-sessions-show",
+        target: "game-session-show",
         html: game_session_component
       )
     end

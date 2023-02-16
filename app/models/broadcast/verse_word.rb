@@ -12,8 +12,11 @@ module Broadcast
 
     def update
       Turbo::StreamsChannel.broadcast_update_later_to(
-        "guessref",
+        verse_word.game_session,
         target: dom_id(verse_word),
+        # it would be better to just adjust a class
+        # rather than re-render the entire verseword component
+        # todo
         html: rendered_component
       )
     end

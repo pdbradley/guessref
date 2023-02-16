@@ -6,6 +6,10 @@ class VerseWord < ApplicationRecord
 
   belongs_to :verse
 
+  def game_session
+    verse&.game_session
+  end
+
   def self.hidden
     where(visible: false)
   end

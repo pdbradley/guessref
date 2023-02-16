@@ -90,6 +90,10 @@ class GameSession < ApplicationRecord
     self.status == COMPLETED_STATUS
   end
 
+  def broadcast_update
+    Broadcast::GameSession.update(self)
+  end
+
   private
 
   def active!

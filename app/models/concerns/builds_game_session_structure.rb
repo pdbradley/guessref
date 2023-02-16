@@ -13,8 +13,8 @@ class BuildsGameSessionStructure
   # 0.  when given a game session id
   # 1.  pull X verses from the NT 520 verse list at random (default 45)
  
-  NUM_ROUNDS = 1
-  NUM_VERSES = 1
+  NUM_ROUNDS = 3
+  NUM_VERSES = 5
   
   def initialize(game_session_id)
     @game_session = GameSession.find(game_session_id)

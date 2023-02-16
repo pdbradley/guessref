@@ -1,5 +1,6 @@
 class UserGameSession < ApplicationRecord
 
+
   after_create_commit -> {
     Broadcast::UserGameSession.add_to_game_session(self)
   }
