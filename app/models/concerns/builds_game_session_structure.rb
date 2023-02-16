@@ -13,13 +13,14 @@ class BuildsGameSessionStructure
   # 0.  when given a game session id
   # 1.  pull X verses from the NT 520 verse list at random (default 45)
  
+  NUM_ROUNDS = 1
+  NUM_VERSES = 1
   
-
   def initialize(game_session_id)
     @game_session = GameSession.find(game_session_id)
   end
 
-  def build(num_rounds: 3, num_verses: 30)
+  def build(num_rounds: NUM_ROUNDS, num_verses: NUM_VERSES)
     verses_with_data(num_verses).in_groups_of(num_verses / num_rounds).each do |verses_for_one_round|
       game_round = @game_session.game_rounds.create
       verses_for_one_round.compact.each do |verse_data|

@@ -5,6 +5,9 @@ class GameSession < ApplicationRecord
   after_create_commit -> {
     Broadcast::GameSession.add_to_index(self)
   }
+  after_update_commit -> {
+    Broadcast::GameSession.update(self)
+  }
 
   has_many :game_rounds, dependent: :destroy
   has_many :user_game_sessions, dependent: :destroy

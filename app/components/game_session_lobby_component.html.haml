@@ -7,7 +7,7 @@
       .ml-4
         = @game_session.name
     .m-auto.w-24.text-center
-      = button_to user_game_session_path(@game_session), method: :delete do
+      = button_to start_game_session_path(@game_session), method: :post do
         Start
   .lobby-player-list.overflow-auto{class: "h-[25%] bg-[#a8dadc]"}
     - if @game_session.users.any?

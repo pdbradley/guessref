@@ -6,6 +6,10 @@ module Broadcast
       new(game_session).add_to_index
     end
 
+    def self.update(game_session)
+      new(game_session).update
+    end
+
     def initialize(game_session)
       @game_session = game_session
     end
@@ -18,9 +22,24 @@ module Broadcast
       )
     end
 
+    def update
+      Turbo::StreamsChannel.broadcast_replace_later_to(
+        @game_session,
+        target: "game-sessions-show",
+        html: game_session_component
+      )
+    end
+
     private
 
     attr_reader :game_session
+
+    def game_session_component
+      ApplicationController.render(
+        GameSessionComponent.new(game_session: @game_session),
+        layout: false
+      )
+    end
 
     def game_session_badge
       ApplicationController.render(
