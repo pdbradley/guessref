@@ -7,7 +7,7 @@ RSpec.describe Verse, type: :model do
     context "when the verse is QUEUED" do
       it "sets the verse to ACTIVE and schedules a verse tick job" do
         allow(VerseTickJob).to receive_message_chain(:set, :perform_later)
-        verse = verse_with_status(Verse::QUEUED_STATUS)
+        verse = create(:verse, status: Verse::QUEUED_STATUS)
 
         verse.tick!
 

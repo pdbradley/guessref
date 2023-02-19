@@ -9,8 +9,7 @@ class BookChoicesComponentPreview < ViewComponent::Preview
   private
 
   def foo
-    verse = FactoryBot.create(:verse)
-    verse.random_from_fixture
+    verse = FactoryBot.build_stubbed(:verse, :with_verse_words)
     verse
   end
 

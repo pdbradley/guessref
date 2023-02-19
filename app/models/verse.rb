@@ -1,5 +1,5 @@
 class Verse < ApplicationRecord
-  belongs_to :game_round
+  belongs_to :game_round, optional: true
   has_one :game_session, through: :game_round
   has_many :verse_words, dependent: :destroy
   has_many :book_answers, dependent: :destroy

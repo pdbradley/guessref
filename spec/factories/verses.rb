@@ -5,9 +5,13 @@ FactoryBot.define do
     chapter_number { 1 }
     verse_number { 1 }
 
-    trait :with_verse_words do
-      after(:create) do |verse|
-        verse.random_from_fixture
+    factory :verse_with_verse_words do
+      transient do
+        verse_words_count { 10 }
+      end
+
+      verse_words do
+        Array.new(verse_words_count) { association(:verse_word) }
       end
     end
   end

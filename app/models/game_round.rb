@@ -41,7 +41,7 @@ class GameRound < ApplicationRecord
     else
       raise "game round should not have status #{self.status}"
     end
-    game_session.broadcast_update
+    # game_session.broadcast_update
   end
 
   def queued_tick!

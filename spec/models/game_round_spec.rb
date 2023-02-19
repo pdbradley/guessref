@@ -31,7 +31,7 @@ RSpec.describe GameRound, type: :model do
     end
     context "when ACTIVE" do
       it "sets the game round to COMPLETE when there are no active or queued verses" do
-        game_round = create(:game_round, status:  GameRound::ACTIVE_STATUS, game_session: create(:game_session))
+        game_round = create(:game_round, status:  GameRound::ACTIVE_STATUS)
 
         game_round.tick!
 
