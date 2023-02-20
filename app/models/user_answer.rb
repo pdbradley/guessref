@@ -1,5 +1,6 @@
 class UserAnswer < ApplicationRecord
   belongs_to :game_session
+  belongs_to :game_round
   belongs_to :user
   belongs_to :verse
   belongs_to :book_answer, optional: true

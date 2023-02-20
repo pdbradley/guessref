@@ -13,6 +13,7 @@ class GameSession < ApplicationRecord
   has_many :user_game_sessions, dependent: :destroy
   has_many :users, through: :user_game_sessions
   has_many :chat_messages, dependent: :destroy
+  has_many :user_answers, dependent: :destroy
 
   validates :name, presence: true
 
@@ -58,6 +59,14 @@ class GameSession < ApplicationRecord
 
   def current_round
     remaining_rounds.first
+  end
+
+  def num_rounds
+    game_rounds.count
+  end
+
+  def num_verses
+    game_rounds.sum(&:num_verses)
   end
 
   def remaining_rounds
