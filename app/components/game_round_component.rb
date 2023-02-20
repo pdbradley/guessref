@@ -5,4 +5,8 @@ class GameRoundComponent < ViewComponent::Base
     @game_round = game_round
   end
 
+  def render?
+    @game_round
+  end
+
 end

@@ -9,7 +9,7 @@ describe "User creates a game", type: :feature do
       visit root_path
       click_link 'New Game'
       fill_in 'game_name', with: 'Phil Game'
-      click_button 'Create!'
+      click_button 'create-session'
     end
 
     as_user('Dinushka') do
