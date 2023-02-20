@@ -19,8 +19,10 @@ class GameSessionsController < ApplicationController
     game_session = GameSession.new(name: params[:name], status: GameSession::LOBBY_STATUS)
     if game_session.valid?
       game_session.save
-      BuildsGameSessionStructure.new(game_session.id).build(num_rounds: 1, num_verses: 3)
       game_session.users << current_user
+
+      BuildsGameSessionStructureJob.perform_later(game_session.id)
+
       redirect_to game_session_path(game_session)
     else
       render :new
