@@ -25,5 +25,4 @@ RSpec.describe "Game Sessions", type: :request do
       expect(game_session.reload.status).to eq GameSession::ACTIVE_STATUS
     end
   end
-
 end

@@ -8,7 +8,7 @@ FactoryBot.define do
     after(:create) do |game_session|
       game_round = create(:game_round, game_session: game_session)
       verse = create(:verse, game_round: game_round)
-      verse.random_from_fixture
+      AddsVerseInfoFromFixture.new(verse).fill_in_verse_with_random_info
     end
   end
 
