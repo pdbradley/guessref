@@ -1,1 +1,7 @@
-%div Add GameSessionScoreboard template here
+#game-session-scoreboard
+  - @scoreboard_hash.each do |name, score|
+    %div.scoreboard-row
+      %span.scoreboard-name
+        = name
+      %span.scoreboard-score
+        = score
