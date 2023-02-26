@@ -5,4 +5,8 @@ class VerseQuestionComponent < ViewComponent::Base
     @verse = verse
   end
 
+  def render?
+    @verse
+  end
+
 end

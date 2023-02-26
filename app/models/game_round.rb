@@ -1,4 +1,9 @@
 class GameRound < ApplicationRecord
+
+  after_update_commit -> {
+    Broadcast::GameRound.update(self)
+  }
+
   belongs_to :game_session
   has_many :verses, dependent: :destroy
 
@@ -32,6 +37,7 @@ class GameRound < ApplicationRecord
   end
 
   def tick!
+    save
     if queued?
       queued_tick!
     elsif active?

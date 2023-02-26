@@ -1,8 +1,9 @@
-- if @game_round.queued?
-  GET READY
-- elsif @game_round.active?
-  = @game_round.num_verses_remaining
-  Verses Remaining
-  = render VerseQuestionComponent.new(verse: @game_round.current_verse)
-- elsif @game_round.completed?
-  ROUND OVER
+%div{:id => dom_id(@game_round)}
+  - if @game_round.queued?
+    GET READY
+  - elsif @game_round.active?
+    = @game_round.num_verses_remaining
+    Verses Remaining
+    = render VerseQuestionComponent.new(verse: @game_round.current_verse)
+  - elsif @game_round.completed?
+    ROUND OVER
