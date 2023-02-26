@@ -8,5 +8,5 @@
         = @game_session.users.count
         players
     .flex-shrink-0.pr-2#show-game-session-button
-      = button_to "Go", user_game_sessions_path(game_session_id: @game_session.id)
+      = link_to "Go", game_session_path(@game_session)
 
