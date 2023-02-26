@@ -76,19 +76,19 @@ class GameSession < ApplicationRecord
     game_rounds.active + game_rounds.queued
   end
 
-  def fill_in_game_info # this is temporary
-    3.times do
-      game_rounds.create(status: GameRound::QUEUED_STATUS)
-    end
-
-    game_rounds.each do |game_round|
-      5.times do
-        verse = game_round.verses.create
-        verse.random_from_fixture
-      end
-    end
-    self
-  end
+  # def fill_in_game_info # this is temporary
+  #   3.times do
+  #     game_rounds.create(status: GameRound::QUEUED_STATUS)
+  #   end
+  #
+  #   game_rounds.each do |game_round|
+  #     5.times do
+  #       verse = game_round.verses.create
+  #       verse.random_from_fixture
+  #     end
+  #   end
+  #   self
+  # end
 
   def lobby?
     self.status == LOBBY_STATUS
