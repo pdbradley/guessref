@@ -21,8 +21,7 @@ class GameRoundPreview < ViewComponent::Preview
   end
 
   def active_round
-    game_round = FactoryBot.create(:game_round, status: GameRound::ACTIVE_STATUS)
-    # game_round.game_session.fill_in_game_info
+    game_round = FactoryBot.build_stubbed(:game_round, status: GameRound::ACTIVE_STATUS)
     game_round
   end
 

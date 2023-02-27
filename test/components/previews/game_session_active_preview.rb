@@ -9,8 +9,7 @@ class GameSessionActivePreview < ViewComponent::Preview
   private
 
   def active_game_session
-    game_session = FactoryBot.create(:game_session)
-    game_session.fill_in_game_info
+    game_session = FactoryBot.build_stubbed(:game_session)
     game_session.status = GameSession::ACTIVE_STATUS
     game_session
   end

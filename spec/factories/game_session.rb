@@ -2,6 +2,14 @@ FactoryBot.define do
   factory :game_session do
     name { Faker::Emotion.noun.capitalize }
     tick { 0 }
+
+    transient do
+      game_rounds_count { 5 }
+    end
+
+    game_rounds do
+      Array.new(game_rounds_count) { association(:game_round) }
+    end
   end
 
   trait :with_one_question do
@@ -12,6 +20,7 @@ FactoryBot.define do
     end
   end
 
+  # todo make this build_stubbable
   trait :with_players do
     transient do
       num_players { 3 }
