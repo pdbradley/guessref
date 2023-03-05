@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :game_session do
+  factory :stubbed_game_session do
     name { Faker::Emotion.noun.capitalize }
     tick { 0 }
 
@@ -10,6 +10,11 @@ FactoryBot.define do
     game_rounds do
       Array.new(game_rounds_count) { association(:game_round) }
     end
+  end
+
+  factory :game_session do
+    name { Faker::Emotion.noun.capitalize }
+    tick { 0 }
   end
 
   trait :with_one_question do
@@ -33,12 +38,4 @@ FactoryBot.define do
       end
     end
   end
-  #
-  #   after(:create) do |game_session, evaluator|
-  #     evaluator.num_players.times do
-  #       user = create_list :user
-  #       game_session.users << user
-  #     end
-  #   end
-  # end
 end

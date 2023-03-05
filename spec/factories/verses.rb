@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :verse do
+  factory :stubbed_verse do
     book_number { 1 }
     chapter_number { 1 }
     verse_number { 1 }
@@ -12,4 +12,12 @@ FactoryBot.define do
       Array.new(verse_words_count) { association(:verse_word) }
     end
   end
+
+  factory :verse do
+    book_number { 1 }
+    chapter_number { 1 }
+    verse_number { 1 }
+    game_round
+  end
+
 end

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :game_round do
+  factory :stubbed_game_round do
     status { GameRound::STATUSES.sample }
 
     transient do 
@@ -9,5 +9,11 @@ FactoryBot.define do
     verses do
       Array.new(verses_count) { association(:verse) }
     end
+  end
+
+  factory :game_round do
+    status { GameRound::STATUSES.sample }
+
+    game_session
   end
 end

@@ -50,7 +50,7 @@ class GameSession < ApplicationRecord
   def active_tick!
     if current_round
       # GameRoundTickJob.set(wait: 3.seconds).perform_later(current_round.id)
-      GameRoundTickJob.perform_later(current_round.id)
+      GameRoundTickJob.perform_later(current_round&.id)
     else
       completed!
     end

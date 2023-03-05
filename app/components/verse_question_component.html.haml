@@ -1,6 +1,6 @@
 -# .flex.flex-wrap.content-center.p-5.justify-center
 .h-max.grid.grid-rows-2
   .p-2
-    = render(VerseComponent.new(verse_words: @verse.verse_words))
+    = render(VerseComponent.new(verse: @verse))
   .p-2
     = render(PossibleAnswersComponent.new(verse: @verse))

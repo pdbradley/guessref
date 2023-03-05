@@ -20,9 +20,10 @@ RSpec.describe GameRound, type: :model do
       end
       it "sends tick! to the current_verse if it exists" do
         game_round = create(:game_round, status:  GameRound::QUEUED_STATUS, game_session: create(:game_session))
-        current_verse = double(:verse)
+        current_verse = double(:verse, verse_words: [])
         allow(current_verse).to receive(:tick!)
         allow(game_round).to receive(:current_verse).and_return(current_verse)
+        allow(Broadcast::GameRound).to receive(:update) # dont need broadcasting!
 
         game_round.tick!
 
@@ -39,9 +40,10 @@ RSpec.describe GameRound, type: :model do
       end
       it "sends tick! to the current_verse if it exists" do
         game_round = create(:game_round, status:  GameRound::ACTIVE_STATUS, game_session: create(:game_session))
-        current_verse = double(:verse)
+        current_verse = double(:verse, verse_words: [])
         allow(current_verse).to receive(:tick!)
         allow(game_round).to receive(:current_verse).and_return(current_verse)
+        allow(Broadcast::GameRound).to receive(:update) # dont need broadcasting!
 
         game_round.tick!
 
