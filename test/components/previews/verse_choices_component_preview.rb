@@ -1,9 +1,9 @@
-class BookChoicesComponentPreview < ViewComponent::Preview
+class VerseChoicesComponentPreview < ViewComponent::Preview
 
   layout 'component_preview'
 
   def whut
-    render(BookChoicesComponent.new(verse: foo))
+    render(VerseChoicesComponent.new(verse: foo))
   end
 
   private

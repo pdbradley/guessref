@@ -17,17 +17,26 @@ class VerseComponentPreview < ViewComponent::Preview
   private
 
   def visible_verses
-    double("verse", verse_words: FactoryBot.create_list(:verse_word, 20, visible: true))
+    verse = FactoryBot.build_stubbed(:stubbed_verse)
+    verse.verse_words.each do |vw|
+      vw.visible = true
+    end
+    verse
   end
 
   def invisible_verses
-    double("verse", verse_words: FactoryBot.create_list(:verse_word, 20, visible: false))
+    verse = FactoryBot.build_stubbed(:stubbed_verse)
+    verse.verse_words.each do |vw|
+      vw.visible = false
+    end
+    verse
   end
 
   def mixed_verses
-    double("verse", verse_words: (
-    50.times.map do
-      FactoryBot.create(:verse_word, visible: [true, false].sample)
-    end))
+    verse = FactoryBot.build_stubbed(:stubbed_verse)
+    verse.verse_words.each do |vw|
+      vw.visible = [true, false].sample
+    end
+    verse
   end
 end
