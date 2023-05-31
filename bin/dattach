@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# dattach <docker container name>
+# usage:
+
+# bin/dattach <container name>
+#
+# if docker ps shows a container with the name "rails" in it, this will attach
+# to the console in that running container
+
+# note that if you have two containers that can both match the <container name> substring
+# results are unpredictable
+
+docker attach $( docker ps | grep $1 | awk "{print \$1}" | head -n 1 )

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# dx (docker execute)
+# usage:
+
+# bin/dx <container name> <command to run>
+#
+# bin/dx rails rails c  
+# if docker ps shows a container with the name "rails" in it, this will take you 
+# to the console in that running container
+
+# note that if you have two containers that can both match the <container name> substring
+# results are unpredictable
+
+docker exec -it $( docker ps | grep $1 | awk "{print \$1}" | head -n 1 ) "${@:2}"
