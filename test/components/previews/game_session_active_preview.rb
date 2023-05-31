@@ -14,5 +14,5 @@ class GameSessionActivePreview < ViewComponent::Preview
     game_session
   end
 
-end
 
+end
