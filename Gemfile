@@ -44,7 +44,6 @@ gem "bootsnap", require: false
 gem 'factory_bot_rails'
 gem 'haml-rails'
 gem 'view_component'
-gem 'lookbook'
 
 
 # Use Sass to process CSS
@@ -61,9 +60,13 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.3'
+  gem 'listen'
+  gem 'actioncable'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  gem "lookbook", ">= 2.0.4"
+
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
