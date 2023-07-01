@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe ScoreBoard, type: :model do
   describe '#set_score' do
     it "adds a single score to the score board for a user" do
+      score_params = {user_id: 1, name: 'Phil', points: 10}
       score_board.set_score(score_params)
 
+      score_params.delete(:user_id)
       expect(score_board.scores['1']).
         to eq (score_params.transform_keys(&:to_s))
     end
@@ -15,25 +17,28 @@ RSpec.describe ScoreBoard, type: :model do
       ]
 
       expect(score_board.scores['1']).
-        to eq ({user_id: 1, name: 'Phil', points: 10}.transform_keys(&:to_s))
+        to eq ({name: 'Phil', points: 10}.transform_keys(&:to_s))
       expect(score_board.scores['2']).
-        to eq ({user_id: 2, name: 'Jim', points: 20}.transform_keys(&:to_s))
+        to eq ({name: 'Jim', points: 20}.transform_keys(&:to_s))
     end
   end
 
   describe '#add_to_score' do
     it 'creates a score if none exists' do
+      score_params = {user_id: 1, name: 'Phil', points: 10}
       score_board.add_to_score(**score_params)
 
+      score_params.delete(:user_id)
       expect(score_board.scores['1']).
         to eq (score_params.transform_keys(&:to_s))
     end
     it 'adds to a score if one exists' do
+      score_params = {user_id: 1, name: 'Phil', points: 10}
       score_board.set_score(**score_params)
-      score_board.add_to_score(**score_params)
+      score_board.add_to_score(**{user_id: 1, name: 'Phil', points: 15})
 
       expect(score_board.scores['1']['points']).
-        to eq (20) #10 + 10
+        to eq (25) #10 + 10
     end
   end
 
@@ -49,10 +54,6 @@ RSpec.describe ScoreBoard, type: :model do
         {'name' => 'Low', 'points' => 10}
       ]
     end
-  end
-
-  def score_params
-    {user_id: 1, name: 'Phil', points: 10}
   end
 
   def score_board

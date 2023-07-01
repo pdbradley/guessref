@@ -1,9 +1,9 @@
 %div{id: dom_id(@score_board)}
-  -# = helpers.turbo_stream_from @game_session if @game_session
-  SB:
-  = @score_board.id
-  GS:
-  = @score_board.id
+  %h3 Scores:
+  -# SB:
+  -# = @score_board.id
+  -# GS:
+  -# = @score_board.id
   - names_and_scores.each do |player|
     %div.score_board-row
       %span.score_board-name

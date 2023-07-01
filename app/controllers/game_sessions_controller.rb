@@ -20,6 +20,7 @@ class GameSessionsController < ApplicationController
     if game_session.valid?
       game_session.save
       game_session.users << current_user
+      game_session.create_score_board!
 
       BuildsGameSessionStructureJob.perform_later(game_session.id)
 

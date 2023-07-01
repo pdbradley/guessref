@@ -10,4 +10,8 @@ class GameSessionScoreboardComponent < ViewComponent::Base
     @score_board.all_names_and_scores
   end
 
+  def render?
+    @score_board
+  end
+
 end

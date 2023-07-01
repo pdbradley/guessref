@@ -7,6 +7,8 @@ class Verse < ApplicationRecord
   # this should be changed to verse_number_answers
   has_many :verse_answers, dependent: :destroy
 
+  delegate :score_board, to: :game_session # weird feeling
+
   QUEUED_STATUS = 'QUEUED'
   ACTIVE_STATUS = 'ACTIVE'
   COMPLETED_STATUS = 'COMPLETED'

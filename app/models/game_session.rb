@@ -15,6 +15,7 @@ class GameSession < ApplicationRecord
   has_many :chat_messages, dependent: :destroy
   has_many :user_answers, dependent: :destroy
   has_many :verses, through: :game_rounds
+  has_one :score_board, dependent: :destroy
 
   validates :name, presence: true
 

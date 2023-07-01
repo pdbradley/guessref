@@ -19,11 +19,13 @@ class ScoreBoard < ApplicationRecord
 
   def add_to_score(user_id:, name:, points:)
     if self.scores[user_id.to_s]
-      #update it
+      current_score = self.scores[user_id.to_s]['points']
+      new_score = current_score + points.to_i
+
       self.scores[user_id] = { 
         user_id: user_id, 
         name: name, 
-        points: points + points.to_i
+        points: new_score
       }
     else
       #create it

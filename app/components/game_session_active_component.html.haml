@@ -8,6 +8,8 @@
     %p
       = button_to user_game_session_path(@game_session), method: :delete do
         Leave
+  .score-board
+    = render GameSessionScoreboardComponent.new(@game_session.score_board)
   .active-game-round{class: "h-[60%] bg-[#a8dadc]"}
     = render GameRoundComponent.new(game_round: @game_session.current_round)
     -# - if @game_session.users.any?
