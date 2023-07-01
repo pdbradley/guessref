@@ -42,6 +42,21 @@ RSpec.describe ScoreBoard, type: :model do
     end
   end
 
+  describe "#reset_scores" do
+    it "zeros all the scores" do
+      score_board.add_to_score(**{user_id: 1, name: 'Low', points: 10})
+      score_board.add_to_score(**{user_id: 2, name: 'High', points: 30})
+      score_board.add_to_score(**{user_id: 3, name: 'Middle', points: 20})
+
+      score_board.reset_scores
+
+      expect(score_board.all_names_and_scores).to match_array [
+        {'name' => 'High', 'points' => 0},
+        {'name' => 'Middle', 'points' => 0},
+        {'name' => 'Low', 'points' => 0}
+      ]
+    end
+  end
   describe "#all_scores" do
     it "returns all scores sorted desc" do
       score_board.add_to_score(**{user_id: 1, name: 'Low', points: 10})

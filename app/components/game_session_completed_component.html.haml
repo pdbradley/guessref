@@ -1,7 +1,7 @@
 .h-screen.bg-slate-200
   %h1 Nice Game!
-  %p
-    Some game summary stuff here.  maybe chat also?
+  .score-board
+    = render GameSessionScoreboardComponent.new(@game_session.score_board)
 
   .summary-player-list.overflow-auto{class: "h-[25%] bg-[#a8dadc]"}
     - if @game_session.users.any?
@@ -13,6 +13,8 @@
 
   .summary-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[50%] bg-[#a8dadc]"}
     = render(ChatComponent.new(game_session: @game_session))
-  .lets-go{class: "h-[10%] bg-[#1d3557]"}
-    = button_to start_game_session_path(@game_session) do
-      Lets Go
+
+  .back-to-lobby
+    = link_to "Back to Lobby", root_path
+  .reset-game
+    = button_to "Play Again", reset_game_session_path(@game_session)

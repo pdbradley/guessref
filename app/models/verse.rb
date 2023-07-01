@@ -65,9 +65,9 @@ class Verse < ApplicationRecord
   def active_tick!
     if next_hidden_word
       next_hidden_word.visible! 
-      VerseTickJob.set(wait: (0.5).seconds).perform_later(self.uuid)
+      VerseTickJob.set(wait: (0.3).seconds).perform_later(self.uuid)
     else
-      VerseTickJob.set(wait: (8).seconds).perform_later(self.uuid)
+      VerseTickJob.set(wait: (5).seconds).perform_later(self.uuid)
       set_revealed!
     end
   end

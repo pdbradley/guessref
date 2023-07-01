@@ -30,6 +30,17 @@ class GameSessionsController < ApplicationController
     end
   end
 
+  def reset
+    @game_session = GameSession.find params[:id]
+    @game_session.update!(status: GameSession::LOBBY_STATUS)
+    @game_session.score_board.reset_scores
+    @game_session.game_rounds.each {|gr| gr.destroy}
+    BuildsGameSessionStructureJob.perform_later(@game_session.id)
+    redirect_to game_session_path(@game_session)
+  end
+    
+
+
   def start
     game_session = GameSession.find params[:id]
     if game_session

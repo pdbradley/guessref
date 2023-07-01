@@ -34,6 +34,13 @@ class ScoreBoard < ApplicationRecord
     self.save
   end
 
+  def reset_scores
+    self.scores.each do |k,v|
+      v['points'] = 0
+    end
+    save
+  end
+
   def all_names_and_scores
     # [ { 'name' => 'High', 'points' => 30 }, { 'name' => 'Middle', 'points' => 20 }, { 'name' => 'Low', 'points' => 10 } ]
     names_and_scores = self.scores.map{|k,v| v.delete('user_id'); v}

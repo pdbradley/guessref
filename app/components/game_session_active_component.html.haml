@@ -3,8 +3,6 @@
     %p
       Active Session
       = @game_session.name
-      Current Round 
-      = @game_session.current_round
     %p
       = button_to user_game_session_path(@game_session), method: :delete do
         Leave
