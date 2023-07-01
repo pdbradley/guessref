@@ -14,6 +14,8 @@ module Broadcast
       @game_session = game_session
     end
 
+      # Turbo::StreamsChannel.broadcast_prepend_later_to(gs, target: "foo", html: '<b>hi>/b>')
+
     def add_to_index
       Turbo::StreamsChannel.broadcast_prepend_later_to(
         "guessref",

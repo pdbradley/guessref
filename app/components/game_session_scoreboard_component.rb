@@ -2,8 +2,12 @@
 
 class GameSessionScoreboardComponent < ViewComponent::Base
   
-  def initialize(scoreboard_hash)
-    @scoreboard_hash = scoreboard_hash
+  def initialize(score_board)
+    @score_board = score_board
+  end
+
+  def names_and_scores
+    @score_board.all_names_and_scores
   end
 
 end

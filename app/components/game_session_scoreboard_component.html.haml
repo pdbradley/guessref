@@ -1,7 +1,12 @@
-#game-session-scoreboard
-  - @scoreboard_hash.each do |name, score|
-    %div.scoreboard-row
-      %span.scoreboard-name
-        = name
-      %span.scoreboard-score
-        = score
+%div{id: dom_id(@score_board)}
+  -# = helpers.turbo_stream_from @game_session if @game_session
+  SB:
+  = @score_board.id
+  GS:
+  = @score_board.id
+  - names_and_scores.each do |player|
+    %div.score_board-row
+      %span.score_board-name
+        = player['name']
+      %span.score_board-points
+        = player['points']

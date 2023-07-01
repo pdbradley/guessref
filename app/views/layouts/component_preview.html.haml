@@ -13,6 +13,7 @@
       = javascript_include_tag "hotwire-livereload", defer: true
     = javascript_importmap_tags
   %body
+    = turbo_stream_from lookbook_data(:game_session) if lookbook_data(:game_session)
     .border.border-gray-200.mx-auto{class: 'h-[851px] w-[393px]'}
       = yield
       -# .px-4.py-4.sm:px-0
