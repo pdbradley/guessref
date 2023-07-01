@@ -3,6 +3,13 @@ require 'rails_helper'
 RSpec.describe Verse, type: :model do
   #todo add scope tests for verse types
 
+  describe "#printed_reference" do
+    it "prints out the reference in human readable form" do
+      verse = create(:verse, book_number: 1, chapter_number: 1, verse_number: 1)
+
+      expect(verse.printed_reference).to eq "Genesis 1:1"
+    end
+  end
   describe "tick!" do
     context "when the verse is QUEUED" do
       it "sets the verse to ACTIVE and schedules a verse tick job" do

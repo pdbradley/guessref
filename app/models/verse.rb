@@ -15,6 +15,11 @@ class Verse < ApplicationRecord
   REVEALED_STATUS = 'REVEALED'
   STATUSES = [QUEUED_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
 
+  def printed_reference
+    # so ugly
+    BuildsBookNumberKeyedHash.new.hash[book_number]['book_name'] + " " + chapter_number.to_s + ":" + verse_number.to_s
+  end
+
   def self.queued
     where(status: QUEUED_STATUS)
   end
@@ -97,6 +102,7 @@ class Verse < ApplicationRecord
 
   def set_revealed!
     update_attribute(:status, REVEALED_STATUS)
+    broadcast_replace_to game_session, target: 'possible-answers', html: self.printed_reference
   end
 
   def add_answers!
