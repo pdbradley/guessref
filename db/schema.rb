@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_22_124018) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_24_204023) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -74,6 +74,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_124018) do
     t.index ["game_session_uuid", "user_uuid"], name: "index_participants_on_game_session_uuid_and_user_uuid", unique: true
     t.index ["game_session_uuid"], name: "index_participants_on_game_session_uuid"
     t.index ["user_uuid"], name: "index_participants_on_user_uuid"
+  end
+
+  create_table "score_boards", force: :cascade do |t|
+    t.bigint "game_session_id"
+    t.jsonb "scores", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_session_id"], name: "index_score_boards_on_game_session_id"
   end
 
   create_table "user_answers", force: :cascade do |t|
