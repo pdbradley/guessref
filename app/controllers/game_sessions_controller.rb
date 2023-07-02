@@ -3,7 +3,7 @@ class GameSessionsController < ApplicationController
   skip_before_action :authenticate!, only: [:index]
 
   def index
-    @game_sessions = GameSession.recent.active_and_lobby
+    @game_sessions = GameSession.recent
   end
 
   def show

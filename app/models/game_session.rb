@@ -19,16 +19,18 @@ class GameSession < ApplicationRecord
 
   validates :name, presence: true
 
+  LOADING_STATUS = 'LOADING'
   LOBBY_STATUS = 'LOBBY'
   ACTIVE_STATUS= 'ACTIVE'
   COMPLETED_STATUS = 'COMPLETED'
-  STATUSES = [LOBBY_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
+  STATUSES = [LOADING_STATUS, LOBBY_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
 
   scope :recent, -> { where("created_at > ?", 120.minutes.ago) }
+  scope :loading, -> { where(status: LOADING_STATUS) }
   scope :lobby, -> { where(status: LOBBY_STATUS) }
   scope :active, -> { where(status: ACTIVE_STATUS) }
   scope :completed, -> { where(status: COMPLETED_STATUS) }
-  scope :active_and_lobby, -> { where(status: [LOBBY_STATUS, ACTIVE_STATUS]) }
+  scope :active_and_lobby, -> { where(status: [LOADING_STATUS, LOBBY_STATUS, ACTIVE_STATUS]) }
 
   def tick!
     if lobby?

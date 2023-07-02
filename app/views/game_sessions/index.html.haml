@@ -9,7 +9,7 @@
   #new-game-link
     =link_to "New Game", new_game_session_path
 %div
-  %h2.text-gray-500.font-medium.uppercase.tracking-wide.text-center Active Games
+  %h2.text-gray-500.font-medium.uppercase.tracking-wide.text-center Recent and Current Games
   %ul#game_sessions.mt-3.grid.grid-cols-1.gap-3.sm:gap-6.sm:grid-cols-2.lg:grid-cols-4{:role => "list"}
     - @game_sessions.each do |game_session|
       = render GameSessionBadgeComponent.new(game_session: game_session)

@@ -1,0 +1,25 @@
+.h-screen.bg-slate-200
+  .lobby-game-session-name.flex.items-center{class: "h-16 bg-[#f1faee]"}
+    .m-auto.w-24.text-center
+      = button_to user_game_session_path(@game_session), method: :delete do
+        Leave
+    .w-full.h-full.bg-gray-200.text-bold.text-left.ml-2.text-2xl.items-center.flex
+      .ml-4
+        = @game_session.name
+    .m-auto.w-24.text-center
+      -# Num Rounds:
+      -# %span#num-rounds
+      -#   = @game_session.num_rounds
+      Verse count:
+      %span#num-verses
+        = @game_session.num_verses
+
+  .lobby-copyright.bg-gray-200.text-xs.text-center{class: "h-[10%]"}
+    = Copyright.text
+
+-# e63946 red
+-# f1faee light
+-# a8dadc to
+-# 457b9d dark 
+-# 1d3557
+
