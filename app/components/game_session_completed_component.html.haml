@@ -13,6 +13,8 @@
 
   .summary-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[50%] bg-[#a8dadc]"}
     = render(ChatComponent.new(game_session: @game_session))
+  .lobby-copyright.bg-gray-200.text-xs.text-center{class: "h-[10%]"}
+    = Copyright.text
 
   .back-to-lobby
     = link_to "Back to Lobby", root_path

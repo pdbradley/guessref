@@ -23,8 +23,10 @@
         - @game_session.users.each do |user|
           = render PlayerBadgeComponent.new(user: user)
 
-  .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[50%] bg-[#a8dadc]"}
+  .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[40%] bg-[#a8dadc]"}
     = render(ChatComponent.new(game_session: @game_session))
+  .lobby-copyright.bg-gray-200.text-xs.text-center{class: "h-[10%]"}
+    = Copyright.text
 
 -# e63946 red
 -# f1faee light
