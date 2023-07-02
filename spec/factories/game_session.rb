@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :game_session do
     name { Faker::Emotion.noun.capitalize }
     tick { 0 }
+    score_board
   end
 
   # factory :stubbed_game_session do
