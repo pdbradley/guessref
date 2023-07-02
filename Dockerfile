@@ -1,7 +1,7 @@
 FROM ruby:3.1.0
 
 RUN apt-get update -qq \
-&& apt-get install -y postgresql-client chromium
+&& apt-get install -y postgresql-client chromium vim
 
 ADD . /rails_app
 
