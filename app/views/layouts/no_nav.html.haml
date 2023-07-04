@@ -1,17 +1,6 @@
 !!!
 %html
-  %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title GuessrefHotwire
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
-    = csrf_meta_tags
-    = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    %script{:src => "https://cdn.tailwindcss.com"}
-    %script{:defer => "defer", :src => "//unpkg.com/alpinejs"}
-    - if Rails.env.development?
-      = javascript_include_tag "hotwire-livereload", defer: true
-    = javascript_importmap_tags
+  = render partial: 'layouts/head'
   %body
     = turbo_stream_from :guessref
 
