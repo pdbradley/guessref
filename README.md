@@ -48,18 +48,9 @@ To attach to the docker container when you have added a breakpoint run
 ```docker attach <container id>```
 
 
+## Custom Colors
 
+Edit /config/tailwind.config.js to define custom colors, then you can use them with tailwind like:
 
-
-
-
-
-Things you may want to cover:
-
-[Journal of progress](JOURNAL.md)
-
-## Getting Started:
-
-1. clone project
-2. docker-compose up (should spin up four containers--postgres, rails, node, hasura)
-3. go to localhost:3000
+.bg-<customcolorname> # to set a background
+.text-<customcolorname> # to set text color 

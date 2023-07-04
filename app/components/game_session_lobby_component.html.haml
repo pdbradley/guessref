@@ -1,9 +1,9 @@
-.h-screen.bg-slate-200
-  .lobby-game-session-name.flex.items-center{class: "h-16 bg-[#f1faee]"}
+.h-screen.bg-blue4
+  .lobby-game-session-name.flex.items-center{class: "h-16 bg-blue2"}
     .m-auto.w-24.text-center
       = button_to user_game_session_path(@game_session), method: :delete do
         Leave
-    .w-full.h-full.bg-gray-200.text-bold.text-left.ml-2.text-2xl.items-center.flex
+    .w-full.h-full.bg-blue4.text-bold.text-left.ml-2.text-2xl.items-center.flex
       .ml-4
         = @game_session.name
     .m-auto.w-24.text-center
@@ -15,7 +15,7 @@
         = @game_session.num_verses
     .m-auto.w-24.text-center
       = render(StartGameButtonComponent.new(game_session: @game_session))
-  .lobby-player-list.overflow-auto{class: "h-[25%] bg-[#a8dadc]"}
+  .lobby-player-list.overflow-auto.bg-blue2{class: "h-[25%]"}
     - if @game_session.users.any?
       .text-bold.text-xl.pb-4
         Who's playing?
@@ -23,13 +23,11 @@
         - @game_session.users.each do |user|
           = render PlayerBadgeComponent.new(user: user)
 
-  .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[40%] bg-[#a8dadc]"}
+  .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[40%] bg-blue3"}
     = render(ChatComponent.new(game_session: @game_session))
-  .lobby-copyright.bg-gray-200.text-xs.text-center{class: "h-[10%]"}
+  .lobby-copyright.bg-blue4.text-xs.text-center{class: "h-[10%]"}
     = Copyright.text
 
 -# e63946 red
--# f1faee light
 -# a8dadc to
--# 457b9d dark 
 -# 1d3557
