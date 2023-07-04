@@ -87,3 +87,5 @@ end
 gem "faker", "~> 2.21"
 gem "hotwire-livereload", "~> 1.1"
 
+
+gem "tailwindcss-rails", "~> 2.0"
