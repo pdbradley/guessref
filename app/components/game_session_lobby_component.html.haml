@@ -1,33 +1,33 @@
-.h-screen.bg-blue4
-  .lobby-game-session-name.flex.items-center{class: "h-16 bg-blue2"}
-    .m-auto.w-24.text-center
-      = button_to user_game_session_path(@game_session), method: :delete do
-        Leave
-    .w-full.h-full.bg-blue4.text-bold.text-left.ml-2.text-2xl.items-center.flex
-      .ml-4
-        = @game_session.name
-    .m-auto.w-24.text-center
-      -# Num Rounds:
-      -# %span#num-rounds
-      -#   = @game_session.num_rounds
-      Verse count:
+.h-screen.bg-white
+  .lobby-game-session-name.flex.items-center.h-16.px-4.bg-white
+    .m-auto.w-24.text-center.text-black
+      Verses:
       %span#num-verses
         = @game_session.num_verses
-    .m-auto.w-24.text-center
-      = render(StartGameButtonComponent.new(game_session: @game_session))
-  .lobby-player-list.overflow-auto.bg-blue2{class: "h-[25%]"}
+    .w-full.h-full.bg-white.text-bold.text-center.text-2xl.items-center.justify-center.flex
+      = @game_session.name
+    .m-auto.w-24.text-center.bg-secondaryRed.rounded.text-primaryRed
+      = button_to user_game_session_path(@game_session), method: :delete do
+        Leave
+  .lobby-player-list.overflow-auto{class: "h-[50%]"}
     - if @game_session.users.any?
-      .text-bold.text-xl.pb-4
+      .text-bold.text-xl.pb-4.border-b.border-gray-200.bg-white.px-4.py-5.sm:px-6
         Who's playing?
       #user-sessions.flex.flex-wrap.items-top.gap-x-2.gap-y-2.items-top
         - @game_session.users.each do |user|
-          = render PlayerBadgeComponent.new(user: user)
-
-  .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[40%] bg-blue3"}
-    = render(ChatComponent.new(game_session: @game_session))
-  .lobby-copyright.bg-blue4.text-xs.text-center{class: "h-[10%]"}
+          .text-base.font-semibold.leading-6.text-gray-900
+            = render PlayerBadgeComponent.new(user: user)
+  .m-auto.w-24.text-xl.text-center.text-white.bg-primaryBlue.rounded.cursor-pointer
+    = render(StartGameButtonComponent.new(game_session: @game_session))
+  -# .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[40%] bg-blue3"}
+  -#   = render(ChatComponent.new(game_session: @game_session))
+  .lobby-copyright.bottom-0.bg-blue4.text-xs.text-center{class: "h-[10%]"}
     = Copyright.text
 
 -# e63946 red
 -# a8dadc to
 -# 1d3557
+
+-# <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+-#   <h3 class="text-base font-semibold leading-6 text-gray-900">Job Postings</h3>
+-# </div>
