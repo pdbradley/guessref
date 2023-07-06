@@ -40,6 +40,19 @@ module.exports = {
       red: '#e63946',
       "indigo-600": "#4a55a2",
 
+      height: theme => ({
+        auto: 'auto',
+        ...theme('spacing'),
+        full: '100%',
+        screen: 'calc(var(--vh) * 100)',
+      }),
+      minHeight: theme => ({
+        '0': '0',
+        ...theme('spacing'),
+        full: '100%',
+        screen: 'calc(var(--vh) * 100)',
+      }),
+
     },
     extend: {
       fontFamily: {
