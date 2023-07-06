@@ -12,14 +12,19 @@ module.exports = {
     colors: {
       white: "#fff",
       black: "#000",
-      // primaryBlue: "#4d68ad",
+      primaryText: "rgb(50, 50, 90)",
       primaryBlue: "#008cdd",
-      // primaryRed: "#f76b8a",
-      primaryRed: "rgb(154, 64, 93)",
+      primaryRed: "rgb(204, 52, 70)",
       secondaryRed: "rgb(249, 226, 221)",
+      
+      // primaryBlue: "#4d68ad",
+      // primaryRed: "#f76b8a",
       textHeader: "#000000",
       textSubheader: "#414552",
       textParagraph: "#3c4257",
+
+
+      primaryIndigo: "rgb(99, 91, 255)",
       
       blue1: '#4a55a2',
       blue2: '#7895cb',

@@ -6,10 +6,10 @@
 -#     =link_to game_session.name, game_session_path(game_session)
 -#     =game_session.status
 .text-center.font-medium.mb-5.absolute.w-full.flex.justify-center{class: "bottom-[25%]"}
-  #new-game-link.bg-primaryBlue.text-white.px-6.py-1.rounded.w-full.max-w-md.cursor-pointer
+  #new-game-link.bg-primaryBlue.text-white.px-6.py-1.rounded.max-w-md.cursor-pointer{class: "w-5/6"}
     =link_to "New Game", new_game_session_path
-%div
-  %h2.text-gray-500.font-medium.uppercase.tracking-wide.text-center Recent and Current Games
+%div.px-10.py-5
+  %h2.text-primary.font-medium.tracking-wide.text-left Recent and Current Games
   %ul#game_sessions.mt-3.grid.grid-cols-1.gap-3.sm:gap-6.sm:grid-cols-2.lg:grid-cols-4{:role => "list"}
     - @game_sessions.each do |game_session|
       = render GameSessionBadgeComponent.new(game_session: game_session)

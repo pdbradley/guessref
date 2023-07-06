@@ -1,10 +1,10 @@
 .h-screen.bg-white
-  .lobby-game-session-name.flex.items-center.h-16.px-4.bg-white
-    .m-auto.w-24.text-center.text-black
+  .lobby-game-session-name.flex.items-center.h-16.px-4.bg-white.border-b-10
+    .m-auto.w-24.text-center.text-primary
       Verses:
       %span#num-verses
         = @game_session.num_verses
-    .w-full.h-full.bg-white.text-bold.text-center.text-2xl.items-center.justify-center.flex
+    .w-full.h-full.bg-white.text-primary.text-center.text-xl.items-center.justify-center.flex
       = @game_session.name
     .m-auto.w-24.text-center.bg-secondaryRed.rounded.text-primaryRed
       = button_to user_game_session_path(@game_session), method: :delete do
