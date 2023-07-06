@@ -62,16 +62,11 @@ module.exports = {
         'verseComponentGrid': '1fr 0.6fr',
       }
     },
-    methods: {
-      setViewHeight: function() {
-        let vh = window.innerHeight * 0.01
-        document.documentElement.style.setProperty('--vh', `${vh}px`)
-      },
-    },
     mounted: function() {
-      this.setViewHeight()
+      let vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
       window.addEventListener('resize', () => {
-        this.setViewHeight()
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
       })
     },
   },
