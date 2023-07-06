@@ -3,7 +3,7 @@ class GameSessionsController < ApplicationController
   skip_before_action :authenticate!, only: [:index]
 
   def index
-    @game_sessions = GameSession.recent
+    @game_sessions = GameSession.recent.order(:created_at).reverse_order
   end
 
   def show
