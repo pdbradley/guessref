@@ -15,10 +15,10 @@
               .hidden.md:block
                 .ml-10.flex.items-baseline.space-x-4
                   / Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
-                  %a.bg-gray-900.text-white.px-3.py-2.rounded-md.text-sm.font-medium{"aria-current" => "page", :href => game_sessions_path} Play
-                  %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} FAQ
-                  %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "/about"} About
-                  %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} Feedback
+                  %a.bg-indigo-100.text-white.px-3.py-2.rounded-md.text-sm.font-medium{"aria-current" => "page", :href => game_sessions_path} Play
+                  -# %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} FAQ
+                  %a.text-text-100.px-3.py-2.rounded-md.text-sm.font-medium{:href => "/about"} About
+                  -# %a.text-gray-300.hover:bg-gray-700.hover:text-white.px-3.py-2.rounded-md.text-sm.font-medium{:href => "#"} Feedback
               - if current_user
                 .text-gray-400.ml-5
                   Welcome 
@@ -33,7 +33,7 @@
                 / Profile dropdown
                 .ml-3.relative
                   %div
-                    %button#user-menu-button.max-w-xs.bg-gray-800.rounded-full.flex.items-center.text-sm.text-white.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-offset-gray-800.focus:ring-white{"aria-expanded" => "false", "aria-haspopup" => "true", :type => "button", "@click" => "profileIsOpen = !profileIsOpen" }
+                    %button#user-menu-button.max-w-xs.bg-white.rounded-full.flex.items-center.text-sm.text-white.focus:outline-none.focus:ring-2.focus:ring-offset-2.focus:ring-offset-gray-800.focus:ring-white{"aria-expanded" => "false", "aria-haspopup" => "true", :type => "button", "@click" => "profileIsOpen = !profileIsOpen" }
                       %span.sr-only Open user menu
                       - if current_user
                         = render(UserAvatarComponent.new(name: current_user.name, color: current_user.color))
@@ -83,7 +83,7 @@
                 %svg{
                   "aria-hidden" => "true", 
                   :fill => "none", 
-                  :stroke => "currentColor", 
+                  :stroke => "black", 
                   "stroke-width" => "2", 
                   :viewbox => "0 0 24 24", 
                   :xmlns => "http://www.w3.org/2000/svg",
@@ -105,10 +105,10 @@
           }
           .px-2.pt-2.pb-3.space-y-1.sm:px-3
             / Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"
-            %a.bg-gray-900.text-white.block.px-3.py-2.rounded-md.text-base.font-medium{"aria-current" => "page", :href => "/game_sessions"} Play
-            %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} FAQ
-            %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "/about"} About
-            %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} Feedback
+            %a.bg-indigo-100.text-white.block.px-3.py-2.rounded-md.text-base.font-medium{"aria-current" => "page", :href => "/game_sessions"} Play
+            -# %a.text-text-100.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} FAQ
+            %a.text-text-100.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "/about"} About
+            -# %a.text-gray-300.hover:bg-gray-700.hover:text-white.block.px-3.py-2.rounded-md.text-base.font-medium{:href => "#"} Feedback
           .pt-4.pb-3.border-t.border-gray-700
             -# .flex.items-center.px-5
             -#   .flex-shrink-0

@@ -18,7 +18,6 @@ module.exports = {
       "text-100": "#000000",
       "text-200": "#414552",
       "text-300": "#3c4257",
-      "text-300": "#3c4257",
       "text-400": "#9ea1ab",
 
       // App colors
