@@ -39,20 +39,6 @@ module.exports = {
       blue4: '#c5dff8',
       red: '#e63946',
       "indigo-600": "#4a55a2",
-
-      height: theme => ({
-        auto: 'auto',
-        ...theme('spacing'),
-        full: '100%',
-        screen: 'calc(var(--vh) * 100)',
-      }),
-      minHeight: theme => ({
-        '0': '0',
-        ...theme('spacing'),
-        full: '100%',
-        screen: 'calc(var(--vh) * 100)',
-      }),
-
     },
     extend: {
       fontFamily: {
@@ -61,13 +47,6 @@ module.exports = {
       gridTemplateRows: {
         'verseComponentGrid': '1fr 0.6fr',
       }
-    },
-    mounted: function() {
-      let vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-      window.addEventListener('resize', () => {
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-      })
     },
   },
   plugins: [
