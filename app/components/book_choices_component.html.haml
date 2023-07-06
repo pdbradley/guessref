@@ -2,5 +2,5 @@
   - @verse.book_answers.each do |book_answer|
     .flex.justify-center.items-center.w-full.bg-blue-100
       = button_to book_guesses_path(verse_id: @verse.id, book_answer_id: book_answer.id) do
-        .px-6.py-8.rounded.text-center.text-white
+        .px-6.py-6.rounded.text-center.text-white
           =book_answer.label

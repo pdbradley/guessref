@@ -2,6 +2,6 @@
   - @verse.chapter_answers.each do |chapter_answer|
     .flex.justify-center.items-center.w-full.bg-blue-100
       = button_to chapter_guesses_path(verse_id: @verse.id, chapter_answer_id: chapter_answer.id) do
-        .px-6.py-8.rounded.text-center.text-white
+        .px-6.py-6.rounded.text-center.text-white
           Chapter
           =chapter_answer.label
