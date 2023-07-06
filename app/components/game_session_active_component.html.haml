@@ -1,14 +1,14 @@
-.h-screen.bg-slate-200
-  .active-game-session-name.bg-blue4{class: "h-[10%]"}
-    %p
+.h-screen.bg-white
+  .active-game-session-name.flex.items-center.h-16.px-4.bg-white.border-b-10.border-b.border-gray-100{class: "h-[10%]"}
+    .flex-grow.pl-1.pr-5.w-24.text-left.text-300
       Active Session
       = @game_session.name
-    %p
+    .m-auto.px-1.w-24.text-center.bg-red-200.rounded.text-red-100
       = button_to user_game_session_path(@game_session), method: :delete do
         Leave
-  .score-board
+  .score-board{class: "h-[5%]"}
     = render GameSessionScoreboardComponent.new(@game_session.score_board)
-  .active-game-round{class: "h-[60%] bg-[#a8dadc]"}
+  .active-game-round{class: "h-[85%] bg-[#a8dadc]"}
     = render GameRoundComponent.new(game_round: @game_session.current_round)
     -# - if @game_session.users.any?
     -#   Here are a bunch of players

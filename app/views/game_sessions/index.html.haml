@@ -5,10 +5,10 @@
 -#     =game_session.id
 -#     =link_to game_session.name, game_session_path(game_session)
 -#     =game_session.status
-.text-center.font-medium.mb-5.absolute.w-full.flex.justify-center{class: "bottom-[25%]"}
+.text-center.font-medium.absolute.w-full.flex.justify-center{class: "bottom-[10%]"}
   #new-game-link.bg-indigo-100.text-white.px-6.py-1.rounded.max-w-md.cursor-pointer{class: "w-5/6"}
     =link_to "New Game", new_game_session_path
-%div.px-10.py-5
+%div.px-10.py-5.overflow-scroll{class: "max-h-[75vh]"}
   %h2.text-primary.font-medium.tracking-wide.text-left Recent and Current Games
   %ul#game_sessions.mt-3.grid.grid-cols-1.gap-3.sm:gap-6.sm:grid-cols-2.lg:grid-cols-4{:role => "list"}
     - @game_sessions.each do |game_session|

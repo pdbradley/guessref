@@ -46,6 +46,9 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      gridTemplateRows: {
+        'verseComponentGrid': '1fr 0.6fr',
+      }
     },
   },
   plugins: [

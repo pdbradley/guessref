@@ -1,6 +1,7 @@
 .h-max.grid.grid-cols-2.align-center
   - @verse.chapter_answers.each do |chapter_answer|
-    = button_to chapter_guesses_path(verse_id: @verse.id, chapter_answer_id: chapter_answer.id) do
-      .p-2.mx-6.my-8.bg-red-200.rounded.text-center
-        Chapter
-        =chapter_answer.label
+    .flex.justify-center.items-center.w-full.bg-blue-100
+      = button_to chapter_guesses_path(verse_id: @verse.id, chapter_answer_id: chapter_answer.id) do
+        .px-6.py-8.rounded.text-center.text-white
+          Chapter
+          =chapter_answer.label
