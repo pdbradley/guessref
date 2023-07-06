@@ -1,4 +1,4 @@
-.h-max.grid.grid-cols-2.align-center
+.grid.grid-cols-2.align-center
   - @verse.book_answers.each do |book_answer|
     .flex.justify-center.items-center.w-full.bg-blue-100
       = button_to book_guesses_path(verse_id: @verse.id, book_answer_id: book_answer.id) do
