@@ -9,15 +9,16 @@
     .flex-none.m-auto.px-1.w-24.text-center.bg-red-200.rounded.text-red-100
       = button_to user_game_session_path(@game_session), method: :delete do
         Leave
-  .lobby-player-list.overflow-auto.mt-4{class: "h-[70%]"}
+  .lobby-player-list.overflow-auto.mt-4{class: "h-[60%]"}
     - if @game_session.users.any?
       .text-bold.text-lg.p-5.border-b.border-gray-100.bg-white.sm:px-6
         Who's playing?
       #user-sessions.w-full.flex.flex-nowrap.items-top.gap-2.px-5.pt-4
         - @game_session.users.each do |user|
           = render PlayerBadgeComponent.new(user: user)
-  .m-auto.w-24.text-base.text-center.text-white.bg-green-100.rounded.cursor-pointer.py-1{class: "w-5/6"}
-    = render(StartGameButtonComponent.new(game_session: @game_session))
+  .w-full{class: "h-[10%]"}
+    .m-auto.w-24.text-base.text-center.text-white.bg-green-100.rounded.cursor-pointer.py-1{class: "w-5/6"}
+      = render(StartGameButtonComponent.new(game_session: @game_session))
   -# .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[40%] bg-blue3"}
   -#   = render(ChatComponent.new(game_session: @game_session))
   .lobby-copyright.absolute.bottom-0.text-xs.text-center.text-400{class: "h-[10%]"}
