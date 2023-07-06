@@ -43,7 +43,7 @@ class GameSessionsController < ApplicationController
 
   def start
     game_session = GameSession.find params[:id]
-    if game_session
+    if game_session && game_session.retrieved?
       game_session.tick! 
       redirect_to game_session_path(game_session)
     end

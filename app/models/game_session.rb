@@ -109,6 +109,11 @@ class GameSession < ApplicationRecord
     Broadcast::GameSession.update(self)
   end
 
+  def retrieved?
+    # this is just awful hack to keep from premature clicking
+    verses.count == 10
+  end
+
   private
 
   def active!
