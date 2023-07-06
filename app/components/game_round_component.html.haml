@@ -2,7 +2,7 @@
   - if @game_round.queued?
     GET READY
   - elsif @game_round.active?
-    .h-full.w-full.flex.flex-col.bg-white.pt-2
+    .h-full.w-full.flex.flex-col.bg-white.pt-2{class: "max-h-full"}
       .flex.items-center.justify-center.w-full.mt-2.text-text-400{class: "max-h-[5%]"}
         = @game_round.num_verses_remaining
         Verses Remaining

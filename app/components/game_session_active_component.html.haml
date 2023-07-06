@@ -8,7 +8,7 @@
         Leave
   .score-board{class: "h-[5%] max-h-[5%]"}
     = render GameSessionScoreboardComponent.new(@game_session.score_board)
-  .active-game-round{class: "h-[85%] bg-[#a8dadc]"}
+  .active-game-round{class: "h-[85%] max-h-[85%]"}
     = render GameRoundComponent.new(game_round: @game_session.current_round)
     -# - if @game_session.users.any?
     -#   Here are a bunch of players
