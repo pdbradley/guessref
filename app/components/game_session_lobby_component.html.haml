@@ -1,33 +1,24 @@
 .h-screen.bg-white
-  .lobby-game-session-name.flex.items-center.h-16.px-4.bg-white.border-b-10
-    .m-auto.w-24.text-center.text-primary
+  .lobby-game-session-name.flex.items-center.justify-space.h-16.px-2.bg-white.border-b-10
+    .flex-none.px-1.w-24.text-center.text-300
       Verses:
       %span#num-verses
         = @game_session.num_verses
-    .w-full.h-full.bg-white.text-primary.text-center.text-xl.items-center.justify-center.flex
+    .grow.w-full.h-full.bg-white.text-primary.text-center.text-base.items-center.justify-center.flex.flex-nowrap
       = @game_session.name
-    .m-auto.w-24.text-center.bg-secondaryRed.rounded.text-primaryRed
+    .flex-none.m-auto.px-1.w-24.text-center.bg-red-200.rounded.text-red-100
       = button_to user_game_session_path(@game_session), method: :delete do
         Leave
-  .lobby-player-list.overflow-auto{class: "h-[50%]"}
+  .lobby-player-list.overflow-auto.mt-4{class: "h-[50%]"}
     - if @game_session.users.any?
-      .text-bold.text-xl.pb-4.border-b.border-gray-200.bg-white.px-4.py-5.sm:px-6
+      .text-bold.text-lg.p-5.border-b.border-gray-100.bg-white.sm:px-6
         Who's playing?
-      #user-sessions.flex.flex-wrap.items-top.gap-x-2.gap-y-2.items-top
+      #user-sessions.w-full.flex.flex-nowrap.items-top.gap-2.px-5.pt-4
         - @game_session.users.each do |user|
-          .text-base.font-semibold.leading-6.text-gray-900
-            = render PlayerBadgeComponent.new(user: user)
-  .m-auto.w-24.text-xl.text-center.text-white.bg-primaryBlue.rounded.cursor-pointer
+          = render PlayerBadgeComponent.new(user: user)
+  .m-auto.w-24.text-base.text-center.text-white.bg-green-100.rounded.cursor-pointer.py-1{class: "w-5/6"}
     = render(StartGameButtonComponent.new(game_session: @game_session))
   -# .lobby-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[40%] bg-blue3"}
   -#   = render(ChatComponent.new(game_session: @game_session))
-  .lobby-copyright.bottom-0.bg-blue4.text-xs.text-center{class: "h-[10%]"}
+  .lobby-copyright.absolute.bottom-0.text-xs.text-center.text-400{class: "h-[10%]"}
     = Copyright.text
-
--# e63946 red
--# a8dadc to
--# 1d3557
-
--# <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
--#   <h3 class="text-base font-semibold leading-6 text-gray-900">Job Postings</h3>
--# </div>

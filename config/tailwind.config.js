@@ -18,6 +18,8 @@ module.exports = {
       "text-100": "#000000",
       "text-200": "#414552",
       "text-300": "#3c4257",
+      "text-300": "#3c4257",
+      "text-400": "#9ea1ab",
 
       // App colors
       "blue-100": "#008cdd",
@@ -25,7 +27,7 @@ module.exports = {
       "purple-100": "#673ab7",
       "gray-100": "#e5e5e5",
       "red-100": "#cc3446",
-      "red-300": "rgb(249, 226, 221)",
+      "red-200": "rgb(249, 226, 221)",
       "indigo-100": "rgb(99, 91, 255)",
       "slate-100": "#2c3e50",
       

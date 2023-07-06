@@ -1,9 +1,10 @@
 %li.col-span-1.flex.shadow-sm.rounded-md{:id => dom_id(@game_session)}
-  .flex-shrink-0.flex.items-center.justify-center.w-24.bg-primaryRed.text-white.text-sm.font-medium.rounded-l-md
+  -# TODO: Add colors based on status
+  .flex-shrink-0.flex.items-center.justify-center.w-24.bg-red-100.text-white.text-sm.font-medium.rounded-l-md
     = @game_session.status
   .flex-1.flex.items-center.justify-between.border-t.border-r.border-b.border-gray-200.bg-white.rounded-r-md.truncate
     .flex-1.px-4.py-2.text-sm.truncate
-      %a.text-gray-900.font-medium.hover:text-gray-600{:href => game_session_path(@game_session)}
+      %a.text-gray-900.font-medium.hover:text-gray-100{:href => game_session_path(@game_session)}
         = @game_session.name || "Game Name"
       %p.text-gray-500
         = @game_session.users.count
