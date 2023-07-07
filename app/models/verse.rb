@@ -12,6 +12,7 @@ class Verse < ApplicationRecord
   QUEUED_STATUS = 'QUEUED'
   ACTIVE_STATUS = 'ACTIVE'
   COMPLETED_STATUS = 'COMPLETED'
+  BLANKS_FILLED_STATUS = 'BLANKS_FILLED'
   REVEALED_STATUS = 'REVEALED'
   STATUSES = [QUEUED_STATUS, ACTIVE_STATUS, COMPLETED_STATUS]
 
@@ -30,6 +31,10 @@ class Verse < ApplicationRecord
 
   def self.completed
     where(status: COMPLETED_STATUS)
+  end
+
+  def blanks_filled?
+    self.status == BLANKS_FILLED_STATUS
   end
 
   def revealed?
@@ -51,10 +56,10 @@ class Verse < ApplicationRecord
   def tick!
     if queued?
       queued_tick!
-
     elsif active?
       active_tick!
-
+    elsif blanks_filled?
+      blanks_filled_tick!
     elsif revealed?
       revealed_tick!
     else
@@ -70,10 +75,10 @@ class Verse < ApplicationRecord
   def active_tick!
     if next_hidden_word
       next_hidden_word.visible! 
-      VerseTickJob.set(wait: (1).seconds).perform_later(self.uuid)
+      VerseTickJob.set(wait: (0.5).seconds).perform_later(self.uuid)
     else
-      VerseTickJob.set(wait: (4).seconds).perform_later(self.uuid)
-      set_revealed!
+      VerseTickJob.set(wait: (7).seconds).perform_later(self.uuid)
+      set_blanks_filled!
     end
   end
 
@@ -88,6 +93,11 @@ class Verse < ApplicationRecord
     set_complete!
   end
 
+  def blanks_filled_tick!
+    GameRoundTickJob.set(wait: 5.seconds).perform_later(game_round.id)
+    set_revealed!
+  end
+
   def next_hidden_word
     verse_words.hidden.random.sample
   end
@@ -98,6 +108,10 @@ class Verse < ApplicationRecord
 
   def set_complete!
     update_attribute(:status, COMPLETED_STATUS)
+  end
+
+  def set_blanks_filled!
+    update_attribute(:status, BLANKS_FILLED_STATUS)
   end
 
   def set_revealed!
