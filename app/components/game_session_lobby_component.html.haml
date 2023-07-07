@@ -10,7 +10,8 @@
       = button_to user_game_session_path(@game_session), method: :delete do
         Leave
   .lobby-player-list.overflow-auto.mt-4{class: "h-[60%]"}
-    %p How it works: verses will appear word by word. For each verse, try to guess the book, chapter, and verse number. You get one point for each part you get right!
+    .p-2
+      %p How it works: verses will appear word by word. For each verse, try to guess the book, chapter, and verse number. You get one point for each part you get right!
     - if @game_session.users.any?
       .text-bold.text-lg.p-5.border-b.border-gray-100.bg-white.sm:px-6
         Who's playing?
