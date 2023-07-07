@@ -3,7 +3,6 @@
   = render partial: 'layouts/head'
   %body.absolute.bottom-0.top-0.left-0.right-0
     = turbo_stream_from :guessref
-
-    %main.h-screen.min-h-full.max-h-full.bg-black
+    %main.h-screen.min-h-full.max-h-full
       .h-full.max-w-7xl.mx-auto.sm:px-6.lg:px-48
         = yield
