@@ -2,4 +2,4 @@
   - if @chapter_answer.correct
     = render(VerseChoicesComponent.new(verse: @verse))
   - else
-    = render(WrongResponseComponent.new())
+    = render(WrongResponseComponent.new(1))

@@ -1,13 +1,5 @@
--# Leaderboard instead of scores?
-%div.h-full.px-4.flex.items-center.border-b.border-b-gray-100{id: dom_id(@score_board)}
-  %h3 Scores:
-  -# SB:
-  -# = @score_board.id
-  -# GS:
-  -# = @score_board.id
-  - names_and_scores.each do |player|
-    %div.score_board-row
-      %span.score_board-name
-        = player['name']
-      %span.score_board-points
-        = player['points']
+%div.h-full.flex.items-center.border-b.border-b-gray-100{id: dom_id(@score_board)}
+  .flex.flex-wrap.items-start
+    - @score_board.all_names_and_scores_strings.each do |player_score|
+      .whitespace-nowrap.px-2.py-1.rounded-full
+        = render(LabelBadgeComponent.new(player_score))

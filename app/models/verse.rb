@@ -119,7 +119,9 @@ class Verse < ApplicationRecord
 
   def set_revealed!
     update_attribute(:status, REVEALED_STATUS)
-    broadcast_replace_to game_session, target: 'possible-answers', html: self.printed_reference
+    broadcast_replace_to game_session, 
+      target: 'possible-answers', 
+      html: ApplicationController.render(RevealedReferenceComponent.new(self.printed_reference), layout: false)
   end
 
   def add_answers!

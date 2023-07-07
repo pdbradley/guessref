@@ -2,4 +2,4 @@
   - if @book_answer.correct
     = render(ChapterChoicesComponent.new(verse: @verse))
   - else
-    = render(WrongResponseComponent.new())
+    = render(WrongResponseComponent.new(0))
