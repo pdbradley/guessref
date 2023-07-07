@@ -9,6 +9,9 @@ class Verse < ApplicationRecord
 
   delegate :score_board, to: :game_session # weird feeling
 
+  # how long should it take for a verse to fill in?
+  SECONDS_TO_FULL_REVEAL = 5 
+
   QUEUED_STATUS = 'QUEUED'
   ACTIVE_STATUS = 'ACTIVE'
   COMPLETED_STATUS = 'COMPLETED'
@@ -75,9 +78,9 @@ class Verse < ApplicationRecord
   def active_tick!
     if next_hidden_word
       next_hidden_word.visible! 
-      VerseTickJob.set(wait: (0.5).seconds).perform_later(self.uuid)
+      VerseTickJob.set(wait: (delay_in_seconds_between_word_reveals).seconds).perform_later(self.uuid)
     else
-      VerseTickJob.set(wait: (7).seconds).perform_later(self.uuid)
+      VerseTickJob.set(wait: (8).seconds).perform_later(self.uuid)
       set_blanks_filled!
     end
   end
@@ -129,4 +132,12 @@ class Verse < ApplicationRecord
     # this will go away once the lsm api stuff works
     AddsVerseInfoFromFixture.new(self).fill_in_verse_with_random_info
   end
+
+  private
+
+  def delay_in_seconds_between_word_reveals
+    SECONDS_TO_FULL_REVEAL.to_f / verse_words.count.to_f
+  end
+
 end
+
