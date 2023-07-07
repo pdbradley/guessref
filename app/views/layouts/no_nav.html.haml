@@ -1,9 +1,9 @@
 !!!
 %html
   = render partial: 'layouts/head'
-  %body
+  %body.h-screen.min-h-full.max-h-full.bg-blue1
     = turbo_stream_from :guessref
 
-    %main.h-screen.min-h-full
+    %main.h-screen.min-h-full.max-h-full.bg-black
       .h-full.max-w-7xl.mx-auto.sm:px-6.lg:px-48
         = yield
