@@ -1,12 +1,17 @@
-.h-full.bg-slate-200
-  %h1 Nice Game!
-  .score-board
-    = render GameSessionScoreboardComponent.new(@game_session.score_board)
-
+.h-full.max-h-screen.bg-white.flex.flex-col
+  .active-game-session-name.flex.items-center.px-4.bg-white.border-b.border-b-gray-100{class: "h-[10%] max-h-[10%]"}
+    .flex-grow.pl-1.pr-5.w-24.text-left.text-text-300
+      Nice Game!
+    .m-auto.px-4.mx-5.text-center.bg-red-200.rounded.text-red-100
+      .back-to-lobby
+        = link_to "Back to Lobby", root_path
+    .m-auto.px-4.ml-5.text-center.bg-red-200.rounded.text-red-100
+      .reset-game
+        = button_to "Play Again", reset_game_session_path(@game_session)
   .summary-player-list.overflow-auto{class: "h-[25%] bg-[#a8dadc]"}
     - if @game_session.users.any?
       .text-bold.text-xl.pb-4
-        Who's playing?
+        How did you do?
       #user-sessions.flex.flex-wrap.items-top.gap-x-2.gap-y-2.items-top
         - @game_session.users.each do |user|
           = render PlayerBadgeComponent.new(user: user)
@@ -16,7 +21,3 @@
   .lobby-copyright.bg-gray-200.text-xs.text-center{class: "h-[10%]"}
     = Copyright.text
 
-  .back-to-lobby
-    = link_to "Back to Lobby", root_path
-  .reset-game
-    = button_to "Play Again", reset_game_session_path(@game_session)
