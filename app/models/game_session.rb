@@ -111,7 +111,7 @@ class GameSession < ApplicationRecord
 
   def retrieved?
     # this is just awful hack to keep from premature clicking
-    verses.count == 10
+    verses.count == 5
   end
 
   private
