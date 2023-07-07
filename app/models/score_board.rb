@@ -47,6 +47,10 @@ class ScoreBoard < ApplicationRecord
     names_and_scores.sort_by { |x| x['points'] }.reverse
   end
 
+  def all_names_and_scores_strings
+    all_names_and_scores.map{|x| "#{x['name']}: #{x['points']}"}
+  end
+
   def replace_score_board
     broadcast_replace_to game_session, html: ApplicationController.render(GameSessionScoreboardComponent.new(self), layout: false)
   end

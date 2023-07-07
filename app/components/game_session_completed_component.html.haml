@@ -13,8 +13,8 @@
       .text-bold.text-xl.pb-4
         How did you do?
       #user-sessions.flex.flex-wrap.items-top.gap-x-2.gap-y-2.items-top
-        - @game_session.users.each do |user|
-          = render PlayerBadgeComponent.new(user: user)
+        - @game_session.score_board.all_names_and_scores_strings.each do |label|
+          = render LabelBadgeComponent.new(label)
 
   .summary-chat.bg-gray-300.overflow-auto.flex.flex-col-reverse{class: "h-[50%] bg-[#a8dadc]"}
     = render(ChatComponent.new(game_session: @game_session))
