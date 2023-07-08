@@ -1,4 +1,8 @@
-= form_tag('/chats') do
-  = hidden_field_tag 'game_session_id', @game_session.id
-  = text_field_tag 'message'
-  = submit_tag 'Send'
+.max-w-full.mt-4
+  = form_tag('/chats') do
+    .flex.w-full.justify-between.px-2
+      = hidden_field_tag 'game_session_id', @game_session.id
+      .flex.flex-grow
+        = text_field_tag 'message'
+      .flex.justify-center.items-center.bg-blue-100.text-white.rounded-md.shadow.px-2
+        = submit_tag 'Send'
