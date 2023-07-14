@@ -1,0 +1,121 @@
+class SuppliesThreeBookNumberGuesses
+
+  GENESIS = 1
+  EXODUS = 2
+  LEVITICUS = 3
+  NUMBERS = 4
+  DEUTERONOMY = 5
+  JOSHUA = 6
+  JUDGES = 7
+  RUTH = 8
+  SAMUEL1 = 9
+  SAMUEL2 = 10
+  KINGS1 = 11
+  KINGS2 = 12
+  CHRONICLES1 = 13
+  CHRONICLES2 = 14
+  EZRA = 15
+  NEHEMIAH = 16
+  ESTHER = 17
+  JOB = 18
+  PSALMS = 19
+  PROVERBS = 20
+  ECCLESIASTES = 21
+  SONGOFSONGS = 22
+  ISAIAH = 23
+  JEREMIAH = 24
+  LAMENTATIONS = 25
+  EZEKIEL = 26
+  DANIEL = 27
+  HOSEA = 28
+  JOEL = 29
+  AMOS = 30
+  OBADIAH = 31
+  JONAH = 32
+  MICAH = 33
+  NAHUM = 34
+  HABAKKUK = 35
+  ZEPHANIAH = 36
+  HAGGAI = 37
+  ZECHARIAH = 38
+  MALACHI = 39
+  MATTHEW = 40
+  MARK = 41
+  LUKE = 42
+  JOHN = 43
+  ACTS = 44
+  ROMANS = 45
+  CORINTHIANS1 = 46
+  CORINTHIANS2 = 47
+  GALATIANS = 48
+  EPHESIANS = 49
+  PHILIPPIANS = 50
+  COLOSSIANS = 51
+  THESSALONIANS1 = 52
+  THESSALONIANS2 = 53
+  TIMOTHY1 = 54
+  TIMOTHY2 = 55
+  TITUS = 56
+  PHILEMON = 57
+  HEBREWS = 58
+  JAMES = 59
+  PETER1 = 60
+  PETER2 = 61
+  JOHN1 = 62
+  JOHN2 = 63
+  JOHN3 = 64
+  JUDE = 65
+  REVELATION = 66
+
+
+  PENTATEUCH = [GENESIS, EXODUS, LEVITICUS, NUMBERS, DEUTERONOMY]
+  POETRY = [JOB, PSALMS, PROVERBS, ECCLESIASTES, SONGOFSONGS]
+  HISTORY = [JOSHUA,  JUDGES,  RUTH,  SAMUEL1,  SAMUEL2,  KINGS1,  KINGS2,  CHRONICLES1,  CHRONICLES2,  EZRA,  NEHEMIAH,  ESTHER]
+  MAJOR_PROPHETS = [ISAIAH,  JEREMIAH,  LAMENTATIONS,  EZEKIEL,  DANIEL]
+  MINOR_PROPHETS = [HOSEA,  JOEL,  AMOS,  OBADIAH,  JONAH,  MICAH,  NAHUM,  HABAKKUK,  ZEPHANIAH,  HAGGAI,  ZECHARIAH,  MALACHI]
+  GOSPELS = [MATTHEW, MARK, LUKE, JOHN]
+  HEART = [GALATIANS, EPHESIANS, PHILIPPIANS, COLOSSIANS]
+  PAUL_EP = [ROMANS, CORINTHIANS1, CORINTHIANS2, GALATIANS, EPHESIANS, PHILIPPIANS, COLOSSIANS,
+  THESSALONIANS1, THESSALONIANS2, TIMOTHY1, TIMOTHY2, TITUS, PHILEMON, HEBREWS]
+  JOHN_EP = [JOHN1, JOHN2, JOHN3]
+  PETER_EP = [PETER1, PETER2]
+  ALL_EP = PAUL_EP + JOHN_EP + PETER_EP + [JUDE, JAMES]
+  ALL = PAUL_EP + JOHN_EP + PETER_EP + [JUDE, JAMES, ACTS, REVELATION] + GOSPELS
+    
+  def initialize(book_number)
+    @book_number = book_number
+  end
+
+  def guesses # this method will be huge
+    case @book_number
+    when *PENTATEUCH
+      (PENTATEUCH - [ @book_number ]).sample(3)
+    when *POETRY
+      (POETRY - [ @book_number ]).sample(3)
+    when *HISTORY
+      (HISTORY - [ @book_number ]).sample(3)
+    when *MAJOR_PROPHETS
+      (MAJOR_PROPHETS - [ @book_number ]).sample(3)
+    when *MINOR_PROPHETS
+      (MINOR_PROPHETS - [ @book_number ]).sample(3)
+    when *GOSPELS
+      (GOSPELS - [ @book_number ]).sample(3)
+    when ACTS
+      (ALL - [ACTS]).sample(3)
+    when *PAUL_EP
+      (PAUL_EP - [ @book_number ]).sample(3)
+    when *HEART
+      (HEART - [ @book_number ]).sample(3)
+    when JAMES
+      ([HEBREWS] + PETER_EP + [JUDE] + JOHN_EP).sample(3)
+    when *PETER_EP
+      ((PETER_EP + [JUDE] + JOHN_EP + [JAMES]) - [ @book_number ]).sample(3)
+    when *JOHN_EP
+      (([JUDE] + JOHN_EP) - [ @book_number ]).sample(3)
+    when JUDE
+      (PETER_EP + JOHN_EP).sample(3)
+    when REVELATION
+      (ALL).sample(3)
+    end
+  end
+end
